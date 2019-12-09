@@ -4,7 +4,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace ApplicationChallenge.Models
 {
-    public class Assignment
+    public class Assignment : IDatabaseModel
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]

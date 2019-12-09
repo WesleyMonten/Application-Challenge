@@ -3,7 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace ApplicationChallenge.Models
 {
-    public class CompanyTag
+    public class CompanyTag : IDatabaseModel
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
