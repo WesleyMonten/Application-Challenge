@@ -1,7 +1,15 @@
-<header>
-  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-    <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">ApplicationChallenge</a>
-    </div>
-  </nav>
-</header>
+<div>
+  <img src="../../assets/user.png" width="120px" height="120px" />
+  <h4> Username </h4>
+</div>
+<br>
+<div class="divider"> <span class="span"></span>
+  <button mat-button routerLink="" routerLinkActive="active" class="menu-item">
+    <mat-icon>library_books</mat-icon>
+    <span>Feed</span>
+  </button>
+  <button mat-button routerLink="" routerLinkActive="active" class="menu-item">
+    <mat-icon>account_box</mat-icon>
+    <span>Profile</span>
+  </button>
+  <mat-icon id="logout">logout</mat-icon>
