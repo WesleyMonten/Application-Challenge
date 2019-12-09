@@ -4,6 +4,9 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace ApplicationChallenge.Models
 {
+    /// <summary>
+    /// An account in the application. Can be an <see cref="Applicant"/> or a <see cref="Company"/>
+    /// </summary>
     public class User : IDatabaseModel
     {
         [BsonId]
@@ -17,6 +20,15 @@ namespace ApplicationChallenge.Models
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string LinkedInUrl { get; set; }
-        public bool Admin { get; set; }
+        public bool IsAdmin { get; set; }
+
+        /// <summary>
+        /// <see cref="Applicant"/> data, if the user is one
+        /// </summary>
+        public Applicant Applicant { get; set; }
+        /// <summary>
+        /// <see cref="Company"/> data, if the user represents one
+        /// </summary>
+        public Company Company { get; set; }
     }
 }
