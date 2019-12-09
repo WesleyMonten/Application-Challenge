@@ -5,15 +5,10 @@
     </mat-drawer>
     <div class="content">
       <nav class="navbar navbar-light border-bottom box-shadow mb-3 background-color-primary">
-        <div class="container-fluid">
-          <mat-icon (click)="drawer.toggle()">menu</mat-icon>
-          <mat-form-field appearance="outline">
-            <input matInput placeholder="Search...">
-          </mat-form-field>
-          <!-- <a [routerLink]="['/']">
-            <h4>Application Challenge</h4>
-          </a> -->
-        </div>
+        <mat-icon (click)="drawer.toggle()">menu</mat-icon>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Search...">
+        </mat-form-field>
       </nav>
       <div class="spacer"></div>
       <router-outlet></router-outlet>

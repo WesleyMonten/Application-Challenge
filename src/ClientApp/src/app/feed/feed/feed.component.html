@@ -1,2 +1,85 @@
 <div class="container">
+    <mat-card class="feed-card">
+        <mat-card-header>
+            <div mat-card-avatar class="microsoft-header-image"></div>
+            <mat-card-title><a href="">Dario</a></mat-card-title>
+            <mat-card-subtitle><a href="">Microsoft</a></mat-card-subtitle>
+            <div class="fill"></div>
+            <mat-icon>archive</mat-icon>
+        </mat-card-header>
+        <mat-chip-list>
+            <mat-chip id="net">.NET</mat-chip>
+            <mat-chip id="ang">Angular</mat-chip>
+            <mat-chip id="freelance">Freelance</mat-chip>
+        </mat-chip-list>
+        <br>
+        <mat-card-content>
+            <p>
+                Description assignment: Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque repudiandae
+                corporis ducimus id iusto laborum aliquid odit eos quam temporibus commodi, cum voluptatum mollitia
+                ipsum accusamus nihil molestiae deserunt consequatur?
+            </p>
+            <p *ngIf="expanded">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, dolores soluta! Harum animi
+                repudiandae cum labore! Culpa impedit sunt maxime dolorum architecto reprehenderit nobis, eveniet
+                atque recusandae error obcaecati laboriosam! Lorem ipsum dolor sit, amet consectetur adipisicing
+                elit. Optio magnam harum natus qui similique cum beatae impedit ad quisquam aut! Magni dignissimos,
+                vitae dolorum molestiae reiciendis reprehenderit vero omnis. Quo!
+                <br>
+                <a href="">
+                    Go to assigment <mat-icon>navigate_next</mat-icon>
+                </a>
+            </p>
+            <div>
+                <a *ngIf="!expanded" (click)="toggleExpand()" class="expand">See more...</a>
+                <a *ngIf="expanded" (click)="toggleExpand()" class="expand">See less...</a>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button (click)="toggleLike()">
+                <mat-icon class="like" *ngIf="!liked">favorite_border</mat-icon>
+                <mat-icon class="like" *ngIf="liked">favorite</mat-icon>
+                <span class="likes" *ngIf="!liked">17</span>
+                <span class="likes" *ngIf="liked">18</span>
+            </button>
+            <button mat-button>
+                <mat-icon>share</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+    <mat-card class="feed-card">
+        <mat-card-header>
+            <div mat-card-avatar class="apple-header-image"></div>
+            <mat-card-title><a href="">Jonas</a></mat-card-title>
+            <mat-card-subtitle><a href="">Apple</a></mat-card-subtitle>
+            <div class="fill"></div>
+            <mat-icon>archive</mat-icon>
+        </mat-card-header>
+        <mat-chip-list>
+            <mat-chip id="java">Java</mat-chip>
+            <mat-chip id="intern">Internship</mat-chip>
+        </mat-chip-list>
+        <br>
+        <mat-card-content>
+            <p>
+                Description assignment: Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque repudiandae
+                corporis ducimus id iusto laborum aliquid odit eos quam temporibus commodi, cum voluptatum mollitia
+                ipsum accusamus nihil molestiae deserunt consequatur?
+            </p>
+            <a href="">
+                Go to assigment <mat-icon>navigate_next</mat-icon>
+            </a>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button (click)="toggleLike2()">
+                <mat-icon class="like" *ngIf="!liked2">favorite_border</mat-icon>
+                <mat-icon class="like" *ngIf="liked2">favorite</mat-icon>
+                <span class="likes" *ngIf="!liked2">41</span>
+                <span class="likes" *ngIf="liked2">42</span>
+            </button>
+            <button mat-button>
+                <mat-icon>share</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
 </div>
