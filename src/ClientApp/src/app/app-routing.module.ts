@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { FeedComponent } from './feed/feed/feed.component';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: '', component: FeedComponent, pathMatch: 'full' },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
