@@ -7,7 +7,7 @@ namespace ApplicationChallenge.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ApplicantReviewController
+    public class ApplicantReviewController: ControllerBase
     {
          private IMongoCollection<ApplicantReview> ApplicantReviews { get; }
          public ApplicantReviewController(IDatabaseSettings databaseSettings)
@@ -26,7 +26,11 @@ namespace ApplicationChallenge.Controllers
          {
              return ApplicantReviews.Find(applicantReview => applicantReview.Id == id).FirstOrDefault();
          }
- 
+         [HttpGet("Applicant/{id}")]
+         public IEnumerable<ApplicantReview> GetByApplicant(string id)
+         {
+             return ApplicantReviews.Find(applicantReview => applicantReview.ApplicantI  == id).ToList();
+         }
          [HttpPost]
          public ApplicantReview Create(ApplicantReview review)
          {

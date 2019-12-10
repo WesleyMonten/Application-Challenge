@@ -2,12 +2,13 @@ using System.Collections.Generic;
 using ApplicationChallenge.Models;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
-
+// TODO
+// op bedrijf
 namespace ApplicationChallenge.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class AssignmentController
+    public class AssignmentController: ControllerBase
     {
             private IMongoCollection<Assignment> Assignments { get; }
             public AssignmentController(IDatabaseSettings databaseSettings)
