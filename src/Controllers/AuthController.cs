@@ -29,6 +29,21 @@ namespace ApplicationChallenge.Controllers
         {
             return Users.Find(user => true).ToList();
         }
+
+        [HttpPost("login")]
+        public SuccessWrapper Login([FromBody] UserLogin login)
+        {
+            var user = Users.Find(u => u.Email.ToLowerInvariant() == login.Email.ToLowerInvariant()).FirstOrDefault();
+            if (user is null) {
+                return SuccessWrapper.Error("Email not found");
+            }
+
+            if (!BCrypt.Net.BCrypt.Verify(login.Password, user.PasswordHash)) {
+                return SuccessWrapper.Error("Incorrect password");
+            }
+
+            return SuccessWrapper.Success(CreateToken(user.Id));
+        }
         
         [HttpPost("register")]
         public SuccessWrapper Register([FromBody] UserRegistration regInfo)
