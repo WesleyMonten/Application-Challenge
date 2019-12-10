@@ -1,1 +1,87 @@
-<p>applicant-detail works!</p>
+<div class="container-fluid">
+    <div class="banner">
+        <button mat-fab color="primary">
+            <mat-icon>edit</mat-icon>
+        </button>
+    </div>
+    <div id="profilePic">
+        <img src=".././../../assets/user.png">
+        <span>
+            <h2>Dabbing Unicorn (Nerissa Janssens)</h2>
+            <mat-chip-list>
+                <mat-chip id="net">.NET</mat-chip>
+                <mat-chip id="ang">Angular</mat-chip>
+                <mat-chip id="freelance">Freelance</mat-chip>
+                <mat-chip id="freelance">Freelance</mat-chip>
+            </mat-chip-list>
+        </span>
+    </div>
+    <div>
+        <mat-tab-group dynamicHeight>
+            <mat-tab label="Reviews">
+                <div class="container">
+                    <div>
+                        <mat-card class="review-card">
+                            <mat-card-header>
+                                <div id="commodations">
+                                    <img src="../../../assets/takesinitiative.png" matTooltip="Takes initiative"
+                                        matTooltipPosition="above">
+                                    <img src="../../../assets/highquality.png" matTooltip="High quality"
+                                        matTooltipPosition="above">
+                                    <img src="../../../assets/hardworker.png" matTooltip="Hard worker"
+                                        matTooltipPosition="above">
+                                </div>
+                                <mat-card-title><a href="">Assignment Name (Company Name)</a></mat-card-title>
+                                <mat-card-subtitle><a href="">Username</a></mat-card-subtitle>
+                                <div class="fill"></div>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <p>
+                                    Review text: Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    Eaque repudiandae
+                                    corporis ducimus id iusto laborum aliquid odit eos quam temporibus commodi, cum
+                                    voluptatum mollitia
+                                    ipsum accusamus nihil molestiae deserunt consequatur?
+                                </p>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab label="Skills">
+                <div class="container">
+                    <br>
+                    <mat-accordion>
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Skill
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                    Experienced
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <p>
+                                In depth description of experience
+                            </p>
+                        </mat-expansion-panel>
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Skill
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                    Average
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <p>
+                                In depth description of experience
+                            </p>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>
