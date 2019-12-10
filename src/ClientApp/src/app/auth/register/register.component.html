@@ -1,1 +1,27 @@
-<p>register works!</p>
+<div class="box">
+<h1>Register</h1>
+<mat-form-field appearance="outline">
+    <mat-label>Username</mat-label>
+    <input matInput placeholder="Username">
+  </mat-form-field><br>
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
+    <input matInput placeholder="Password">
+  </mat-form-field><br>
+  <mat-form-field appearance="outline">
+    <mat-label>Verify password</mat-label>
+    <input matInput placeholder="Verify password">
+  </mat-form-field><br>
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="Email">
+  </mat-form-field><br>
+  <mat-form-field appearance="outline">
+    <mat-label>Birthdate</mat-label>
+    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker startView="month" [startAt]="startdate"></mat-datepicker>
+  </mat-form-field>
+  <br>
+<button mat-raised-button>Click me!</button>
+</div>

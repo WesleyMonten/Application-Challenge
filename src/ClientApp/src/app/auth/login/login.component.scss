@@ -1,0 +1,15 @@
+$bg: hotpink;
+mat-form-field{
+    width: 100%;
+}
+
+.mat-raised-button{
+    background-color: red;
+}
+
+.box{
+    margin: auto;
+    background-color:$bg;
+    border-radius: 15px;
+    padding: 30px;
+}
