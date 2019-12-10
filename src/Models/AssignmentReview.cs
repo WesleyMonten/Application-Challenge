@@ -6,7 +6,7 @@ namespace ApplicationChallenge.Models
     /// <summary>
     /// A review on an <see cref="Assignment"/>, given by an <see cref="Applicant"/>
     /// </summary>
-    public class ApplicantReview : IDatabaseModel
+    public class AssignmentReview : IDatabaseModel
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
@@ -17,5 +17,9 @@ namespace ApplicationChallenge.Models
 
         [BsonRepresentation(BsonType.ObjectId)]
         public string CompanyId { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string AssignmentId { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string ApplicantId { get; set; }
     }
 }

@@ -6,9 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 
-// TODO
-// op bedrijf
-
 namespace ApplicationChallenge.Controllers
 {
     [ApiController]
@@ -32,6 +29,18 @@ namespace ApplicationChallenge.Controllers
         {
             return CompanyReviews.Find(companyReview => companyReview.CompanyId == id).ToList();
         }
+        [HttpGet("applicant/{id}")]
+        public IEnumerable<CompanyReview> GetByApplicant(string id)
+        {
+            return CompanyReviews.Find(companyReview => companyReview.ApplicantId == id).ToList();
+        }
+
+        [HttpGet("assignment/{id}")]
+        public CompanyReview GetByAssignment(string id)
+        {
+            return CompanyReviews.Find(companyReview => companyReview.AssignmentId == id).First();
+        }
+
         [HttpGet("{id}")]
         public CompanyReview GetById(string id)
         {
