@@ -29,6 +29,10 @@ namespace ApplicationChallenge.Models
         /// <see cref="AssignmentStage.Finished"/>, optionally diverting to <see cref="AssignmentStage.Cancelled"/>
         /// </summary>
         public AssignmentStage Stage { get; set; }
+        /// <summary>
+        /// The topics that describe this <see cref="Assignment"/>
+        /// </summary>
+        public AssignmentTopic[] Topics { get; set; }
 
         [BsonRepresentation(BsonType.ObjectId)]
         public string CompanyId { get; set; }
