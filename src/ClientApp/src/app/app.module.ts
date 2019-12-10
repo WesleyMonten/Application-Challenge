@@ -8,6 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FeedModule } from './feed/feed.module';
+import { DetailModule } from './detail/detail.module';
+import { EditModule } from './edit/edit.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { FeedModule } from './feed/feed.module';
     AppRoutingModule,
     SharedModule,
     BrowserAnimationsModule,
-    FeedModule
+    FeedModule,
+    DetailModule,
+    EditModule
   ],
   providers: [],
   bootstrap: [AppComponent]
