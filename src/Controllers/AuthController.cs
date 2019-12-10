@@ -1,12 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using ApplicationChallenge.Models;
+using ApplicationChallenge.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
 
 namespace ApplicationChallenge.Controllers
@@ -15,12 +11,12 @@ namespace ApplicationChallenge.Controllers
     [Route("[controller]")]
     public class AuthController : ControllerBase
     {
-        private IAppSettings AppSettings { get; }
+        private IUserService UserService { get; }
         private IMongoCollection<User> Users { get; }
 
-        public AuthController(IDatabaseSettings databaseSettings, IAppSettings appSettings)
+        public AuthController(IDatabaseSettings databaseSettings, IUserService userService)
         {
-            AppSettings = appSettings;
+            UserService = userService;
             Users = databaseSettings.GetCollection<User>();
         }
 
@@ -33,55 +29,29 @@ namespace ApplicationChallenge.Controllers
         [HttpPost("login")]
         public SuccessWrapper Login([FromBody] UserLogin login)
         {
-            var user = Users.Find(u => u.Email.ToLowerInvariant() == login.Email.ToLowerInvariant()).FirstOrDefault();
-            if (user is null) {
-                return SuccessWrapper.Error("Email not found");
+            try
+            {
+                var token = UserService.CheckUserLogin(login);
+                return SuccessWrapper.Success(token);
             }
-
-            if (!BCrypt.Net.BCrypt.Verify(login.Password, user.PasswordHash)) {
-                return SuccessWrapper.Error("Incorrect password");
+            catch (Exception e)
+            {
+                return SuccessWrapper.Error(e);
             }
-
-            return SuccessWrapper.Success(CreateToken(user.Id));
         }
         
         [HttpPost("register")]
         public SuccessWrapper Register([FromBody] UserRegistration regInfo)
         {
-            if (regInfo.Email == default ||
-                regInfo.Password == default ||
-                regInfo.Username == default ||
-                regInfo.DateOfBirth == default) {
-                return SuccessWrapper.Error("Some field was not filled in");
-            }
-            
-            if (Users.Find(u => u.Email.ToLowerInvariant() == regInfo.Email.ToLowerInvariant()).Any()) {
-                return SuccessWrapper.Error("Email already exists");
-            }
-            if (Users.Find(u => u.Nickname.ToLowerInvariant() == regInfo.Username.ToLowerInvariant()).Any()) {
-                return SuccessWrapper.Error("Username already exists");
-            }
-            
-            var user = regInfo.CreateNewUser();
-            Users.InsertOne(user);
-            return SuccessWrapper.Success(CreateToken(user.Id));
-        }
-
-        private string CreateToken(string id)
-        {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(AppSettings.JwtSecret);
-            var tokenDescriptor = new SecurityTokenDescriptor
+            try
             {
-                Subject = new ClaimsIdentity(new[]
-                {
-                    new Claim(ClaimTypes.Name, id)
-                }),
-                Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
+                var token = UserService.RegisterUser(regInfo);
+                return SuccessWrapper.Success(token);
+            }
+            catch (Exception e)
+            {
+                return SuccessWrapper.Error(e);
+            }
         }
     }
 }

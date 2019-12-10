@@ -1,14 +1,14 @@
 using System.Text;
 using ApplicationChallenge.Models;
+using ApplicationChallenge.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
 namespace ApplicationChallenge
@@ -36,6 +36,9 @@ namespace ApplicationChallenge
 
             services.AddSingleton<IAppSettings>(sp =>
                 sp.GetRequiredService<IOptions<AppSettings>>().Value);
+            
+            // set up DI services
+            services.AddScoped<IUserService, UserService>();
 
             // configure jwt authentication
             var appSettings = appSettingsSection.Get<AppSettings>();
