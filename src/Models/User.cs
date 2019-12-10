@@ -16,9 +16,12 @@ namespace ApplicationChallenge.Models
         public string Nickname { get; set; }
         public string Email { get; set; }
         public string PasswordHash { get; set; }
+        /// <remarks> Not required at registration </remarks>
         public string FirstName { get; set; }
+        /// <remarks> Not required at registration </remarks>
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
+        /// <remarks> Not required at registration </remarks>
         public string LinkedInUrl { get; set; }
         public bool IsAdmin { get; set; }
 
