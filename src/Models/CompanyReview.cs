@@ -3,6 +3,9 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace ApplicationChallenge.Models
 {
+    /// <summary>
+    /// A review given to an <see cref="Applicant"/> by a <see cref="Company"/>
+    /// </summary>
     public class CompanyReview : IDatabaseModel
     {
         [BsonId]
@@ -11,7 +14,11 @@ namespace ApplicationChallenge.Models
 
         public string ReviewText { get; set; }
         public CompanyCommendation[] Commendations { get; set; }
-        public (string tag, float score)[] CustomTags { get; set; }
-        public Assignment Assignment { get; set; }
+
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string AssignmentId { get; set; }
+
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string CompanyId { get; set; }
     }
 }
