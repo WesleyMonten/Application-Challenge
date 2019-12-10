@@ -1,4 +1,5 @@
 using System.Text;
+using System.Text.Json.Serialization;
 using ApplicationChallenge.Models;
 using ApplicationChallenge.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -61,12 +62,16 @@ namespace ApplicationChallenge
                     };
                 });
             
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddJsonOptions(options => {
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                options.JsonSerializerOptions.IgnoreNullValues = true;
+            });
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
