@@ -6,7 +6,7 @@ namespace ApplicationChallenge.Models
     /// <summary>
     /// A review on an <see cref="Assignment"/>, given by an <see cref="Applicant"/>
     /// </summary>
-    public class AssignmentReview : IDatabaseModel
+    public class ApplicantReview : IDatabaseModel
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]

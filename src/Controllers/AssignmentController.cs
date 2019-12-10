@@ -2,8 +2,7 @@ using System.Collections.Generic;
 using ApplicationChallenge.Models;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
-// TODO
-// op bedrijf
+
 namespace ApplicationChallenge.Controllers
 {
     [ApiController]
@@ -20,7 +19,11 @@ namespace ApplicationChallenge.Controllers
             public IEnumerable<Assignment> GetAll()
             {
                 return Assignments.Find(tag => true).ToList();
-    
+            }
+            [HttpGet("company/{id}")]
+            public IEnumerable<Assignment> GetByCompany(string id)
+            {
+                return Assignments.Find(assignment => assignment.CompanyId == id).ToList();
             }
             [HttpGet("{id}")]
             public Assignment GetById(string id)
