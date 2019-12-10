@@ -15,7 +15,6 @@ import { FeedModule } from './feed/feed.module';
   declarations: [
     AppComponent,
     NavMenuComponent,
-    HomeComponent,
     LoginComponent,
     RegisterComponent
   ],

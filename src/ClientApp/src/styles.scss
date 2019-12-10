@@ -24,7 +24,7 @@ $theme: mat-light-theme($primary, $accent, $warn);
 }
 
 body{
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'DM Sans', sans-serif !important;
 }
 a {
   color: #0366d6;
@@ -42,4 +42,8 @@ code {
 
 .mat-button:focus {
   outline: none;
+}
+
+:host ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick{
+  color: #377Dc0;
 }

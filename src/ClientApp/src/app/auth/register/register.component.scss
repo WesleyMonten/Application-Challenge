@@ -1,11 +1,29 @@
-$bg: hotpink;
+//$bg: hotpink;
 mat-form-field{
-    width: 70%;
+    width: 100%;
+    font-size: 15px;
 }
 
-.box{
+:host ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick{
+    color: #377Dc0;
+}
+
+// .box{
+//     margin: auto;
+//     border-radius: 15px;
+//     padding: 30px;
+// }
+
+// .center{
+//     width: auto;
+// }
+
+mat-card{
+    max-width: 600px;
+    height: 100%;
     margin: auto;
-    background-color:$bg;
-    border-radius: 15px;
-    padding: 30px;
+}
+
+button{
+    width: 100%;
 }
