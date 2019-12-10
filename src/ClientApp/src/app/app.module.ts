@@ -5,11 +5,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './home/home.component';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { FeedModule } from './feed/feed.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,8 @@ import { RegisterComponent } from './auth/register/register.component';
     FormsModule,
     AppRoutingModule,
     SharedModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FeedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

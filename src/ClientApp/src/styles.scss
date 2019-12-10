@@ -1,3 +1,4 @@
+@import '~material-icons/iconfont/material-icons.css';
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css?family=DM+Sans&display=swap');
 /* Provide sufficient contrast against white background */
@@ -37,4 +38,8 @@ code {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
+}
+
+.mat-button:focus {
+  outline: none;
 }
