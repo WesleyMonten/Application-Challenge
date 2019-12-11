@@ -9,6 +9,7 @@ namespace ApplicationChallenge.Controllers
     [Route("[controller]")]
     public class AssignmentController: ControllerBase
     {
+            // TODO: return enkel drafts als companyId uit session matcht
             private IMongoCollection<Assignment> Assignments { get; }
             public AssignmentController(IDatabaseSettings databaseSettings)
             {
@@ -20,11 +21,23 @@ namespace ApplicationChallenge.Controllers
             {
                 return Assignments.Find(tag => true).ToList();
             }
+            [HttpGet("open")]
+            public IEnumerable<Assignment> GetOpen()
+            {
+                return Assignments.Find(assignment =>  assignment.Stage == AssignmentStage.Open).ToList();
+            }
+
             [HttpGet("company/{id}")]
             public IEnumerable<Assignment> GetByCompany(string id)
             {
                 return Assignments.Find(assignment => assignment.CompanyId == id).ToList();
             }
+            [HttpGet("company/{id}/{stage}")]
+            public IEnumerable<Assignment> GetByCompanyAndStage(string id, AssignmentStage stage)
+            {
+                return Assignments.Find(assignment => assignment.CompanyId == id && assignment.Stage == stage).ToList();
+            }
+
             [HttpGet("{id}")]
             public Assignment GetById(string id)
             {
