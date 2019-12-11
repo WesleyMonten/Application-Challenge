@@ -16,5 +16,9 @@ namespace ApplicationChallenge.Models
         /// Whether the <see cref="Applicant"/> is open/looking for jobs
         /// </summary>
         public bool Available { get; set; }
+        /// <summary>
+        /// This person's primary skills, to be displayed on their profile
+        /// </summary>
+        public Skill[] Skills { get; set; }
     }
 }
