@@ -34,6 +34,11 @@ namespace ApplicationChallenge.Models
         /// </summary>
         public AssignmentTopic[] Topics { get; set; }
 
+        /// <summary>
+        /// The accepted application's id, if any
+        /// </summary>
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string ApplicationId { get; set; }
         [BsonRepresentation(BsonType.ObjectId)]
         public string CompanyId { get; set; }
     }

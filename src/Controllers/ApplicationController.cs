@@ -30,7 +30,6 @@ namespace ApplicationChallenge.Controllers
         {
             return Applications.Find(application => application.AssignmentId == id).ToList();
         }
-// FIXME: @Dario applicantId of UserId?        
         [HttpGet("applicant/{id}")]
         public IEnumerable<Application> GetByCompany(string id)
         {
@@ -45,7 +44,7 @@ namespace ApplicationChallenge.Controllers
         [HttpPut("{id}")]
         public Application Edit(string id, Application app)
         {
-            Applications.FindOneAndReplace(applciation => applciation.Id == id, app);
+            Applications.FindOneAndReplace(application => application.Id == id, app);
             return app;
         }
         [HttpDelete("{id}")]

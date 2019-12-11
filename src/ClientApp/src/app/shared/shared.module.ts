@@ -32,7 +32,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { MatRippleModule } from '@angular/material/core';
+import { MatRippleModule, MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -76,7 +76,7 @@ import { MatRippleModule } from '@angular/material/core';
     ReactiveFormsModule,
     HttpClientModule,
     MatRippleModule,
-
+    MatNativeDateModule
   ]
 })
 export class SharedModule { }
