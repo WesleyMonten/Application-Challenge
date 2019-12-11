@@ -7,9 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeedComponent implements OnInit {
 
+  liked: boolean = false;
+  liked2: boolean = false;
+  expanded: boolean = false;
+
   constructor() { }
 
-  ngOnInit() {
+  toggleLike() {
+    this.liked = this.liked != true;
   }
+
+  toggleLike2() {
+    this.liked2 = this.liked2 != true;
+  }
+
+  toggleExpand() {
+    this.expanded = this.expanded != true
+  }
+
+  ngOnInit() { }
 
 }

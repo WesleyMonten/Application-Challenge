@@ -42,10 +42,10 @@ namespace ApplicationChallenge.Services
                 throw new Exception("Some field was not filled in");
             }
             
-            if (GetUserByEmail(reg.Email) is null) {
+            if (GetUserByEmail(reg.Email) != null) {
                 throw new Exception("Email already exists");
             }
-            if (GetUserByUsername(reg.Username) is null) {
+            if (GetUserByUsername(reg.Username) != null) {
                 throw new Exception("Username already exists");
             }
             
