@@ -1,6 +1,9 @@
 <div class="container-fluid">
     <div class="banner">
-        <button mat-fab color="primary">
+        <button mat-fab id="verwijder" (click)="openDialog()">
+            <mat-icon>clear</mat-icon>
+        </button>
+        <button mat-fab color="primary" type="button" [routerLink]="['/edit-applicant/', 1]" routerLink="active">
             <mat-icon>edit</mat-icon>
         </button>
     </div>
@@ -11,7 +14,6 @@
             <mat-chip-list>
                 <mat-chip id="net">.NET</mat-chip>
                 <mat-chip id="ang">Angular</mat-chip>
-                <mat-chip id="freelance">Freelance</mat-chip>
                 <mat-chip id="freelance">Freelance</mat-chip>
             </mat-chip-list>
         </span>
