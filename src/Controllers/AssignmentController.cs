@@ -61,11 +61,10 @@ namespace ApplicationChallenge.Controllers
             }
     
             [HttpPut("{id}")]
-            public Assignment Edit(string id, Assignment ass)
+            public Assignment Edit(string id, Assignment review)
             {
-                ass.Id = id;
-                Assignments.FindOneAndReplace(assignment => assignment.Id == id, ass);
-                return ass; // hee hee
+                Assignments.FindOneAndReplace(assignment => assignment.Id == id, review);
+                return review;
             }
     
             [HttpDelete("{id}")]
