@@ -41,8 +41,8 @@ namespace ApplicationChallenge.Controllers
             {
                 return Assignments.Find(assignment => assignment.CompanyId == id && assignment.Stage == AssignmentStage.Closed).ToList();
             }
-// alleen voor company/creator zelf
-            [HttpGet("company/{id}/draft")]
+            // TODO: mag alleen door company/creator zelf
+            [HttpGet("company/{id}/drafts")]
             public IEnumerable<Assignment> GetDraftByCompany(string id)
             {
                 return Assignments.Find(assignment => assignment.CompanyId == id && assignment.Stage == AssignmentStage.Draft).ToList();

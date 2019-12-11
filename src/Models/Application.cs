@@ -10,7 +10,6 @@ namespace ApplicationChallenge.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
         
-        public string Text { get; set; }
         public ApplicationStatus Status { get; set; }
         
         [BsonRepresentation(BsonType.ObjectId)]
