@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FeedModule } from './feed/feed.module';
 import { DetailModule } from './detail/detail.module';
 import { EditModule } from './edit/edit.module';
+import { DeleteModule } from './delete/delete.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { EditModule } from './edit/edit.module';
     BrowserAnimationsModule,
     FeedModule,
     DetailModule,
-    EditModule
+    EditModule,
+    DeleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]

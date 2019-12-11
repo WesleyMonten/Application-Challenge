@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { CompanyDeleteComponent } from 'src/app/delete/company-delete/company-delete.component';
 
 @Component({
   selector: 'app-company-detail',
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompanyDetailComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
+
+  openDialog(): void {
+    this.dialog.open(CompanyDeleteComponent, {
+      width: '400px',
+      data: { accountID: 1 }
+    });
+  }
 
   ngOnInit() {
   }

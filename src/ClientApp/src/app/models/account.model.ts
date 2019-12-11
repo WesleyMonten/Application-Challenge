@@ -1,3 +1,3 @@
 export class Account {
-    constructor(){}
+    constructor(public accountID: number) { }
 }

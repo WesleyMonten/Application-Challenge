@@ -1,0 +1,17 @@
+<div class="container">
+    <h4 mat-dialog-title>Confirmation!</h4>
+    <div class="row" mat-dialog-content>
+        <div class="col-12">
+            <mat-form-field appearance="outline">
+                <mat-label>Nickname</mat-label>
+                <input matInput placeholder="Nickname">
+                <mat-hint>Please enter your nickname to confirm</mat-hint>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row" mat-dialog-actions>
+        <div class="col-12">
+            <button mat-flat-button type="submit" (click)="closeDialog()">Delete account</button>
+        </div>
+    </div>
+</div>
