@@ -4,11 +4,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { FeedComponent } from './feed/feed/feed.component';
+import { ApplicantDetailComponent } from './detail/applicant-detail/applicant-detail.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: '', component: FeedComponent, pathMatch: 'full' },
+  { path: 'applicant', component: ApplicantDetailComponent },
   { path: '**', redirectTo: '' }
 ];
 

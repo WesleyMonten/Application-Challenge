@@ -20,5 +20,7 @@ namespace ApplicationChallenge.Models
 
         [BsonRepresentation(BsonType.ObjectId)]
         public string CompanyId { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string ApplicantId { get; set; }
     }
 }

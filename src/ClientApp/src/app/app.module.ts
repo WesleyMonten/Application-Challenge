@@ -10,6 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { FeedModule } from './feed/feed.module';
+import { DetailModule } from './detail/detail.module';
+import { EditModule } from './edit/edit.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { FeedModule } from './feed/feed.module';
     AppRoutingModule,
     SharedModule,
     BrowserAnimationsModule,
-    FeedModule
+    FeedModule,
+    DetailModule,
+    EditModule
   ],
   providers: [],
   bootstrap: [AppComponent]

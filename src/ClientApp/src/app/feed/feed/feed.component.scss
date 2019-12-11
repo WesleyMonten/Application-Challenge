@@ -1,0 +1,74 @@
+.feed-card {
+    max-width: 600px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 20px;
+} 
+  
+  .apple-header-image {
+    background-image: url('../../../assets/apple-logo.png');
+    background-size: cover;
+  }
+
+  .microsoft-header-image {
+    background-image: url('../../../assets/microsoft-logo.webp');
+    background-size: cover;
+  }
+
+  :host ::ng-deep .mat-card-header .mat-card-title {
+      margin-bottom: 0;
+  }
+
+  .fill {
+    flex: 1;
+  }
+
+  mat-icon, .expand {
+      color: #757575;
+      cursor: pointer;
+      vertical-align: middle;
+  }
+
+  mat-card-subtitle a {
+      color: #757575;
+  }
+
+  .like {
+      color: red;
+  }
+
+  .likes {
+      font-weight: bold;
+      vertical-align: middle;
+      margin-left: 5px;
+  }
+
+  #net {
+      background-color: #5C2D91;
+      color: #fff;
+  }
+
+  #ang {
+      background-color: #C3002F;
+      color: #fff;
+  }
+
+  #freelance {
+      background-color: #1DBF73;
+      color: #fff;
+  }
+
+  #java {
+      background-color: #EA6300;
+      color: #fff;
+  }
+
+  #intern {
+      background-color: #377DC0;
+      color: #fff;
+  }
+
+div a:hover {
+      text-decoration: underline;
+  }
