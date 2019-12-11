@@ -51,6 +51,7 @@ namespace ApplicationChallenge.Controllers
          [HttpPut("{id}")]
          public ApplicantReview Edit(string id, ApplicantReview review)
          {
+             review.Id = id;
              ApplicantReviews.FindOneAndReplace(applicantReview => applicantReview.Id == id, review);
              return review;
          }

@@ -45,6 +45,7 @@ namespace ApplicationChallenge.Controllers
         [HttpPut("{id}")]
         public Application Edit(string id, Application app)
         {
+            app.Id = id;
             Applications.FindOneAndReplace(applciation => applciation.Id == id, app);
             return app;
         }
