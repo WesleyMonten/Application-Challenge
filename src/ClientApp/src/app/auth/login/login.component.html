@@ -1,12 +1,16 @@
 <mat-card>
 <h1>Log in</h1>
+<form name="loginForm" #f="ngForm"
+(ngSubmit)="onSubmit()" >
+
 <mat-form-field appearance="outline">
-    <mat-label>Email</mat-label>
-    <input matInput placeholder="Email">
+    <mat-label for="email">Email</mat-label>
+    <input name="email" #email="ngModel" [(ngModel)]="model.email" matInput placeholder="Email">
   </mat-form-field><br>
   <mat-form-field appearance="outline">
-    <mat-label>Password</mat-label>
-    <input matInput placeholder="Password">
+    <mat-label for="password">Password</mat-label>
+    <input type="password" name="password" #password="ngModel" [(ngModel)]="model.password" matInput placeholder="Password">
   </mat-form-field><br>
 <button color="primary" mat-flat-button>Login</button>
+</form>
 </mat-card>
