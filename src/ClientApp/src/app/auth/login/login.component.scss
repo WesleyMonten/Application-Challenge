@@ -1,0 +1,24 @@
+$bg: hotpink;
+mat-form-field{
+    width: 100%;
+}
+
+.box{
+    margin: auto;
+    border-radius: 15px;
+    padding: 30px;
+}
+
+:host ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick{
+    color: #377Dc0;
+}
+
+mat-card{
+    max-width: 600px;
+    height: 100%;
+    margin: auto;
+}
+
+button{
+    width: 100%;
+}
