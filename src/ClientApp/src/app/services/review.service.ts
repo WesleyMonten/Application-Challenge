@@ -40,12 +40,16 @@ export class ReviewService {
 
   constructor() { }
 
-  getApplicantReviews() {
+  getAllApplicantReviews() {
     return of(this.applicantReviews);
   }
 
-  getCompanytReviews() {
+  getAllCompanytReviews() {
     return of(this.companyReviews);
   }
 
+
+  getReviewsApplicant(applicantID: string) {
+    return of(this.applicantReviews.filter(a => a.applicantID == applicantID));
+  }
 }

@@ -26,7 +26,8 @@ export class ApplicantService {
 
     constructor() { }
 
-    get() {
+    getAll() {
         return of(this.applicants);
     }
+
 }

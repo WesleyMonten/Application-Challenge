@@ -21,7 +21,12 @@ export class AssignmentService {
 
   constructor() { }
 
-  get() {
+  getAll() {
     return of(this.assignments);
   }
+
+  getAssignment(assignmentID: string) {
+    return of(this.assignments.find(a => a.assignmentID === assignmentID));
+  }
+
 }

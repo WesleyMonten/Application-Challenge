@@ -1,0 +1,239 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="banner">
+                <div class="row">
+                    <div class="col-12">
+                        <button mat-fab id="verwijder" (click)="openDialog">
+                            <mat-icon>clear</mat-icon>
+                        </button>
+                        <button mat-fab color="primary" type="button"
+                            [routerLink]="['/edit-account/', account.accountID]" routerLink="active">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div id="profilePic" class="row">
+                            <div class="col-12">
+                                <img src=".././../../assets/user.png">
+                            </div>
+                            <div class="col-12">
+                                <h2>{{account.nickname}}</h2>
+                                <mat-chip-list *ngIf="account.applicant != null">
+                                    <div *ngFor="let skill of account.applicant.skills; let i=index;">
+                                        <mat-chip [ngStyle]="{'background-color': skill.color, 'color':'#fff'}"
+                                            *ngIf="i<5">
+                                            {{skill.name}}
+                                        </mat-chip>
+                                    </div>
+                                </mat-chip-list>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <mat-tab-group dynamicHeight>
+                <mat-tab label="Personal">
+                    <br>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <mat-card>
+                                    <mat-list>
+                                        <h3 mat-subheader>Total commendations</h3>
+                                        <div id="totalCommendations">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <mat-list-item>
+                                                        <img mat-list-icon
+                                                            src="./../../assets/application-commodation0.png">
+                                                        <h4 mat-line>Works hard: {{counter}}</h4>
+                                                    </mat-list-item>
+                                                </div>
+                                                <div class="col-4">
+                                                    <mat-list-item>
+                                                        <img mat-list-icon
+                                                            src="./../../assets/application-commodation1.png">
+                                                        <h4 mat-line>Teamplayer: {{counter}}</h4>
+                                                    </mat-list-item>
+                                                </div>
+                                                <div class="col-4">
+
+                                                    <mat-list-item>
+                                                        <img mat-list-icon
+                                                            src="./../../assets/application-commodation4.png">
+                                                        <h4 mat-line>Technical genius: {{counter}}</h4>
+                                                    </mat-list-item>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <mat-list-item>
+                                                        <img mat-list-icon
+                                                            src="./../../assets/application-commodation2.png">
+                                                        <h4 mat-line>High-quality work: {{counter}}</h4>
+                                                    </mat-list-item>
+                                                </div>
+                                                <div class="col-4">
+                                                    <mat-list-item>
+                                                        <img mat-list-icon
+                                                            src="./../../assets/application-commodation3.png">
+                                                        <h4 mat-line>Takes initiative: {{counter}}</h4>
+                                                    </mat-list-item>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <h3 mat-subheader>Contact</h3>
+                                        <mat-list-item>
+                                            <mat-icon mat-list-icon>account_circle</mat-icon>
+                                            <h4 mat-line>Full name: {{account.firstName}} {{account.lastName}}</h4>
+                                        </mat-list-item>
+                                        <mat-list-item *ngIf="account.company != null">
+                                            <mat-icon mat-list-icon>business_center</mat-icon>
+                                            <h4 mat-line>Company: {{account.company.name}}</h4>
+                                        </mat-list-item>
+                                        <mat-list-item>
+                                            <mat-icon mat-list-icon>cake</mat-icon>
+                                            <h4 mat-line>Date of Birth: {{dateOfBirth}}</h4>
+                                        </mat-list-item>
+                                        <mat-list-item>
+                                            <img src="../../../assets/linkedIn.png" mat-list-icon />
+                                            <h4 mat-line>LinkedIn: {{account.linkedInUrl}}</h4>
+                                        </mat-list-item>
+                                        <mat-list-item *ngIf="account.applicant != null">
+                                            <mat-icon mat-list-icon *ngIf="account.applicant.Available">check_circle
+                                            </mat-icon>
+                                            <mat-icon mat-list-icon *ngIf="!account.applicant.Available">remove_circle
+                                            </mat-icon>
+                                            <h4 mat-line>Status: <span
+                                                    *ngIf="account.applicant.Available">Available</span><span
+                                                    *ngIf="!account.applicant.Available">Occupied</span></h4>
+                                        </mat-list-item>
+                                        <mat-divider></mat-divider>
+                                        <h3 mat-subheader>Biography</h3>
+                                        <p mat-line> {{account.applicant.biography}} </p>
+                                    </mat-list>
+                                </mat-card>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Skills">
+                    <div class="container">
+                        <br>
+                        <mat-accordion>
+                            <mat-expansion-panel *ngFor="let skill of account.applicant.skills">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <mat-chip [ngStyle]="{'background-color': skill.color, 'color':'#fff'}">
+                                            {{skill.name}}
+                                        </mat-chip>
+                                    </mat-panel-title>
+                                    <mat-panel-description>
+                                        (Experience)
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <p>
+                                    (In depth description of experience)
+                                </p>
+                            </mat-expansion-panel>
+                        </mat-accordion>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Assignments">
+                    <br>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12" *ngIf="assignments.length != 0">
+                                <mat-card *ngFor="let assignment of assignments;let i=index;">
+                                    <mat-card-header>
+                                        <mat-card-title>{{assignment.title}}</mat-card-title>
+                                        <mat-card-subtitle>
+                                            {{assignmentStartDates[i]}} -
+                                            {{assignmentEndDates[i]}}
+                                        </mat-card-subtitle>
+                                        <mat-card-subtitle>{{companies[i].name}}</mat-card-subtitle>
+                                        <mat-card-subtitle>
+                                            {{assignment.location}}
+                                        </mat-card-subtitle>
+                                        <div class="fill"></div>
+                                    </mat-card-header>
+                                    <mat-card-content>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <p>
+                                                    {{assignment.description}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+                            <div class="col-12" *ngIf="assignments.length == 0">
+                                <div class="row">
+                                    <div class="col-12 notfound">
+                                        <img src="../../../assets/404.png">
+                                        <h4> No assignments found...
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Reviews">
+                    <br>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12" *ngIf="reviews.length != 0">
+                                <mat-card *ngFor="let review of reviews;let i=index;">
+                                    <mat-card-header>
+                                        <div class="row">
+                                            <div id="commendations" class="row">
+                                                <div class="col-12">
+                                                    <img *ngFor="let commendation of review.commendations"
+                                                        src="./../../assets/application-commodation{{commendation}}.png">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-8 col-8">
+                                                    <mat-card-title>{{assignments[i].title}}</mat-card-title>
+                                                    <mat-card-subtitle>{{companies[i].name}}</mat-card-subtitle>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </mat-card-header>
+                                    <mat-card-content>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <p>
+                                                    {{review.reviewText}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+                            <div class="col-12" *ngIf="reviews.length == 0">
+                                <div class="row">
+                                    <div class="col-12 notfound">
+                                        <img src="../../../assets/404.png">
+                                        <h4> No reviews found...
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

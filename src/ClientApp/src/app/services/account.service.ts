@@ -12,7 +12,7 @@ export class AccountService {
   date = new Date(this.dateString);
 
   skills1: Array<Skill> = [
-    { skillID: "1", name: ".Net", color: "#5C2D91" },
+    { skillID: "1", name: ".NET", color: "#5C2D91" },
     { skillID: "2", name: "Angular", color: "#C3002F" },
     { skillID: "3", name: "Freelance", color: "#1DBF73" },
   ]
@@ -40,7 +40,11 @@ export class AccountService {
 
   constructor() { }
 
-  get() {
+  getAll() {
     return of(this.accounts);
+  }
+
+  get(accountID: string) {
+    return of(this.accounts.find(a => a.accountID === accountID))
   }
 }

@@ -12,7 +12,11 @@ export class CompanyService {
 
   constructor() { }
 
-  get() {
+  getAll() {
     return of(this.companies);
+  }
+
+  getCompany(companyID: string) {
+    return of(this.companies.find(c => c.companyID === companyID));
   }
 }
