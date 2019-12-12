@@ -4,7 +4,6 @@ import { of } from 'rxjs';
 import { Applicant } from '../models/applicant.model';
 import { Skill } from '../models/skill.model';
 import { Company } from '../models/company.model';
-import { access } from 'fs';
 
 @Injectable()
 export class AccountService {
@@ -53,5 +52,9 @@ export class AccountService {
     var account = this.accounts.find(a => a.accountID === accountID);
     var index = this.accounts.indexOf(account);
     return of(this.accounts.splice(index, 1));
+  }
+
+  put(account: Account) {
+    return of(account)
   }
 }

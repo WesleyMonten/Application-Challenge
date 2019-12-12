@@ -1,0 +1,30 @@
+img {
+    width: 70%;
+    height: auto;
+    margin: auto;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.imageCol mat-form-field {
+    margin: auto;
+}
+
+mat-form-field {
+    width: 100%;
+}
+  button {
+      width: 100%;
+      margin-bottom: 20px;
+  }
+
+  :host ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: #377DC0;
+  }
+
+  @media only screen and (max-width: 1000px){
+    img {
+        width: 40% !important;
+    }
+}
+

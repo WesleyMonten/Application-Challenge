@@ -5,10 +5,12 @@ import { FeedComponent } from './feed/feed/feed.component';
 import { ApplicantEditComponent } from './edit/applicant-edit/applicant-edit.component';
 import { CompanyEditComponent } from './edit/company-edit/company-edit.component';
 import { AccountDetailComponent } from './detail/account-detail/account-detail.component';
+import { AccountEditComponent } from './edit/account-edit/account-edit.component';
 
 const appRoutes: Routes = [
   { path: '', component: FeedComponent, pathMatch: 'full' },
   { path: 'account/:id', component: AccountDetailComponent },
+  { path: 'edit-account/:id', component: AccountEditComponent },
   { path: 'edit-applicant/:id', component: ApplicantEditComponent },
   { path: 'edit-company/:id', component: CompanyEditComponent },
   { path: '**', redirectTo: '' }
