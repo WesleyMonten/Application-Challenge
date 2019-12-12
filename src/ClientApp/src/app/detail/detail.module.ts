@@ -3,10 +3,9 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { AssignmentDetailComponent } from './assignment-detail/assignment-detail.component';
 import { ReviewDetailComponent } from './review-detail/review-detail.component';
 import { SharedModule } from '../shared/shared.module';
-import { ApplicantDeleteComponent } from '../delete/applicant-delete/applicant-delete.component';
 import { AppRoutingModule } from '../app-routing.module';
-import { CompanyDeleteComponent } from '../delete/company-delete/company-delete.component';
 import { AccountDetailComponent } from './account-detail/account-detail.component';
+import { AccountDeleteComponent } from '../delete/account-delete/account-delete.component';
 
 @NgModule({
   declarations: [AssignmentDetailComponent, ReviewDetailComponent, AccountDetailComponent],
@@ -15,7 +14,7 @@ import { AccountDetailComponent } from './account-detail/account-detail.componen
     SharedModule,
     AppRoutingModule
   ],
-  entryComponents: [ApplicantDeleteComponent, CompanyDeleteComponent],
+  entryComponents: [AccountDeleteComponent],
   providers: [DatePipe]
 })
 export class DetailModule { }

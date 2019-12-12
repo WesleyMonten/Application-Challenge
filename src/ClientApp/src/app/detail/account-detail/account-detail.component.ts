@@ -9,6 +9,8 @@ import { Assignment } from 'src/app/models/assignment.model';
 import { Company } from 'src/app/models/company.model';
 import { AssignmentService } from 'src/app/services/assignment.service';
 import { CompanyService } from 'src/app/services/company.service';
+import { MatDialog } from '@angular/material';
+import { AccountDeleteComponent } from 'src/app/delete/account-delete/account-delete.component';
 
 @Component({
   selector: 'app-account-detail',
@@ -25,7 +27,7 @@ export class AccountDetailComponent implements OnInit {
   companies: Company[] = [];
   dateOfBirth: string;
 
-  constructor(private _accountService: AccountService, private _reviewService: ReviewService, private _assignmentService: AssignmentService, private _companyService: CompanyService, private route: ActivatedRoute, public datepipe: DatePipe) { }
+  constructor(private _accountService: AccountService, private _reviewService: ReviewService, private _assignmentService: AssignmentService, private _companyService: CompanyService, private route: ActivatedRoute, public datepipe: DatePipe, public dialog: MatDialog) { }
 
   getIdFromParameter() {
     this.route.params.subscribe(params => {
@@ -77,6 +79,13 @@ export class AccountDetailComponent implements OnInit {
     this._companyService.getCompany(companyID).subscribe(res => {
       this.companies.push(res);
     })
+  }
+
+  openDialog(): void {
+    this.dialog.open(AccountDeleteComponent, {
+      width: '400px',
+      data: { accountID: this.account.accountID, nickname: this.account.nickname }
+    });
   }
 
   ngOnInit() {
