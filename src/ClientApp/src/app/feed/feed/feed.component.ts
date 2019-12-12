@@ -12,7 +12,7 @@ export class FeedComponent implements OnInit {
   liked2: boolean = false;
   expanded: boolean = false;
 
-  constructor(private _service: ApplicationService) { }
+  constructor(){}
 
   toggleLike() {
     this.liked = this.liked != true;
@@ -27,12 +27,6 @@ export class FeedComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("JAKLDSJSA");
-    this._service.getApplications().subscribe( result=>{
-      console.log(result);
-      console.log("DUN IN");
-    })
-    console.log("DUN OUT");
   }
 
 }
