@@ -1,7 +1,11 @@
 # Backend documentation
 see https://hackmd.io/sCh6dsBmR1-lEJuQ75U_IA
 
-### geimplementeerd
+### API endpoints
+- /auth/
+	- / (GET) (*)
+	- /login (POST)
+	- /register (POST)
 - /assignment
     - / (GET/POST) (*)
     - /{id} (GET/PUT/DELETE) (1)
@@ -45,22 +49,23 @@ see https://hackmd.io/sCh6dsBmR1-lEJuQ75U_IA
 - isAdmin
 - Applicant (> ApplicantModel)
 - Company (> CompanyModel)
-### Applicant
+### Applicant (in User)
 - Biography
 - Available
 - Skills[] 
 - Friends[]
-### FriendRequest
-- Id
-- Sender
-- Receiver
-### Company
+### Company (in User)
+- Name
 - ContactEmail
 - ContactPhoneNumber
 - Biography
 ### Skill
 - Name
 - Color
+### FriendRequest
+- Id
+- Sender
+- Receiver
 ### ApplicantReview
 - Id
 - ReviewText
