@@ -14,9 +14,13 @@ export class AssignmentService {
     { assignmentTopicID: "1", name: "Fullstack", color: "#21A296" }
   ]
 
+  assignmentTopics2: Array<AssignmentTopic> = [
+    { assignmentTopicID: "1", name: "Frontend", color: "#7D5667" }
+  ]
+
   assignments: Array<Assignment> = [
     { assignmentID: "1", title: "Full stack application", description: "Frontend in Angular, Backend in .NET core", location: "Turnhout", startTime: this.startDate, endTime: this.endDate, isInternship: false, compensation: 200, stage: AssignmentStage.Open, topics: this.assignmentTopics1, companyID: "1", applicationID: "1" },
-    { assignmentID: "2", title: "Frontend", description: "Frontend in Vue.js", location: "Mechelen", startTime: this.startDate, endTime: this.endDate, isInternship: false, compensation: 400, stage: AssignmentStage.Open, topics: this.assignmentTopics1, companyID: "1", applicationID: "2" },
+    { assignmentID: "2", title: "Frontend", description: "Frontend in Vue.js", location: "Mechelen", startTime: this.startDate, endTime: this.endDate, isInternship: false, compensation: 400, stage: AssignmentStage.Open, topics: this.assignmentTopics2, companyID: "1", applicationID: "2" },
   ]
 
   constructor() { }
@@ -27,6 +31,10 @@ export class AssignmentService {
 
   getAssignment(assignmentID: string) {
     return of(this.assignments.find(a => a.assignmentID === assignmentID));
+  }
+
+  getAllOpenAssignments() {
+    return of(this.assignments.filter(a => a.stage == AssignmentStage.Open));
   }
 
 }
