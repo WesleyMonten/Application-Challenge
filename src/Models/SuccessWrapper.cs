@@ -7,7 +7,7 @@ namespace ApplicationChallenge.Models
         public T Result { get; set; }
     }
 
-    public class SuccessWrapper
+    public abstract class SuccessWrapper
     {
         public bool Successful { get; set; }
         public string ErrorMessage { get; set; }
@@ -19,9 +19,9 @@ namespace ApplicationChallenge.Models
             Result = obj,
         };
         
-        public static SuccessWrapper Error(Exception e) => Error(e.Message);
+        public static SuccessWrapper<TRes> Error<TRes>(Exception e) => Error<TRes>(e.Message);
 
-        public static SuccessWrapper Error(string message) => new SuccessWrapper
+        public static SuccessWrapper<TRes> Error<TRes>(string message) => new SuccessWrapper<TRes>
         {
             Successful = false,
             ErrorMessage = message,

@@ -27,7 +27,7 @@ namespace ApplicationChallenge.Controllers
         }
 
         [HttpPost("login")]
-        public SuccessWrapper Login([FromBody] UserLogin login)
+        public SuccessWrapper<string> Login([FromBody] UserLogin login)
         {
             try
             {
@@ -36,21 +36,21 @@ namespace ApplicationChallenge.Controllers
             }
             catch (Exception e)
             {
-                return SuccessWrapper.Error(e);
+                return SuccessWrapper.Error<string>(e);
             }
         }
         
         [HttpPost("register")]
-        public SuccessWrapper Register([FromBody] UserRegistration regInfo)
+        public SuccessWrapper<string> Register([FromBody] UserRegistration regInfo)
         {
             try
             {
                 var token = UserService.RegisterUser(regInfo);
-                return SuccessWrapper.Success(token);
+                return SuccessWrapper.Success<string>(token);
             }
             catch (Exception e)
             {
-                return SuccessWrapper.Error(e);
+                return SuccessWrapper.Error<string>(e);
             }
         }
     }
