@@ -1,3 +1,3 @@
 export class Company {
-    constructor(public email: string, public phoneNumber: string, public biography, string){}
+    constructor(public companyID: string, public contactEmail: string, public contactPhoneNumber: string, public biography: string) { }
 }

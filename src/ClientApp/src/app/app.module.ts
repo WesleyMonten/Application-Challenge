@@ -11,6 +11,7 @@ import { FeedModule } from './feed/feed.module';
 import { DetailModule } from './detail/detail.module';
 import { EditModule } from './edit/edit.module';
 import { DeleteModule } from './delete/delete.module';
+import { AccountService } from './services/account.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,9 @@ import { DeleteModule } from './delete/delete.module';
     EditModule,
     DeleteModule
   ],
-  providers: [],
+  providers: [
+    AccountService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
