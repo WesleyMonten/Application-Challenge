@@ -1,0 +1,115 @@
+.banner {
+    background-image: url('../../../assets/gradient-applicant.png');
+    background-size: cover;
+    width: 100%;
+    height: 400px;
+}
+
+button {
+    float: right;
+    margin: 5px;
+}
+
+.banner mat-icon {
+    color: #fff;
+}
+
+#verwijder {
+    background-color: #EE3F55;
+}
+
+button:focus:active {
+    outline: none;
+  }
+
+#profilePic {
+    color: #fff;
+}
+#profilePic img {
+    border: 5px #fff solid;
+    border-radius: 50%;
+    display: block;
+    margin: auto;
+}
+
+#profilePic h2 {
+    font-weight: bold;
+    text-align: center;
+}
+
+#profilePic mat-chip-list {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    justify-content: center; 
+}
+
+img {
+    height: auto;
+}
+
+@media only screen and (min-width: 1140px){
+    img {
+        width: 12%;
+    }   
+}
+@media only screen and (max-width: 1140px){
+    img {
+        width: 20%;
+    }   
+}
+
+@media only screen and (max-width: 900px){
+    img {
+        width: 30%;
+    }       
+}
+
+@media only screen and (max-width: 450px){
+    img {
+        width: 45%;
+    }      
+}
+
+:host ::ng-deep .mat-tab-labels{
+    justify-content: center; 
+}
+
+:host ::ng-deep .mat-tab-header {
+    border-bottom: none;
+}
+
+#commendations {
+    position: absolute;
+    right: 15px;
+    top: 5px;
+}
+
+#commendations img{
+    margin-right: 5px;
+    display: inline-block;
+}
+
+mat-card-subtitle {
+    margin-bottom: 6px !important;
+}
+
+mat-card-title {
+    margin-bottom: 6px !important;
+}
+
+mat-card-content p {
+    text-align: justify;
+    margin-left: 16px;
+}
+
+mat-card-header img, #totalCommendations img {
+    width: 35px !important;
+    height: 35px !important;
+}
+
+.notfound img, .notfound h4 {
+    margin: auto;
+    display: block;
+    text-align: center;
+}

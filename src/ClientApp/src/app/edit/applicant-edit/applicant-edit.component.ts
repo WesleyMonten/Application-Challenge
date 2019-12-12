@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Tag } from 'src/app/models/tag.model';
+import { Skill } from 'src/app/models/skill.model';
 
 @Component({
   selector: 'app-applicant-edit',
@@ -16,10 +16,10 @@ export class ApplicantEditComponent implements OnInit {
   removable = true;
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  tags: Tag[] = [
-    { name: '.Net' },
-    { name: 'Angular' },
-    { name: 'Java' },
+  tags: Skill[] = [
+    { skillID: "1", name: '.Net', color: '' },
+    { skillID: "2", name: 'Angular', color: '' },
+    { skillID: "3", name: 'Java', color: '' },
   ];
 
   add(event: MatChipInputEvent): void {
@@ -28,7 +28,7 @@ export class ApplicantEditComponent implements OnInit {
 
     // Add our fruit
     if ((value || '').trim()) {
-      this.tags.push({ name: value.trim() });
+      this.tags.push({ skillID: "4", name: value.trim(), color: '' });
     }
 
     // Reset the input value
@@ -37,7 +37,7 @@ export class ApplicantEditComponent implements OnInit {
     }
   }
 
-  remove(tag: Tag): void {
+  remove(tag: Skill): void {
     const index = this.tags.indexOf(tag);
 
     if (index >= 0) {

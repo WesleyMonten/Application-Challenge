@@ -13,6 +13,12 @@ import { FeedModule } from './feed/feed.module';
 import { DetailModule } from './detail/detail.module';
 import { EditModule } from './edit/edit.module';
 import { DeleteModule } from './delete/delete.module';
+import { AccountService } from './services/account.service';
+import { AssignmentService } from './services/assignment.service';
+import { ApplicationService } from './services/application.service';
+import { CompanyService } from './services/company.service';
+import { SkillService } from './services/skill.service';
+import { ReviewService } from './services/review.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +39,14 @@ import { DeleteModule } from './delete/delete.module';
     EditModule,
     DeleteModule
   ],
-  providers: [],
+  providers: [
+    AccountService,
+    AssignmentService,
+    ApplicationService,
+    CompanyService,
+    SkillService,
+    ReviewService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

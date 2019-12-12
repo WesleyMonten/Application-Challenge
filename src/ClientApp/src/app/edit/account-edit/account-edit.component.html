@@ -1,0 +1,109 @@
+<div class="container">
+    <form [formGroup]="editAccountForm" (ngSubmit)="onSubmitEditAccount()">
+        <br>
+        <div class="row">
+            <div class="col-lg-4 col-md-12">
+                <img src=".././../../assets/user.png">
+            </div>
+            <div class="col-lg-8 col-md-12">
+                <div class="row">
+                    <div class="col-12">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Nickname</mat-label>
+                            <input matInput placeholder="Nickname" name="Nickname" formControlName="Nickname"
+                                type="text">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <mat-form-field appearance="outline">
+                            <mat-label>First name</mat-label>
+                            <input matInput placeholder="First name" name="FirstName" formControlName="FirstName"
+                                type="text">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Last name</mat-label>
+                            <input matInput placeholder="Last name" name="LastName" formControlName="LastName"
+                                type="text">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div>
+                    <mat-form-field appearance="outline">
+                        <mat-label>E-mail</mat-label>
+                        <input matInput placeholder="E-mail" name="Email" formControlName="Email" type="email">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>Date of Birth</mat-label>
+                    <input matInput [matDatepicker]="birthdayDatePicker" placeholder="Date of Birth" name="DateOfBirth"
+                        formControlName="DateOfBirth" type="date">
+                    <mat-datepicker-toggle matSuffix [for]="birthdayDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #birthDatePicker></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>LinkedIn</mat-label>
+                    <input matInput placeholder="LinkedIn" name="LinkedIn" formControlName="LinkedIn" type="url">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput placeholder="Password" name="Password" formControlName="Password" type="password">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>Confirm Password</mat-label>
+                    <input matInput placeholder="Confirm Password" name="ConfirmPassword"
+                        formControlName="ConfirmPassword" type="password">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <mat-chip-list #skillList>
+                    <mat-chip *ngFor="let skill of skillsAccount" [selectable]="selectable" [removable]="removable"
+                        (removed)="removeSkill(skill)" [ngStyle]="{'background-color': skill.color, 'color':'#fff'}">
+                        {{skill.name}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder="Skills..." [matChipInputFor]="skillList"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                        (matChipInputTokenEnd)="addSkill($event)">
+                </mat-chip-list>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>Biography</mat-label>
+                    <textarea matInput name="Biography" placeholder="Biography" formControlName="Biography" cols="30"
+                        rows="8"></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12">
+                <button mat-flat-button color="primary" type="submit">Edit</button>
+            </div>
+        </div>
+    </form>
+</div>
