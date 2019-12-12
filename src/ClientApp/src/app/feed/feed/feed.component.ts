@@ -11,7 +11,7 @@ export class FeedComponent implements OnInit {
   liked2: boolean = false;
   expanded: boolean = false;
 
-  constructor() { }
+  constructor(){}
 
   toggleLike() {
     this.liked = this.liked != true;
@@ -25,6 +25,7 @@ export class FeedComponent implements OnInit {
     this.expanded = this.expanded != true
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
 }

@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Application } from '../models/application.model';
-import { of } from 'rxjs';
+import {Observable, of} from 'rxjs';
+import {AppComponent} from "../app.component";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable()
 export class ApplicationService {
 
-  applications: Array<Application> = [
-    { applicationID: "1", assignmentID: "1", applicantID: "1" },
-    { applicationID: "2", assignmentID: "1", applicantID: "2" },
-  ]
-
-  constructor() { }
-
-  get() {
-    return of(this.applications);
+  constructor(private http: HttpClient) {}
+// voorbeeld implementatie:
+/*
+  this._service.getApplications().subscribe( result=>{
+  console.log(result);
+})
+*/
+getApplications(): Observable<Application[]> {
+    return this.http.get<Application[]>(AppComponent.API_URL+"/application");
   }
 }
