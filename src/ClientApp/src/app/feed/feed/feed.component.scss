@@ -6,13 +6,8 @@
     margin-bottom: 20px;
 } 
   
-  .apple-header-image {
-    background-image: url('../../../assets/apple-logo.png');
-    background-size: cover;
-  }
-
-  .microsoft-header-image {
-    background-image: url('../../../assets/microsoft-logo.webp');
+  .user-header-image {
+    background-image: url('../../../assets/user.png');
     background-size: cover;
   }
 
@@ -20,19 +15,6 @@
       margin-bottom: 0;
   }
 
-  .fill {
-    flex: 1;
-  }
-
-  mat-icon, .expand {
-      color: #757575;
-      cursor: pointer;
-      vertical-align: middle;
-  }
-
-  mat-card-subtitle a {
-      color: #757575;
-  }
 
   .like {
       color: red;
@@ -44,31 +26,6 @@
       margin-left: 5px;
   }
 
-  #net {
-      background-color: #5C2D91;
-      color: #fff;
-  }
-
-  #ang {
-      background-color: #C3002F;
-      color: #fff;
-  }
-
-  #freelance {
-      background-color: #1DBF73;
-      color: #fff;
-  }
-
-  #java {
-      background-color: #EA6300;
-      color: #fff;
-  }
-
-  #intern {
-      background-color: #377DC0;
-      color: #fff;
-  }
-
-div a:hover {
-      text-decoration: underline;
+  .fill {
+    flex: 1;
   }

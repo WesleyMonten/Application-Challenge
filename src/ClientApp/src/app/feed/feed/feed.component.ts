@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AssignmentService } from 'src/app/services/assignment.service';
+import { Assignment } from 'src/app/models/assignment.model';
+import { Company } from 'src/app/models/company.model';
+import { CompanyService } from 'src/app/services/company.service';
 
 @Component({
   selector: 'app-feed',
@@ -7,11 +11,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeedComponent implements OnInit {
 
+  assignments: Assignment[];
+  companies: Company[] = [];
   liked: boolean = false;
   liked2: boolean = false;
   expanded: boolean = false;
 
-  constructor() { }
+  constructor(private _assignmentService: AssignmentService, private _companyService: CompanyService) { }
 
   toggleLike() {
     this.liked = this.liked != true;
@@ -25,6 +31,26 @@ export class FeedComponent implements OnInit {
     this.expanded = this.expanded != true
   }
 
-  ngOnInit() { }
+  getCompaniesOfAssignments(assignments: Assignment[]) {
+    assignments.forEach(a => {
+      this.getCompanyOfAssignment(a.companyID);
+    })
+    console.log(this.companies);
+  }
+
+  getCompanyOfAssignment(companyID: string) {
+    this._companyService.getCompany(companyID).subscribe(res => {
+      this.companies.push(res);
+    });
+  }
+
+
+  ngOnInit() {
+    this._assignmentService.getAllOpenAssignments().subscribe(res => {
+      this.assignments = res;
+      this.getCompaniesOfAssignments(res);
+      console.log(this.assignments);
+    })
+  }
 
 }
