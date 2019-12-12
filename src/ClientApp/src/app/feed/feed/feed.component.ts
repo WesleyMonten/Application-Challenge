@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ApplicationService} from "../../services/application.service";
 
 @Component({
   selector: 'app-feed',
@@ -11,7 +12,7 @@ export class FeedComponent implements OnInit {
   liked2: boolean = false;
   expanded: boolean = false;
 
-  constructor() { }
+  constructor(private _service: ApplicationService) { }
 
   toggleLike() {
     this.liked = this.liked != true;
@@ -25,6 +26,13 @@ export class FeedComponent implements OnInit {
     this.expanded = this.expanded != true
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    console.log("JAKLDSJSA");
+    this._service.getApplications().subscribe( result=>{
+      console.log(result);
+      console.log("DUN IN");
+    })
+    console.log("DUN OUT");
+  }
 
 }
