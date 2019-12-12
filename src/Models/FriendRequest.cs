@@ -3,18 +3,14 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace ApplicationChallenge.Models
 {
-    public class Application: IDatabaseModel
+    public class FriendRequest: IDatabaseModel
     {
-        
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
-
-        public string Text { get; set; }
         [BsonRepresentation(BsonType.ObjectId)]
-        public string AssignmentId { get; set; }
+        public string Sender { get; set; }
         [BsonRepresentation(BsonType.ObjectId)]
-        public string ApplicantId { get; set; }
-        public bool Accepted{ get; set; }
+        public string Receiver { get; set; }
     }
 }

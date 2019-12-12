@@ -76,7 +76,8 @@ import { MatRippleModule, MatNativeDateModule } from '@angular/material/core';
     ReactiveFormsModule,
     HttpClientModule,
     MatRippleModule,
-    MatNativeDateModule
+    MatDatepickerModule,
+    MatNativeDateModule,
   ]
 })
 export class SharedModule { }

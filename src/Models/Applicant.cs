@@ -20,5 +20,8 @@ namespace ApplicationChallenge.Models
         /// This person's primary skills, to be displayed on their profile
         /// </summary>
         public Skill[] Skills { get; set; }
+
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string[] Friends { get; set; }
     }
 }
