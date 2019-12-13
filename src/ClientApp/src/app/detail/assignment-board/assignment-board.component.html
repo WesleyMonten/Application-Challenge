@@ -1,0 +1,104 @@
+<div class="container-fluid">
+    <div class="col-12 board">
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <mat-card class="list">
+                <mat-card-header class="listHeader">
+                    <mat-card-title class="listTitle">Draft</mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="listItems">
+                    <mat-card class="listItem" *ngFor="let draft of draftAssignments">
+                        <mat-card-header>
+                            <mat-card-title>
+                                {{draft.title}}
+                            </mat-card-title>
+                            <mat-card-subtitle>
+                                {{draft.topics[0].name}}
+                            </mat-card-subtitle>
+                        </mat-card-header>
+                        <div class="buttons">
+                            <button mat-flat-button id="verwijder" (click)="delete(draft.assignmentID)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                            <button mat-flat-button class="next" (click)="publish(draft.assignmentID)">
+                                <mat-icon>publish</mat-icon>
+                            </button>
+                        </div>
+                    </mat-card>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <mat-card class="list">
+                <mat-card-header>
+                    <mat-card-title class="listTitle">Open</mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="listItems">
+                    <mat-card class="listItem" *ngFor="let open of openAssignments">
+                        <mat-card-header>
+                            <mat-card-title>
+                                {{open.title}}
+                            </mat-card-title>
+                            <mat-card-subtitle>
+                                {{open.topics[0].name}}
+                            </mat-card-subtitle>
+                        </mat-card-header>
+                        <div class="buttons">
+                            <button mat-flat-button class="back" (click)="toDraft(open.assignmentID)">
+                                <mat-icon>backspace</mat-icon>
+                            </button>
+                            <button mat-flat-button id="close" (click)="close(open.assignmentID)">
+                                <mat-icon>not_interested</mat-icon>
+                            </button>
+                        </div>
+                    </mat-card>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <mat-card class="list">
+                <mat-card-header>
+                    <mat-card-title class="listTitle">Closed</mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="listItems">
+                    <mat-card class="listItem" *ngFor="let closed of closedAssignments">
+                        <mat-card-header>
+                            <mat-card-title>
+                                {{closed.title}}
+                            </mat-card-title>
+                            <mat-card-subtitle>
+                                {{closed.topics[0].name}}
+                            </mat-card-subtitle>
+                        </mat-card-header>
+                        <div class="buttons">
+                            <button mat-flat-button class="back" (click)="toOpen(closed.assignmentID)">
+                                <mat-icon>backspace</mat-icon>
+                            </button>
+                            <button mat-flat-button class="next" (click)="finish(closed.assignmentID)">
+                                <mat-icon>check</mat-icon>
+                            </button>
+                        </div>
+                    </mat-card>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+            <mat-card class="list">
+                <mat-card-header>
+                    <mat-card-title class="listTitle">Finished</mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="listItems">
+                    <mat-card class="listItem" *ngFor="let finished of finishedAssignments">
+                        <mat-card-header>
+                            <mat-card-title>
+                                {{finished.title}}
+                            </mat-card-title>
+                            <mat-card-subtitle>
+                                {{finished.topics[0].name}}
+                            </mat-card-subtitle>
+                        </mat-card-header>
+                    </mat-card>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AccountService } from '../services/account.service';
+import { Account } from '../models/account.model';
 
 @Component({
   selector: 'app-nav-menu',
@@ -9,13 +10,16 @@ import { AccountService } from '../services/account.service';
 })
 export class NavMenuComponent {
   showFiller = false;
+  account: Account;
 
-  constructor(private router: Router, private _accountService: AccountService) {
+  constructor(private _accountService: AccountService) {
+    // this._accountService.isLoggedIn.subscribe(e => {
+    //   this.getAccount();
+    // })
   }
 
-  logout() {
-    localStorage.removeItem("token");
-    this._accountService.isLoggedIn.next(false);
-    this.router.navigate(['/login']);
-  }
+  // getAccount() {
+  //   this._accountService.get()
+  // }
+
 }

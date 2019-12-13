@@ -6,13 +6,14 @@ import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { AccountDetailComponent } from './account-detail/account-detail.component';
 import { AccountDeleteComponent } from '../delete/account-delete/account-delete.component';
+import { AssignmentBoardComponent } from './assignment-board/assignment-board.component';
 
 @NgModule({
-  declarations: [AssignmentDetailComponent, ReviewDetailComponent, AccountDetailComponent],
+  declarations: [AssignmentDetailComponent, ReviewDetailComponent, AccountDetailComponent, AssignmentBoardComponent],
   imports: [
     CommonModule,
     SharedModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   entryComponents: [AccountDeleteComponent],
   providers: [DatePipe]

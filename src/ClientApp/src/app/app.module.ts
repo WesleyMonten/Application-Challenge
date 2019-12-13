@@ -28,7 +28,7 @@ import { AuthGuard } from './security/auth.guard';
     AppComponent,
     NavMenuComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
