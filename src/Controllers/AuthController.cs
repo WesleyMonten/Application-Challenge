@@ -46,7 +46,7 @@ namespace ApplicationChallenge.Controllers
             try
             {
                 var token = UserService.RegisterUser(regInfo);
-                return SuccessWrapper.Success<string>(token);
+                return SuccessWrapper.Success(token);
             }
             catch (Exception e)
             {
