@@ -1,15 +1,9 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-12">
             <mat-tab-group [selectedIndex]="2" dynamicHeight>
-                <mat-tab label="Draft">
-                    <div class="container">
-                        <app-assignment-board></app-assignment-board>
-                    </div>
-                </mat-tab>
-                <mat-tab label="Open">
-                    <div class="container">
-                    </div>
+                <mat-tab label="Assignment Board">
+                    <app-assignment-board></app-assignment-board>
                 </mat-tab>
                 <mat-tab label="New Assignment">
                     <br>
@@ -100,16 +94,6 @@
                                 </mat-step>
                             </mat-horizontal-stepper>
                         </form>
-                    </div>
-                </mat-tab>
-                <mat-tab label="Closed">
-                    <div class="container">
-
-                    </div>
-                </mat-tab>
-                <mat-tab label="Finished">
-                    <div class="container">
-
                     </div>
                 </mat-tab>
             </mat-tab-group>
