@@ -55,14 +55,14 @@ export class AccountDetailComponent implements OnInit {
 
   getAssignmentsOfReviews(reviews: ApplicantReview[]) {
     reviews.forEach(r => {
-      this.getAssigmentOfReview(r.assignmentID);
+      this.getAssigmentOfReview(r.assignmentId);
     })
     console.log(this.assignments);
   }
 
   getCompaniesOfReviews(reviews: ApplicantReview[]) {
     reviews.forEach(r => {
-      this.getCompanyOfReview(r.companyID);
+      this.getCompanyOfReview(r.companyId);
     })
     console.log(this.companies);
   }

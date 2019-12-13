@@ -33,9 +33,8 @@ export class FeedComponent implements OnInit {
 
   getCompaniesOfAssignments(assignments: Assignment[]) {
     assignments.forEach(a => {
-      this.getCompanyOfAssignment(a.companyID);
-    })
-    console.log(this.companies);
+      this.getCompanyOfAssignment(a.companyId);
+    });
   }
 
   getCompanyOfAssignment(companyID: string) {
@@ -49,7 +48,6 @@ export class FeedComponent implements OnInit {
     this._assignmentService.getAllOpenAssignments().subscribe(res => {
       this.assignments = res;
       this.getCompaniesOfAssignments(res);
-      console.log(this.assignments);
     })
   }
 
