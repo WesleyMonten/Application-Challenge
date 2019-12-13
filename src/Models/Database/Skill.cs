@@ -1,4 +1,4 @@
-namespace ApplicationChallenge.Models
+namespace ApplicationChallenge.Models.Database
 {
     /// <summary>
     /// A skill that can be shown by an <see cref="Applicant"/>

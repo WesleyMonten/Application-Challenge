@@ -1,3 +1,4 @@
+using ApplicationChallenge.Models.Database;
 using MongoDB.Driver;
 
 namespace ApplicationChallenge.Models

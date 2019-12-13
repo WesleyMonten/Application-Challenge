@@ -1,4 +1,4 @@
-namespace ApplicationChallenge.Models
+namespace ApplicationChallenge.Models.API
 {
     public class UserLogin
     {
