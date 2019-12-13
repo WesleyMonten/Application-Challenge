@@ -15,6 +15,6 @@ export class ApplicationService {
 })
 */
   getApplications(): Observable<Application[]> {
-    return this.http.get<Application[]>(AppComponent.API_URL+"/application");
+    return this.http.get<Application[]>("/application");
   }
 }

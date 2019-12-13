@@ -8,5 +8,4 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'app';
   showFiller = false;
-  public static API_URL = "https://localhost:5001";
 }

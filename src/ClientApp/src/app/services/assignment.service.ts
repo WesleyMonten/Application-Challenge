@@ -13,15 +13,15 @@ export class AssignmentService {
   constructor(private http: HttpClient) { }
 
   getAll() {
-    return this.http.get<Assignment[]>(AppComponent.API_URL+"/assignment");
+    return this.http.get<Assignment[]>("/assignment");
   }
 
   getAssignment(assignmentID: string) {
-    return this.http.get<Assignment>(AppComponent.API_URL+"/assignment/"+assignmentID);
+    return this.http.get<Assignment>("/assignment/"+assignmentID);
   }
 
   getAllOpenAssignments() {
-    return this.http.get<Assignment[]>(AppComponent.API_URL+"/assignment/open");
+    return this.http.get<Assignment[]>("/assignment/open");
   }
 
 }
