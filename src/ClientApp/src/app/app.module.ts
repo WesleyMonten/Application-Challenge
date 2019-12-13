@@ -20,6 +20,7 @@ import {CompanyService} from './services/company.service';
 import {SkillService} from './services/skill.service';
 import {ReviewService} from './services/review.service';
 import {SecurityInterceptor} from "./security/security.interceptor";
+import { ReviewModule } from './review/review.module';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {SecurityInterceptor} from "./security/security.interceptor";
     FeedModule,
     DetailModule,
     EditModule,
-    DeleteModule
+    DeleteModule,
+    ReviewModule
   ],
   providers: [
     AccountService,

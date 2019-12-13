@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { ApplicantReview } from '../models/applicant-review.model';
-import { ApplicantCommendation } from '../models/applicant-commodation.model';
 import { of } from 'rxjs';
-import { CompanyReview } from '../models/company-review.model';
+import { Review } from '../models/review.model';
+import { ApplicantCommendation } from '../models/applicant-commodation.model';
 import { CompanyCommendation } from '../models/company-commendation.model';
+import { ApplicantReview } from '../models/applicant-review.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class ReviewService {
@@ -33,12 +34,12 @@ export class ReviewService {
     { applicantReviewID: "2", reviewText: "Goede samenwerking met ons team, overschreed onze verwachtingen", companyID: "1", assignmentID: "2", applicantID: "2", commendations: this.applicantCommandations2 },
   ]
 
-  companyReviews: Array<CompanyReview> = [
-    { companyReviewID: "1", reviewText: "fijne sfeer, zeer hulpzaam wanneer het nodig is", companyID: "1", assignmentID: "1", applicantID: "1", commendations: this.companyCommandations1 },
-    { companyReviewID: "2", reviewText: "Heb veel geleerd tijdens deze opdracht, zal zeker nog eens een opdracht willen doen voro dit bedrijf", companyID: "1", assignmentID: "2", applicantID: "2", commendations: this.companyCommandations2 },
+  companyReviews: Array<ApplicantReview> = [
+    { applicantReviewID: "1", reviewText: "fijne sfeer, zeer hulpzaam wanneer het nodig is", companyID: "1", assignmentID: "1", applicantID: "1", commendations: this.applicantCommandations1 },
+    { applicantReviewID: "2", reviewText: "Heb veel geleerd tijdens deze opdracht, zal zeker nog eens een opdracht willen doen voro dit bedrijf", companyID: "1", assignmentID: "2", applicantID: "2", commendations: this.applicantCommandations2 },
   ]
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getAllApplicantReviews() {
     return of(this.applicantReviews);
@@ -48,8 +49,15 @@ export class ReviewService {
     return of(this.companyReviews);
   }
 
-
   getReviewsApplicant(applicantID: string) {
     return of(this.applicantReviews.filter(a => a.applicantID == applicantID));
+  }
+
+  addApplicantreview(review: Review){
+    return this.http.post<Review>("https://localhost:5001/applicantreview", review);
+  }
+
+  addCompanyreview(review: Review){
+    return this.http.post<Review>("https://localhost:5001/companyreview", review);
   }
 }
