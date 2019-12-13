@@ -2,7 +2,7 @@ using System;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace ApplicationChallenge.Models
+namespace ApplicationChallenge.Models.Database
 {
     /// <summary>
     /// An account in the application. Can be an <see cref="Applicant"/> or a <see cref="Company"/>

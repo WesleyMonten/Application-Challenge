@@ -1,7 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace ApplicationChallenge.Models
+namespace ApplicationChallenge.Models.Database
 {
     /// <summary>
     /// A review given to an <see cref="Applicant"/> by a <see cref="Company"/>

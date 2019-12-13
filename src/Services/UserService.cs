@@ -3,6 +3,8 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using ApplicationChallenge.Models;
+using ApplicationChallenge.Models.API;
+using ApplicationChallenge.Models.Database;
 using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
 

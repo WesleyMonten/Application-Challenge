@@ -1,4 +1,4 @@
-namespace ApplicationChallenge.Models
+namespace ApplicationChallenge.Models.Database
 {
     public enum CompanyCommendation
     {
