@@ -96,6 +96,8 @@ namespace ApplicationChallenge
             }
 
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

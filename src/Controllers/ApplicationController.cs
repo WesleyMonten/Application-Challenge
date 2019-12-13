@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using ApplicationChallenge.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 
 namespace ApplicationChallenge.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class ApplicationController: ControllerBase
