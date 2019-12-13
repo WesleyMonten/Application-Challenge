@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
-import { FeedComponent } from './feed/feed/feed.component';
-import { AccountDetailComponent } from './detail/account-detail/account-detail.component';
-import { AccountEditComponent } from './edit/account-edit/account-edit.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {RouterModule, Routes} from '@angular/router';
+import {LoginComponent} from './auth/login/login.component';
+import {RegisterComponent} from './auth/register/register.component';
+import {FeedComponent} from './feed/feed/feed.component';
+import {AccountDetailComponent} from './detail/account-detail/account-detail.component';
+import {AccountEditComponent} from './edit/account-edit/account-edit.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -20,7 +20,7 @@ const appRoutes: Routes = [
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forRoot(appRoutes, { enableTracing: true })
+    RouterModule.forRoot(appRoutes, { enableTracing: false })
   ],
   exports: [
     RouterModule

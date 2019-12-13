@@ -51,7 +51,7 @@ namespace ApplicationChallenge.Services
             
             var user = reg.CreateNewUser();
             Users.InsertOne(user);
-            return CreateToken(user.Id);
+            return CreateToken(user);
         }
 
         public string CheckUserLogin(UserLogin login)
@@ -65,10 +65,10 @@ namespace ApplicationChallenge.Services
                 throw new Exception("Incorrect password");
             }
 
-            return CreateToken(user.Id);
+            return CreateToken(user);
         }
 
-        private string CreateToken(string id)
+        private string CreateToken(User user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(AppSettings.JwtSecret);
@@ -76,7 +76,8 @@ namespace ApplicationChallenge.Services
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                    new Claim(ClaimTypes.Name, id)
+                    new Claim(ClaimTypes.Name, user.Id),
+                    new Claim(ClaimTypes.Role, user.IsAdmin ? Roles.Admin : Roles.User),
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

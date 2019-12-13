@@ -1,7 +1,10 @@
-import { Injectable } from '@angular/core';
-import { NewUser } from '../models/new-user.model';
-import { HttpClient } from '@angular/common/http';
-import { UserLogin } from '../models/user-login.model';
+import {Injectable} from '@angular/core';
+import {NewUser} from '../models/new-user.model';
+import {HttpClient} from '@angular/common/http';
+import {UserLogin} from '../models/user-login.model';
+import {Observable} from "rxjs";
+import {map} from 'rxjs/operators';
+import {SuccessWrapper} from "../models/success-wrapper.model";
 
 @Injectable({
   providedIn: 'root'
@@ -10,16 +13,19 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  //Register
-  register(user: NewUser) {
-    return this.http.post<NewUser>("https://localhost:5001/auth/register", user);
-  } 
-
-  //Login
-  login(user: UserLogin){
-    return this.http.post<UserLogin>("https://localhost:5001/auth/login", user);
+  register(user: NewUser): Observable<SuccessWrapper<string>> {
+    return this.http.post<SuccessWrapper<string>>("https://localhost:5001/auth/register", user).pipe(map(AuthService.setTokenIfAny));
   }
 
+  login(user: UserLogin): Observable<SuccessWrapper<string>> {
+    return this.http.post<SuccessWrapper<string>>("https://localhost:5001/auth/login", user).pipe(map(AuthService.setTokenIfAny));
+  }
 
+  private static setTokenIfAny(val: SuccessWrapper<string>): SuccessWrapper<string> {
+    if (val.successful) {
+      localStorage.setItem("token", val.result);
+    }
 
+    return val;
+  }
 }

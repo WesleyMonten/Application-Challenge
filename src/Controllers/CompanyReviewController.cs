@@ -1,13 +1,12 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using ApplicationChallenge.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 
 namespace ApplicationChallenge.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class CompanyReviewController: ControllerBase
