@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Account } from '../models/account.model'
-import { of } from 'rxjs';
-import { Applicant } from '../models/applicant.model';
-import { Skill } from '../models/skill.model';
-import { Company } from '../models/company.model';
+import {Injectable} from '@angular/core';
+import {Account} from '../models/account.model'
+import {Observable, of} from 'rxjs';
+import {Applicant} from '../models/applicant.model';
+import {Skill} from '../models/skill.model';
+import {Company} from '../models/company.model';
 
 @Injectable()
 export class AccountService {
@@ -44,17 +44,18 @@ export class AccountService {
     return of(this.accounts);
   }
 
-  get(accountID: string) {
-    return of(this.accounts.find(a => a.accountID === accountID))
+  get(accountID: string): Observable<Account> {
+    var x=  of(this.accounts.find(a => a.accountID === accountID))
+    return x;
   }
 
-  delete(accountID: string) {
+  delete(accountID: string): Observable<Account[]> {
     var account = this.accounts.find(a => a.accountID === accountID);
     var index = this.accounts.indexOf(account);
     return of(this.accounts.splice(index, 1));
   }
 
-  put(account: Account) {
+  put(account: Account): Observable<Account> {
     return of(account)
   }
 }
