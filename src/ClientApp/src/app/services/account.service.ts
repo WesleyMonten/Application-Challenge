@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Account } from '../models/account.model'
-import { of } from 'rxjs';
+import { of, BehaviorSubject } from 'rxjs';
 import { Applicant } from '../models/applicant.model';
 import { Skill } from '../models/skill.model';
 import { Company } from '../models/company.model';
+import { MatSidenav } from '@angular/material';
 
 @Injectable()
 export class AccountService {
 
+  isLoggedIn = new BehaviorSubject(false);
   dateString = '1968-11-16T00:00:00';
   date = new Date(this.dateString);
 

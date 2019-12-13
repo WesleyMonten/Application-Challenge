@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -20,7 +20,8 @@ import { CompanyService } from './services/company.service';
 import { SkillService } from './services/skill.service';
 import { ReviewService } from './services/review.service';
 import { AuthService } from './services/auth.service';
-import {SecurityInterceptor} from "./security/security.interceptor";
+import { SecurityInterceptor } from "./security/security.interceptor";
+import { AuthGuard } from './security/auth.guard';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import {SecurityInterceptor} from "./security/security.interceptor";
     SkillService,
     ReviewService,
     AuthService,
+    AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: SecurityInterceptor,
