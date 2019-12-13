@@ -37,7 +37,7 @@ export class AccountEditComponent implements OnInit {
       if (skill != null) {
         this.skillsAccount.push({ skillID: skill.skillID, name: skill.name, color: skill.color });
       } else {
-        this.skillsAccount.push({ skillID: "", name: value.trim(), color: '#E0E0E0' });
+        this.skillsAccount.push({ skillID: "", name: value.trim(), color: '#007ACC' });
       }
     }
     if (input) {

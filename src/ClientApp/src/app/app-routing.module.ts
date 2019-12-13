@@ -8,11 +8,12 @@ import {AccountDetailComponent} from './detail/account-detail/account-detail.com
 import {AccountEditComponent} from './edit/account-edit/account-edit.component';
 
 const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent},
-  { path: 'register', component: RegisterComponent},
   { path: '', component: FeedComponent, pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'account/:id', component: AccountDetailComponent },
   { path: 'edit-account/:id', component: AccountEditComponent },
+  { path: 'assignments', component: AssignmentDetailComponent },
   { path: '**', redirectTo: '' }
 ];
 

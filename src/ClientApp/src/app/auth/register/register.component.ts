@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private _authService: AuthService, private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   onSubmit() {
       this.submitted = true;
@@ -30,5 +30,4 @@ export class RegisterComponent implements OnInit {
         }
       })
 
-    }
   }
