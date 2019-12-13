@@ -10,12 +10,17 @@ export class AssignmentService {
   startDate = new Date('2019-12-12T00:00:00');
   endDate = new Date('2019-12-31T00:00:00');
 
+  assignmentTopics: Array<AssignmentTopic> = [
+    { assignmentTopicID: "2", name: "Frontend", color: "#7D5667" },
+    { assignmentTopicID: "1", name: "Fullstack", color: "#21A296" }
+  ]
+
   assignmentTopics1: Array<AssignmentTopic> = [
     { assignmentTopicID: "1", name: "Fullstack", color: "#21A296" }
   ]
 
   assignmentTopics2: Array<AssignmentTopic> = [
-    { assignmentTopicID: "1", name: "Frontend", color: "#7D5667" }
+    { assignmentTopicID: "2", name: "Frontend", color: "#7D5667" }
   ]
 
   assignments: Array<Assignment> = [
@@ -37,4 +42,11 @@ export class AssignmentService {
     return of(this.assignments.filter(a => a.stage == AssignmentStage.Open));
   }
 
+  getAllAssignmentTopics() {
+    return of(this.assignmentTopics);
+  }
+
+  create(assignment: Assignment) {
+    return of(assignment);
+  }
 }

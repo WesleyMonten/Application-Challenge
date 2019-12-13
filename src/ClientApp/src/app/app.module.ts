@@ -19,6 +19,7 @@ import { ApplicationService } from './services/application.service';
 import { CompanyService } from './services/company.service';
 import { SkillService } from './services/skill.service';
 import { ReviewService } from './services/review.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ReviewService } from './services/review.service';
     ApplicationService,
     CompanyService,
     SkillService,
-    ReviewService
+    ReviewService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

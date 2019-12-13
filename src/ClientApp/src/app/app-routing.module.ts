@@ -6,13 +6,15 @@ import { RegisterComponent } from './auth/register/register.component';
 import { FeedComponent } from './feed/feed/feed.component';
 import { AccountDetailComponent } from './detail/account-detail/account-detail.component';
 import { AccountEditComponent } from './edit/account-edit/account-edit.component';
+import { AssignmentDetailComponent } from './detail/assignment-detail/assignment-detail.component';
 
 const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent},
-  { path: 'register', component: RegisterComponent},
   { path: '', component: FeedComponent, pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'account/:id', component: AccountDetailComponent },
   { path: 'edit-account/:id', component: AccountEditComponent },
+  { path: 'assignments', component: AssignmentDetailComponent },
   { path: '**', redirectTo: '' }
 ];
 
