@@ -1,6 +1,6 @@
 using System;
 
-namespace ApplicationChallenge.Models
+namespace ApplicationChallenge.Models.API
 {
     public class SuccessWrapper<T> : SuccessWrapper
     {

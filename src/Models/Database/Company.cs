@@ -1,7 +1,4 @@
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-
-namespace ApplicationChallenge.Models
+namespace ApplicationChallenge.Models.Database
 {
     /// <summary>
     /// Optional part of <see cref="User"/>, only if they represent a company

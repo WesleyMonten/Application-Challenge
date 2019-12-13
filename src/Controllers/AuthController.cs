@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using ApplicationChallenge.Models;
+using ApplicationChallenge.Models.API;
+using ApplicationChallenge.Models.Database;
 using ApplicationChallenge.Services;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
