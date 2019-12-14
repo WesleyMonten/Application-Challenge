@@ -11,6 +11,8 @@ import { AssignmentService } from 'src/app/services/assignment.service';
 import { CompanyService } from 'src/app/services/company.service';
 import { MatDialog } from '@angular/material';
 import { AccountDeleteComponent } from 'src/app/delete/account-delete/account-delete.component';
+import {UserInfo} from "../../models/user-info";
+import {UserInfoService} from "../../services/user-info.service";
 
 @Component({
   selector: 'app-account-detail',
@@ -19,7 +21,7 @@ import { AccountDeleteComponent } from 'src/app/delete/account-delete/account-de
 })
 export class AccountDetailComponent implements OnInit {
 
-  account: Account;
+  account: UserInfo;
   reviews: ApplicantReview[];
   assignments: Assignment[] = [];
   assignmentStartDates: string[] = [];
@@ -27,17 +29,17 @@ export class AccountDetailComponent implements OnInit {
   companies: Company[] = [];
   dateOfBirth: string;
 
-  constructor(private _accountService: AccountService, private _reviewService: ReviewService, private _assignmentService: AssignmentService, private _companyService: CompanyService, private route: ActivatedRoute, public datepipe: DatePipe, public dialog: MatDialog) { }
+  constructor(private _userInfoService: UserInfoService, private _reviewService: ReviewService, private _assignmentService: AssignmentService, private _companyService: CompanyService, private route: ActivatedRoute, public datepipe: DatePipe, public dialog: MatDialog) { }
 
   getIdFromParameter() {
     this.route.params.subscribe(params => {
-      var id = +params['id'];
-      this.getAccount(id.toString());
+      const id = params['id'];
+      this.getAccount(id);
     })
   }
 
   getAccount(accountID: string) {
-    this._accountService.get(accountID).subscribe(res => {
+    this._userInfoService.get(accountID).subscribe(res => {
       this.account = res;
       this.dateOfBirth = this.datepipe.transform(this.account.dateOfBirth, 'MM/dd/yyyy');
       this.getReviewsOfApplicant(accountID);
@@ -56,7 +58,7 @@ export class AccountDetailComponent implements OnInit {
   getAssignmentsOfReviews(reviews: ApplicantReview[]) {
     reviews.forEach(r => {
       this.getAssigmentOfReview(r.assignmentID);
-    })
+    });
     console.log(this.assignments);
   }
 
@@ -84,7 +86,7 @@ export class AccountDetailComponent implements OnInit {
   openDialog(): void {
     this.dialog.open(AccountDeleteComponent, {
       width: '400px',
-      data: { accountID: this.account.accountID, nickname: this.account.nickname }
+      data: { accountID: this.account.accountId, nickname: this.account.nickname }
     });
   }
 
