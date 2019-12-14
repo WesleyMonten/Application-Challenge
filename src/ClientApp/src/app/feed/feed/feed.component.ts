@@ -37,8 +37,8 @@ export class FeedComponent implements OnInit {
     });
   }
 
-  getCompanyOfAssignment(companyID: string) {
-    this._companyService.getCompany(companyID).subscribe(res => {
+  getCompanyOfAssignment(companyId: string) {
+    this._companyService.getCompany(companyId).subscribe(res => {
       this.companies.push(res);
     });
   }

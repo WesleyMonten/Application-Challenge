@@ -8,7 +8,7 @@
                             <mat-icon>clear</mat-icon>
                         </button>
                         <button mat-fab color="primary" type="button"
-                            [routerLink]="['/edit-account/', account.accountID]" routerLink="active">
+                            [routerLink]="['/edit-account/', account.accountId]" routerLink="active">
                             <mat-icon>edit</mat-icon>
                         </button>
                     </div>
@@ -45,45 +45,50 @@
                         <div class="row">
                             <div class="col-12">
                                 <mat-card>
+                                    <mat-card-header>
+                                        <mat-card-title>
+                                            Personal
+                                        </mat-card-title>
+                                    </mat-card-header>
                                     <mat-list>
                                         <h3 mat-subheader>Total commendations</h3>
                                         <div id="totalCommendations">
                                             <div class="row">
-                                                <div class="col-4">
+                                                <div class="col-xl-4 col-lg-6 col-sm-12">
                                                     <mat-list-item>
                                                         <img mat-list-icon
-                                                            src="./../../assets/application-commodation0.png">
+                                                            src="./../../assets/application-commendation0.png">
                                                         <h4 mat-line>Works hard: {{counter}}</h4>
                                                     </mat-list-item>
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-xl-4 col-lg-6 col-sm-12">
                                                     <mat-list-item>
                                                         <img mat-list-icon
-                                                            src="./../../assets/application-commodation1.png">
+                                                            src="./../../assets/application-commendation1.png">
                                                         <h4 mat-line>Teamplayer: {{counter}}</h4>
                                                     </mat-list-item>
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-xl-4 col-lg-6 col-sm-12">
 
                                                     <mat-list-item>
                                                         <img mat-list-icon
-                                                            src="./../../assets/application-commodation4.png">
+                                                            src="./../../assets/application-commendation4.png">
                                                         <h4 mat-line>Technical genius: {{counter}}</h4>
                                                     </mat-list-item>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-4">
+                                                <div class="col-xl-4 col-lg-6 col-sm-12">
                                                     <mat-list-item>
                                                         <img mat-list-icon
-                                                            src="./../../assets/application-commodation2.png">
+                                                            src="./../../assets/application-commendation2.png">
                                                         <h4 mat-line>High-quality work: {{counter}}</h4>
                                                     </mat-list-item>
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-xl-4 col-lg-6 col-sm-12">
                                                     <mat-list-item>
                                                         <img mat-list-icon
-                                                            src="./../../assets/application-commodation3.png">
+                                                            src="./../../assets/application-commendation3.png">
                                                         <h4 mat-line>Takes initiative: {{counter}}</h4>
                                                     </mat-list-item>
                                                 </div>
@@ -123,28 +128,50 @@
                                 <br>
                             </div>
                         </div>
-                    </div>
-                </mat-tab>
-                <mat-tab label="Skills">
-                    <div class="container">
-                        <br>
-                        <mat-accordion>
-                            <mat-expansion-panel *ngFor="let skill of account.applicant.skills">
-                                <mat-expansion-panel-header>
-                                    <mat-panel-title>
-                                        <mat-chip [ngStyle]="{'background-color': skill.color, 'color':'#fff'}">
-                                            {{skill.name}}
-                                        </mat-chip>
-                                    </mat-panel-title>
-                                    <mat-panel-description>
-                                        (Experience)
-                                    </mat-panel-description>
-                                </mat-expansion-panel-header>
-                                <p>
-                                    (In depth description of experience)
-                                </p>
-                            </mat-expansion-panel>
-                        </mat-accordion>
+                        <div class="row" *ngIf="account.company != null">
+                            <div class="col-12">
+                                <mat-card>
+                                    <mat-card-header>
+                                        <mat-card-title>
+                                            {{account.company.name}}
+                                        </mat-card-title>
+                                    </mat-card-header>
+                                    <mat-list>
+                                        <h3 mat-subheader>Total commendations</h3>
+                                        <div id="totalCommendations">
+                                            <div class="row">
+                                                <div class="col-xl-4 col-lg-6 col-sm-12">
+                                                    <mat-list-item>
+                                                        <img mat-list-icon
+                                                            src="./../../assets/company-commendation0.png">
+                                                        <h4 mat-line>Pleasant Atmosphere: {{counter}}</h4>
+                                                    </mat-list-item>
+                                                </div>
+                                                <div class="col-xl-4 col-lg-6 col-sm-12">
+                                                    <mat-list-item>
+                                                        <img mat-list-icon
+                                                            src="./../../assets/company-commendation1.png">
+                                                        <h4 mat-line>Stress-Free Environment: {{counter}}</h4>
+                                                    </mat-list-item>
+                                                </div>
+                                                <div class="col-xl-4 col-lg-6 col-sm-12">
+
+                                                    <mat-list-item>
+                                                        <img mat-list-icon
+                                                            src="./../../assets/company-commendation2.png">
+                                                        <h4 mat-line>Good Accomodation: {{counter}}</h4>
+                                                    </mat-list-item>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <mat-divider></mat-divider>
+                                        <h3 mat-subheader>Biography</h3>
+                                        <p mat-line> {{account.company.biography}} </p>
+                                    </mat-list>
+                                </mat-card>
+                                <br>
+                            </div>
+                        </div>
                     </div>
                 </mat-tab>
                 <mat-tab label="Assignments">

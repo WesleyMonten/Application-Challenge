@@ -36,16 +36,16 @@ export class AccountDetailComponent implements OnInit {
     })
   }
 
-  getAccount(accountID: string) {
-    this._accountService.get(accountID).subscribe(res => {
+  getAccount(accountId: string) {
+    this._accountService.get(accountId).subscribe(res => {
       this.account = res;
       this.dateOfBirth = this.datepipe.transform(this.account.dateOfBirth, 'MM/dd/yyyy');
-      this.getReviewsOfApplicant(accountID);
+      this.getReviewsOfApplicant(accountId);
     });
   }
 
-  getReviewsOfApplicant(accountID: string) {
-    this._reviewService.getReviewsApplicant(accountID).subscribe(res => {
+  getReviewsOfApplicant(accountId: string) {
+    this._reviewService.getReviewsApplicant(accountId).subscribe(res => {
       this.reviews = res;
       this.getAssignmentsOfReviews(res);
       this.getCompaniesOfReviews(res);
@@ -67,16 +67,16 @@ export class AccountDetailComponent implements OnInit {
     console.log(this.companies);
   }
 
-  getAssigmentOfReview(assignmentID: string) {
-    this._assignmentService.getAssignment(assignmentID).subscribe(res => {
+  getAssigmentOfReview(assignmentId: string) {
+    this._assignmentService.getAssignment(assignmentId).subscribe(res => {
       this.assignmentEndDates.push(this.datepipe.transform(res.endTime, 'MM/dd/yyyy'));
       this.assignmentStartDates.push(this.datepipe.transform(res.startTime, 'MM/dd/yyyy'));
       this.assignments.push(res);
     });
   }
 
-  getCompanyOfReview(companyID: string) {
-    this._companyService.getCompany(companyID).subscribe(res => {
+  getCompanyOfReview(companyId: string) {
+    this._companyService.getCompany(companyId).subscribe(res => {
       this.companies.push(res);
     })
   }
@@ -84,7 +84,7 @@ export class AccountDetailComponent implements OnInit {
   openDialog(): void {
     this.dialog.open(AccountDeleteComponent, {
       width: '400px',
-      data: { accountID: this.account.accountID, nickname: this.account.nickname }
+      data: { accountId: this.account.accountId, nickname: this.account.nickname }
     });
   }
 

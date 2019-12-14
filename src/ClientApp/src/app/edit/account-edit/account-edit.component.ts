@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Account } from 'src/app/models/account.model';
 import { FormBuilder, Validators, Form, FormGroup, FormControl } from '@angular/forms';
 import { SkillService } from 'src/app/services/skill.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-account-edit',
@@ -26,7 +27,11 @@ export class AccountEditComponent implements OnInit {
   account: Account;
   editAccountForm: FormGroup;
 
-  constructor(private _accountService: AccountService, private _skillService: SkillService, private route: ActivatedRoute, private fb: FormBuilder) { }
+  constructor(private _accountService: AccountService, private _skillService: SkillService, private route: ActivatedRoute, private fb: FormBuilder, private _location: Location) { }
+
+  goBack() {
+    this._location.back();
+  }
 
   addSkill(event: MatChipInputEvent): void {
     const input = event.input;
@@ -35,9 +40,9 @@ export class AccountEditComponent implements OnInit {
     if ((value || '').trim()) {
       var skill = this.skills.find(s => s.name.toLowerCase() == value.toLowerCase());
       if (skill != null) {
-        this.skillsAccount.push({ skillID: skill.skillID, name: skill.name, color: skill.color });
+        this.skillsAccount.push({ skillId: skill.skillId, name: skill.name, color: skill.color });
       } else {
-        this.skillsAccount.push({ skillID: "", name: value.trim(), color: '#E0E0E0' });
+        this.skillsAccount.push({ skillId: "", name: value.trim(), color: '#007ACC' });
       }
     }
     if (input) {
@@ -60,8 +65,8 @@ export class AccountEditComponent implements OnInit {
     })
   }
 
-  getAccount(accountID: string) {
-    this._accountService.get(accountID).subscribe(res => {
+  getAccount(accountId: string) {
+    this._accountService.get(accountId).subscribe(res => {
       this.account = res;
       this.skillsAccount = res.applicant.skills;
 
