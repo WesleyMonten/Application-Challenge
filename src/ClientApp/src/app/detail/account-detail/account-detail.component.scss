@@ -98,6 +98,13 @@ img {
     top: 5px;
 }
 
+#review {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    z-index: 5;
+}
+
 #commendations img{
     margin-right: 5px;
     display: inline-block;

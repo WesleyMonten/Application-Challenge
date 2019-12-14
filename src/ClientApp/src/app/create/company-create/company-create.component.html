@@ -1,3 +1,49 @@
-<div class="container-fluid">
-
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col-12">
+            <mat-icon (click)="goBack()">keyboard_return</mat-icon>
+        </div>
+    </div>
+    <br>
+    <form [formGroup]="createCompanyForm" (ngSubmit)="onSubmitCreateCompany()">
+        <div class="row">
+            <div class="col-6">
+                <mat-form-field appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="Name" type="text" name="Name" formControlName="Name">
+                </mat-form-field>
+            </div>
+            <div class="col-6">
+                <mat-form-field appearance="outline">
+                    <mat-label>Phone number</mat-label>
+                    <input matInput placeholder="PhoneNumber" type="tel" name="PhoneNumber"
+                        formControlName="PhoneNumber">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Email" type="text" name="Email" formControlName="Email">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>Biography</mat-label>
+                    <textarea matInput name="Biography" placeholder="Biography" formControlName="Biography" cols="30"
+                        rows="8"></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <button mat-flat-button color="primary" type="submit"
+                    [disabled]="!createCompanyForm.valid">Create</button>
+            </div>
+        </div>
+    </form>
 </div>

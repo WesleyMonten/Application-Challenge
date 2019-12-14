@@ -11,7 +11,7 @@
                             [routerLink]="['/edit-account/', account.accountID]" routerLink="active">
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-fab id="company" type="button" [routerLink]="new-company" routerLink="active"
+                        <button mat-fab id="company" type="button" routerLink="/new-company" routerLinkActive="active"
                             *ngIf="account.company == null">
                             <mat-icon>business</mat-icon>
                         </button>
@@ -185,6 +185,13 @@
                             <div class="col-12" *ngIf="assignmentsApplicantReviews.length != 0">
                                 <mat-card *ngFor="let assignment of assignmentsApplicantReviews;let i=index;">
                                     <mat-card-header>
+                                        <div id="review" class="row">
+                                            <div class="col-12">
+                                                <button mat-flat-button color="primary" type="button">
+                                                    Review
+                                                </button>
+                                            </div>
+                                        </div>
                                         <mat-card-title>{{assignment.title}}</mat-card-title>
                                         <mat-card-subtitle>
                                             {{assignmentStartDates[i]}} -
