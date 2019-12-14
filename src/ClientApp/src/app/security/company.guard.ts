@@ -17,7 +17,7 @@ export class CompanyGuard implements CanActivate {
 
   checkOrUserHasCompany() {
     var account;
-    this._accountService.get(localStorage.getItem('accountID')).subscribe(res => {
+    this._accountService.get(localStorage.getItem('accountId')).subscribe(res => {
       account = res;
     })
 

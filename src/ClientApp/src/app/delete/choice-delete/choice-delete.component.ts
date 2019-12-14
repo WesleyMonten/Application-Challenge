@@ -16,7 +16,7 @@ export class ChoiceDeleteComponent implements OnInit {
     this.dialogRef.close();
     this.dialog.open(CompanyDeleteComponent, {
       width: '400px',
-      data: { companyID: this.data.companyID, name: this.data.name }
+      data: { companyId: this.data.companyId, name: this.data.name }
     });
   }
 
@@ -24,7 +24,7 @@ export class ChoiceDeleteComponent implements OnInit {
     this.dialogRef.close();
     this.dialog.open(AccountDeleteComponent, {
       width: '400px',
-      data: { accountID: this.data.accountID, nickname: this.data.nickname }
+      data: { accountId: this.data.accountId, nickname: this.data.nickname }
     });
   }
 

@@ -46,25 +46,25 @@ export class AccountDetailComponent implements OnInit {
     })
   }
 
-  getAccount(accountID: string, companyReview: boolean) {
-    this._accountService.get(accountID).subscribe(res => {
+  getAccount(accountId: string, companyReview: boolean) {
+    this._accountService.get(accountId).subscribe(res => {
       if (companyReview) {
         this.applicantsCompanyReviews.push(res);
       } else {
         this.account = res;
         this.status = this.account.applicant.available;
         this.dateOfBirth = this.datepipe.transform(this.account.dateOfBirth, 'MM/dd/yyyy');
-        this.getApplicantReviews(accountID);
+        this.getApplicantReviews(accountId);
         if (this.account.company != null) {
-          this.getCompanyReviews(this.account.company.companyID);
+          this.getCompanyReviews(this.account.company.companyId);
         }
       }
     });
   }
 
 
-  getApplicantReviews(accountID: string) {
-    this._reviewService.getApplicantReviews(accountID).subscribe(res => {
+  getApplicantReviews(accountId: string) {
+    this._reviewService.getApplicantReviews(accountId).subscribe(res => {
       this.applicantReviews = res;
       this.getAssignmentsOfApplicantReviews(res);
       this.getCompaniesOfApplicantReviews(res);
@@ -74,18 +74,18 @@ export class AccountDetailComponent implements OnInit {
 
   getAssignmentsOfApplicantReviews(reviews: ApplicantReview[]) {
     reviews.forEach(r => {
-      this.getAssigment(r.assignmentID, true);
+      this.getAssigment(r.assignmentId, true);
     })
   }
 
   getCompaniesOfApplicantReviews(reviews: ApplicantReview[]) {
     reviews.forEach(r => {
-      this.getCompany(r.companyID);
+      this.getCompany(r.companyId);
     })
   }
 
-  getCompanyReviews(companyID: string) {
-    this._reviewService.getCompanyReviews(companyID).subscribe(res => {
+  getCompanyReviews(companyId: string) {
+    this._reviewService.getCompanyReviews(companyId).subscribe(res => {
       this.companyReviews = res;
       this.getAssignmentsOfCompanyReviews(res);
       this.getApplicantsOfCompanyReviews(res);
@@ -94,18 +94,18 @@ export class AccountDetailComponent implements OnInit {
 
   getAssignmentsOfCompanyReviews(reviews: CompanyReview[]) {
     reviews.forEach(r => {
-      this.getAssigment(r.assignmentID, false);
+      this.getAssigment(r.assignmentId, false);
     })
   }
 
   getApplicantsOfCompanyReviews(reviews: CompanyReview[]) {
     reviews.forEach(r => {
-      this.getAccount(r.applicantID, true);
+      this.getAccount(r.applicantId, true);
     })
   }
 
-  getAssigment(assignmentID: string, applicantReview: boolean) {
-    this._assignmentService.getAssignment(assignmentID).subscribe(res => {
+  getAssigment(assignmentId: string, applicantReview: boolean) {
+    this._assignmentService.getAssignment(assignmentId).subscribe(res => {
       this.assignmentEndDates.push(this.datepipe.transform(res.endTime, 'MM/dd/yyyy'));
       this.assignmentStartDates.push(this.datepipe.transform(res.startTime, 'MM/dd/yyyy'));
       if (applicantReview) {
@@ -116,8 +116,8 @@ export class AccountDetailComponent implements OnInit {
     });
   }
 
-  getCompany(companyID: string) {
-    this._companyService.getCompany(companyID).subscribe(res => {
+  getCompany(companyId: string) {
+    this._companyService.getCompany(companyId).subscribe(res => {
       this.companiesApplicantReviews.push(res);
     })
   }
@@ -133,7 +133,7 @@ export class AccountDetailComponent implements OnInit {
   openChoiceDialog(): void {
     this.dialog.open(ChoiceDeleteComponent, {
       width: '400px',
-      data: { accountID: this.account.accountID, nickname: this.account.nickname, companyID: this.account.company.companyID, name: this.account.company.name }
+      data: { accountId: this.account.accountId, nickname: this.account.nickname, companyId: this.account.company.companyId, name: this.account.company.name }
     });
   }
 

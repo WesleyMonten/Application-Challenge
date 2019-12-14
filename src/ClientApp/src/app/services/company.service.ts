@@ -24,8 +24,8 @@ export class CompanyService {
     return of(company);
   }
 
-  delete(companyID: string): Observable<Company[]> {
-    var company = this.companies.find(c => c.companyID === companyID);
+  delete(companyId: string): Observable<Company[]> {
+    var company = this.companies.find(c => c.companyId === companyId);
     var index = this.companies.indexOf(company);
     return of(this.companies.splice(index, 1));
   }
