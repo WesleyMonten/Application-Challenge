@@ -1,0 +1,25 @@
+button {
+    background-color: #EE3F55;
+    color: #fff;
+    margin: auto;
+    width: 40%;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+
+h4 {
+    text-align: center;
+}
+
+:host ::ng-deep .mat-button-focus-overlay {
+    background-color: transparent!important;
+}

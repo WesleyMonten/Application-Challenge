@@ -8,3 +8,14 @@ mat-icon {
 :host ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
     color: #377DC0;
 }
+
+
+.title {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+h4 {
+    margin-left: 15px;
+}

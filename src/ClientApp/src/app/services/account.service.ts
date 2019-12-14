@@ -10,6 +10,7 @@ import { MatSidenav } from '@angular/material';
 export class AccountService {
 
   isLoggedIn = new BehaviorSubject(false);
+  refreshProfile = new BehaviorSubject(false);
   dateString = '1968-11-16T00:00:00';
   date = new Date(this.dateString);
 

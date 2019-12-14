@@ -27,6 +27,24 @@ mat-icon {
     color: #377DC0;
 }
 
+.title {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+h4 {
+    margin-left: 15px;
+}
+
+:host ::ng-deep .mat-tab-labels{
+    justify-content: center; 
+}
+
+:host ::ng-deep .mat-tab-header {
+    border-bottom: none;
+}
+
 @media only screen and (max-width: 1000px){
     img {
         width: 40% !important;

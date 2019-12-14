@@ -13,6 +13,8 @@ import { MatDialog } from '@angular/material';
 import { AccountDeleteComponent } from 'src/app/delete/account-delete/account-delete.component';
 import { CompanyReview } from 'src/app/models/company-review.model';
 import { Observable } from 'rxjs';
+import { CompanyDeleteComponent } from 'src/app/delete/company-delete/company-delete.component';
+import { ChoiceDeleteComponent } from 'src/app/delete/choice-delete/choice-delete.component';
 
 @Component({
   selector: 'app-account-detail',
@@ -32,7 +34,11 @@ export class AccountDetailComponent implements OnInit {
   assignmentsCompanyReviews: Assignment[] = [];
   dateOfBirth: string;
 
-  constructor(private _accountService: AccountService, private _reviewService: ReviewService, private _assignmentService: AssignmentService, private _companyService: CompanyService, private route: ActivatedRoute, public datepipe: DatePipe, public dialog: MatDialog) { }
+  constructor(private _accountService: AccountService, private _reviewService: ReviewService, private _assignmentService: AssignmentService, private _companyService: CompanyService, private route: ActivatedRoute, public datepipe: DatePipe, public dialog: MatDialog) {
+    this._accountService.refreshProfile.subscribe(() => {
+      this.ngOnInit();
+    })
+  }
 
   getIdFromParameter() {
     this.route.params.subscribe(params => {
@@ -117,7 +123,22 @@ export class AccountDetailComponent implements OnInit {
     })
   }
 
-  openDialog(): void {
+  openDialog() {
+    if (this.account.company != null) {
+      this.openChoiceDialog();
+    } else {
+      this.openAccountDialog();
+    }
+  }
+
+  openChoiceDialog(): void {
+    this.dialog.open(ChoiceDeleteComponent, {
+      width: '400px',
+      data: { accountID: this.account.accountID, nickname: this.account.nickname, companyID: this.account.company.companyID, name: this.account.company.name }
+    });
+  }
+
+  openAccountDialog(): void {
     this.dialog.open(AccountDeleteComponent, {
       width: '400px',
       data: { accountID: this.account.accountID, nickname: this.account.nickname }
