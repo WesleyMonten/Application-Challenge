@@ -29,7 +29,7 @@ export class ReviewService {
     CompanyCommendation.GoodAccomodation
   ]
 
-  applicantReviews: Array<ApplicantReview> = [
+  applicantReviews: Array<Review> = [
     { applicantReviewID: "1", reviewText: "Goede service geleverd, doet wat er van hem gevraagd wordt", companyID: "1", assignmentID: "1", applicantID: "1", commendations: this.applicantCommandations1 },
     { applicantReviewID: "2", reviewText: "Goede samenwerking met ons team, overschreed onze verwachtingen", companyID: "1", assignmentID: "2", applicantID: "2", commendations: this.applicantCommandations2 },
   ]
@@ -54,10 +54,7 @@ export class ReviewService {
   }
 
   addApplicantreview(review: Review){
-    return this.http.post<Review>("https://localhost:5001/applicantreview", review);
-  }
-
-  addCompanyreview(review: Review){
-    return this.http.post<Review>("https://localhost:5001/companyreview", review);
+    review.applicantReviewID = (this.applicantReviews.length + 1).toString();
+    return of(this.applicantReviews.push(review));
   }
 }

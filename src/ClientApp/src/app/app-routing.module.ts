@@ -7,6 +7,7 @@ import {FeedComponent} from './feed/feed/feed.component';
 import {AccountDetailComponent} from './detail/account-detail/account-detail.component';
 import {AccountEditComponent} from './edit/account-edit/account-edit.component';
 import { AddReviewComponent } from './review/add-review/add-review.component';
+import { EditReviewComponent } from './review/edit-review/edit-review.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -15,6 +16,7 @@ const appRoutes: Routes = [
   { path: 'account/:id', component: AccountDetailComponent },
   { path: 'edit-account/:id', component: AccountEditComponent },
   { path: 'review/:id', component: AddReviewComponent},
+  { path: 'editreview/:id', component: EditReviewComponent},
   { path: '**', redirectTo: '' }
 ];
 

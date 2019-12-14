@@ -1,7 +1,9 @@
+import { ApplicantCommendation } from "./applicant-commodation.model";
+
 export class Review {
-    constructor(public companyReviewID: string, 
+    constructor(public applicantReviewID: string, 
         public reviewText: string, 
-        public commendations: [], 
+        public commendations: ApplicantCommendation[], 
         public companyID: string, 
         public assignmentID: string, 
         public applicantID: string) { }

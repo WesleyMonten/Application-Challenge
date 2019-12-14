@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Assignment } from 'src/app/models/assignment.model';
 import { AssignmentService } from 'src/app/services/assignment.service';
 import { ApplicationService } from 'src/app/services/application.service';
+import { ReviewService } from 'src/app/services/review.service';
 
 @Component({
   selector: 'app-add-review',
@@ -20,7 +21,7 @@ export class AddReviewComponent implements OnInit {
   assignmentID: string;
   assignment: Assignment;
   constructor(private _commendationService: CommendationService, private _assignmentService: AssignmentService, 
-    private _applicationService: ApplicationService, private route: ActivatedRoute) {}
+    private _applicationService: ApplicationService, private _reviewService: ReviewService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe(Params => {
@@ -44,9 +45,13 @@ export class AddReviewComponent implements OnInit {
   onSubmit(){
     this.model.companyID = this.assignment.companyID;
     this.model.assignmentID = this.assignmentID;
-    this._applicationService.getApplication(this.assignment.applicationID).subscribe(result => {
+    // this._applicationService.getApplication(this.assignment.applicationID).subscribe(result => {
+    //   console.log(result);
+    //   this.model.applicantID = result.applicantID;
+    // })
+    console.log(this.model);
+    this._reviewService.addApplicantreview(this.model).subscribe(result => {
       console.log(result);
     })
-    console.log(this.model);
   }
 }
