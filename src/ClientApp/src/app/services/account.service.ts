@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Account } from '../models/account.model'
-import { of } from 'rxjs';
+import { of, BehaviorSubject } from 'rxjs';
 import { Applicant } from '../models/applicant.model';
 import { Skill } from '../models/skill.model';
 import { Company } from '../models/company.model';
+import { MatSidenav } from '@angular/material';
 
 @Injectable()
 export class AccountService {
 
+  isLoggedIn = new BehaviorSubject(false);
   dateString = '1968-11-16T00:00:00';
   date = new Date(this.dateString);
 
@@ -19,7 +21,7 @@ export class AccountService {
 
   skills2: Array<Skill> = [
     { skillID: "4", name: "Java", color: "#E44D26" },
-    { skillID: "5", name: "Internship", color: "#0074C1" },
+    { skillID: "5", name: "Internship", color: "#CF3C6E" },
   ]
 
   applicant1: Applicant = { applicantID: "2", biography: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore nesciunt magnam vel laborum architecto quae quod eligendi dolores? Expedita in assumenda saepe ratione porro harum vero voluptatum praesentium adipisci nisi.", available: false, skills: this.skills2 };

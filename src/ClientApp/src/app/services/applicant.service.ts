@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 import { Applicant } from '../models/applicant.model';
 import { Skill } from '../models/skill.model';
 
@@ -28,6 +28,11 @@ export class ApplicantService {
 
     getAll() {
         return of(this.applicants);
+    }
+
+
+    getApplicant(applicantID: string): Observable<Applicant> {
+        return of(this.applicants.find(a => a.applicantID === applicantID));
     }
 
 }

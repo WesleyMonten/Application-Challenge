@@ -1,11 +1,11 @@
-<mat-card>
+<div class="container">
+  <mat-card>
     <h1>Register</h1>
     <form name="registerForm" #f="ngForm" (ngSubmit)="f.valid && onSubmit()">
   
       <mat-form-field appearance="outline">
         <mat-label for="username">Username</mat-label>
-        <input name="username" #username="ngModel" [(ngModel)]="model.username"
-           type="text" required matInput
+        <input name="username" #username="ngModel" [(ngModel)]="model.username" type="text" required matInput
           placeholder="Username">
       </mat-form-field>
       <br>
@@ -15,21 +15,20 @@
           [(ngModel)]="model.password" type="password" matInput placeholder="Password" required>
       </mat-form-field>
       <br>
-  
+
       <mat-form-field appearance="outline">
         <mat-label for="verifypassword">Verify password</mat-label>
-        <input type="password" name="verifypassword"
-         matInput placeholder="Verify password" required>
+        <input type="password" name="verifypassword" matInput placeholder="Verify password" required>
       </mat-form-field>
       <br>
-  
+
       <mat-form-field appearance="outline">
         <mat-label for="email">Email</mat-label>
         <input [(ngModel)]="model.email" name="email"
           type="email" matInput placeholder="Email" required email>
       </mat-form-field>
       <br>
-  
+
       <mat-form-field appearance="outline">
           <mat-label for="dateofbirth">Date of birth</mat-label>
           <input matInput name="dateofbirth" [(ngModel)]="model.dateofbirth" 
@@ -42,3 +41,4 @@
       <button color="primary" mat-flat-button>Register</button>
     </form>
   </mat-card>
+</div>

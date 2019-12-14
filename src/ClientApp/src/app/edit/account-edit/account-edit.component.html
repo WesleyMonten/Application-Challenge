@@ -1,6 +1,12 @@
 <div class="container">
+    <br>
+    <div class="row">
+        <div class="col-12">
+            <mat-icon (click)="goBack()">keyboard_return</mat-icon>
+        </div>
+    </div>
+    <br>
     <form [formGroup]="editAccountForm" (ngSubmit)="onSubmitEditAccount()">
-        <br>
         <div class="row">
             <div class="col-lg-4 col-md-12">
                 <img src=".././../../assets/user.png">
