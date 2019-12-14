@@ -6,9 +6,7 @@ import {Observable} from "rxjs";
 import {map} from 'rxjs/operators';
 import {SuccessWrapper} from "../models/success-wrapper.model";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthService {
 
   constructor(private http: HttpClient) { }

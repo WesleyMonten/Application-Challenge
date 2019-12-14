@@ -1,0 +1,59 @@
+:host ::ng-deep .mat-tab-labels{
+    justify-content: center; 
+}
+
+:host ::ng-deep .mat-tab-header {
+    border-bottom: none;
+}
+
+:host ::ng-deep  .mat-tab-label:nth-child(3), #submit {
+    background: linear-gradient(229deg, #1dbf73, #377dc0);
+    color: #fff;
+}
+
+mat-icon {
+    color: #fff;
+}
+
+mat-horizontal-stepper {
+    background-color: #FAFAFA;
+}
+
+mat-form-field {
+    width: 50%;
+}
+
+button {
+    width: 50%;
+}
+
+.content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.horizontalContent button, .horizontalContent mat-form-field{
+    width: 25% !important;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.horizontalContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+mat-chip-list {
+    width: 50%;
+    margin-bottom: 10px;
+}
+
+
+mat-slide-toggle {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
