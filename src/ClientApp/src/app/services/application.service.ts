@@ -8,12 +8,6 @@ import {HttpClient} from "@angular/common/http";
 export class ApplicationService {
 
   constructor(private http: HttpClient) {}
-// voorbeeld implementatie:
-/*
-  this._service.getApplications().subscribe( result=>{
-  console.log(result);
-})
-*/
   getApplications(): Observable<Application[]> {
     return this.http.get<Application[]>("/application");
   }
