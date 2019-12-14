@@ -18,12 +18,17 @@ button {
     background-color: #EE3F55;
 }
 
+#company {
+    background-color: #E6BC27;
+}
+
 button:focus:active {
     outline: none;
   }
 
 #profilePic {
     color: #fff;
+    position: relative;
 }
 #profilePic img {
     border: 5px #fff solid;
@@ -68,7 +73,15 @@ img {
 @media only screen and (max-width: 450px){
     img {
         width: 45%;
-    }      
+    }    
+
+    .buttons {
+       display: flex;
+       justify-content: center;
+       margin-top: 10px;
+       margin-bottom: 25px;
+    }
+
 }
 
 :host ::ng-deep .mat-tab-labels{

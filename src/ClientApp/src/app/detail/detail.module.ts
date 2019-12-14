@@ -8,9 +8,10 @@ import { AccountDetailComponent } from './account-detail/account-detail.componen
 import { AccountDeleteComponent } from '../delete/account-delete/account-delete.component';
 import { AssignmentBoardComponent } from './assignment-board/assignment-board.component';
 import { AssignmentApplicationsComponent } from './assignment-applications/assignment-applications.component';
+import { CompanyDetailComponent } from './company-detail/company-detail.component';
 
 @NgModule({
-  declarations: [AssignmentDetailComponent, ReviewDetailComponent, AccountDetailComponent, AssignmentBoardComponent, AssignmentApplicationsComponent],
+  declarations: [AssignmentDetailComponent, ReviewDetailComponent, AccountDetailComponent, AssignmentBoardComponent, AssignmentApplicationsComponent, CompanyDetailComponent],
   imports: [
     CommonModule,
     SharedModule,

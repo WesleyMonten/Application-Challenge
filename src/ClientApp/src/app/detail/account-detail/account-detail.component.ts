@@ -11,6 +11,8 @@ import { AssignmentService } from 'src/app/services/assignment.service';
 import { CompanyService } from 'src/app/services/company.service';
 import { MatDialog } from '@angular/material';
 import { AccountDeleteComponent } from 'src/app/delete/account-delete/account-delete.component';
+import { CompanyReview } from 'src/app/models/company-review.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-account-detail',
@@ -20,11 +22,14 @@ import { AccountDeleteComponent } from 'src/app/delete/account-delete/account-de
 export class AccountDetailComponent implements OnInit {
 
   account: Account;
-  reviews: ApplicantReview[];
-  assignments: Assignment[] = [];
+  applicantReviews: ApplicantReview[];
+  companyReviews: CompanyReview[] = [];
   assignmentStartDates: string[] = [];
   assignmentEndDates: string[] = [];
-  companies: Company[] = [];
+  companiesApplicantReviews: Company[] = [];
+  assignmentsApplicantReviews: Assignment[] = [];
+  applicantsCompanyReviews: Account[] = [];
+  assignmentsCompanyReviews: Assignment[] = [];
   dateOfBirth: string;
 
   constructor(private _accountService: AccountService, private _reviewService: ReviewService, private _assignmentService: AssignmentService, private _companyService: CompanyService, private route: ActivatedRoute, public datepipe: DatePipe, public dialog: MatDialog) { }
@@ -32,52 +37,83 @@ export class AccountDetailComponent implements OnInit {
   getIdFromParameter() {
     this.route.params.subscribe(params => {
       var id = +params['id'];
-      this.getAccount(id.toString());
+      this.getAccount(id.toString(), false);
     })
   }
 
-  getAccount(accountID: string) {
+  getAccount(accountID: string, companyReview: boolean) {
     this._accountService.get(accountID).subscribe(res => {
-      this.account = res;
-      this.dateOfBirth = this.datepipe.transform(this.account.dateOfBirth, 'MM/dd/yyyy');
-      this.getReviewsOfApplicant(accountID);
+      if (companyReview) {
+        this.applicantsCompanyReviews.push(res);
+      } else {
+        this.account = res;
+        this.dateOfBirth = this.datepipe.transform(this.account.dateOfBirth, 'MM/dd/yyyy');
+        this.getApplicantReviews(accountID);
+        if (this.account.company != null) {
+          this.getCompanyReviews(this.account.company.companyID);
+        }
+      }
     });
   }
 
-  getReviewsOfApplicant(accountID: string) {
-    this._reviewService.getReviewsApplicant(accountID).subscribe(res => {
-      this.reviews = res;
-      this.getAssignmentsOfReviews(res);
-      this.getCompaniesOfReviews(res);
-      console.log(this.reviews);
+
+  getApplicantReviews(accountID: string) {
+    this._reviewService.getApplicantReviews(accountID).subscribe(res => {
+      this.applicantReviews = res;
+      this.getAssignmentsOfApplicantReviews(res);
+      this.getCompaniesOfApplicantReviews(res);
     });
   }
 
-  getAssignmentsOfReviews(reviews: ApplicantReview[]) {
+
+  getAssignmentsOfApplicantReviews(reviews: ApplicantReview[]) {
     reviews.forEach(r => {
-      this.getAssigmentOfReview(r.assignmentID);
+      this.getAssigment(r.assignmentID, true);
     })
-    console.log(this.assignments);
   }
 
-  getCompaniesOfReviews(reviews: ApplicantReview[]) {
+  getCompaniesOfApplicantReviews(reviews: ApplicantReview[]) {
     reviews.forEach(r => {
-      this.getCompanyOfReview(r.companyID);
+      this.getCompany(r.companyID);
     })
-    console.log(this.companies);
   }
 
-  getAssigmentOfReview(assignmentID: string) {
+
+  getCompanyReviews(companyID: string) {
+    this._reviewService.getCompanyReviews(companyID).subscribe(res => {
+      this.companyReviews = res;
+      this.getAssignmentsOfCompanyReviews(res);
+      this.getApplicantsOfCompanyReviews(res);
+    });
+  }
+
+  getAssignmentsOfCompanyReviews(reviews: CompanyReview[]) {
+    reviews.forEach(r => {
+      this.getAssigment(r.assignmentID, false);
+    })
+  }
+
+  getApplicantsOfCompanyReviews(reviews: CompanyReview[]) {
+    reviews.forEach(r => {
+      this.getAccount(r.applicantID, true);
+    })
+  }
+
+  getAssigment(assignmentID: string, applicantReview: boolean) {
     this._assignmentService.getAssignment(assignmentID).subscribe(res => {
       this.assignmentEndDates.push(this.datepipe.transform(res.endTime, 'MM/dd/yyyy'));
       this.assignmentStartDates.push(this.datepipe.transform(res.startTime, 'MM/dd/yyyy'));
-      this.assignments.push(res);
+      if (applicantReview) {
+        this.assignmentsApplicantReviews.push(res);
+      } else {
+        this.assignmentsCompanyReviews.push(res);
+      }
     });
   }
 
-  getCompanyOfReview(companyID: string) {
+  getCompany(companyID: string) {
     this._companyService.getCompany(companyID).subscribe(res => {
-      this.companies.push(res);
+      this.companiesApplicantReviews.push(res);
     })
   }
 
