@@ -2,7 +2,10 @@
     <br>
     <div class="row">
         <div class="col-12">
-            <mat-icon (click)="goBack()">keyboard_return</mat-icon>
+            <div class="title">
+                <mat-icon (click)="goBack()">keyboard_return</mat-icon>
+                <h4>Applies</h4>
+            </div>
             <button mat-flat-button id="cancel" (click)="cancel(applications[0].assignmentId)" *ngIf="closed">
                 Cancel
             </button>

@@ -1,0 +1,18 @@
+button {
+    background-color: #EE3F55;
+    color: #fff;
+    margin: auto;
+    width: 100%;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+:host ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: #EE3F55;
+  }
+
+  ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: #EE3F55;
+  }

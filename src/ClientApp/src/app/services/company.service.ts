@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Company } from '../models/company.model';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 
 @Injectable()
 export class CompanyService {
@@ -18,5 +18,15 @@ export class CompanyService {
 
   getCompany(companyId: string) {
     return of(this.companies.find(c => c.companyId === companyId));
+  }
+
+  put(company: Company): Observable<Company> {
+    return of(company);
+  }
+
+  delete(companyID: string): Observable<Company[]> {
+    var company = this.companies.find(c => c.companyID === companyID);
+    var index = this.companies.indexOf(company);
+    return of(this.companies.splice(index, 1));
   }
 }
