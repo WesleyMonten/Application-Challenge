@@ -1,0 +1,72 @@
+.list {
+    width: 20vw;
+    max-height: 80vh;
+    background-color: #E7ECEE;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.listTitle {
+    font-weight: bold;
+
+}
+
+.listItem {
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.listItems {
+    overflow-y: auto;
+}
+
+.listHeader {
+    display: block;
+}
+
+.board {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#verwijder {
+    background-color: #EE3F55;
+}
+
+.next {
+    background-color: #1dbf73;
+}
+
+#close {
+    background-color: #007ACC;
+}
+
+.back {
+    background-color: #E44D26;
+}
+
+.buttons {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+}
+
+.buttons button {
+    margin-left: 5px;
+    color: #fff;
+}
+
+mat-icon {
+    color: #fff;
+}
+
+@media only screen and (max-width: 1140px){
+    mat-card {
+        width: 100% !important;
+        margin-bottom: 50px;
+    }  
+}

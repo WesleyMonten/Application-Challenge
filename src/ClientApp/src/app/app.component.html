@@ -2,18 +2,17 @@
   <mat-drawer-container autosize>
     <mat-drawer #drawer class="sidenav" mode="push">
       <app-nav-menu></app-nav-menu>
+      <mat-icon id="logout" (click)="logout()">logout</mat-icon>
     </mat-drawer>
     <div class="content">
-      <nav class="navbar navbar-light border-bottom box-shadow mb-3 background-color-primary">
+      <nav class="navbar navbar-light border-bottom box-shadow mb-3 background-color-primary" *ngIf="isLoggedIn">
         <mat-icon (click)="drawer.toggle()">menu</mat-icon>
         <mat-form-field appearance="outline">
           <input matInput placeholder="Search...">
         </mat-form-field>
       </nav>
       <div class="spacer"></div>
-      <div class="container">
       <router-outlet></router-outlet>
-      </div>
     </div>
   </mat-drawer-container>
 </body>
