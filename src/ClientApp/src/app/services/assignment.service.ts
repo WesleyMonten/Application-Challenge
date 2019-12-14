@@ -12,21 +12,21 @@ export class AssignmentService {
   endDate = new Date('2019-12-31T00:00:00');
 
   assignmentTopics: Array<AssignmentTopic> = [
-    { assignmentTopicID: "2", name: "Frontend", color: "#7D5667" },
-    { assignmentTopicID: "1", name: "Fullstack", color: "#21A296" }
+    { assignmentTopicId: "2", name: "Frontend", color: "#7D5667" },
+    { assignmentTopicId: "1", name: "Fullstack", color: "#21A296" }
   ]
 
   assignmentTopics1: Array<AssignmentTopic> = [
-    { assignmentTopicID: "1", name: "Fullstack", color: "#21A296" }
+    { assignmentTopicId: "1", name: "Fullstack", color: "#21A296" }
   ]
 
   assignmentTopics2: Array<AssignmentTopic> = [
-    { assignmentTopicID: "2", name: "Frontend", color: "#7D5667" }
+    { assignmentTopicId: "2", name: "Frontend", color: "#7D5667" }
   ]
 
   assignments: Array<Assignment> = [
-    { assignmentID: "1", title: "Full stack application", description: "Frontend in Angular, Backend in .NET core", location: "Turnhout", startTime: this.startDate, endTime: this.endDate, isInternship: false, compensation: 200, stage: AssignmentStage.Draft, topics: this.assignmentTopics1, companyID: "1", applicationID: null },
-    { assignmentID: "2", title: "Frontend", description: "Frontend in Vue.js", location: "Mechelen", startTime: this.startDate, endTime: this.endDate, isInternship: false, compensation: 400, stage: AssignmentStage.Draft, topics: this.assignmentTopics2, companyID: "1", applicationID: null },
+    { assignmentId: "1", title: "Full stack application", description: "Frontend in Angular, Backend in .NET core", location: "Turnhout", startTime: this.startDate, endTime: this.endDate, isInternship: false, compensation: 200, stage: AssignmentStage.Open, topics: this.assignmentTopics1, companyId: "1", applicationId: null },
+    { assignmentId: "2", title: "Frontend", description: "Frontend in Vue.js", location: "Mechelen", startTime: this.startDate, endTime: this.endDate, isInternship: false, compensation: 400, stage: AssignmentStage.Draft, topics: this.assignmentTopics2, companyId: "1", applicationId: null },
   ]
 
   constructor() { }
@@ -35,8 +35,8 @@ export class AssignmentService {
     return of(this.assignments);
   }
 
-  getAssignment(assignmentID: string) {
-    return of(this.assignments.find(a => a.assignmentID === assignmentID));
+  getAssignment(assignmentId: string) {
+    return of(this.assignments.find(a => a.assignmentId === assignmentId));
   }
 
   getAllOpenAssignments() {
@@ -51,55 +51,55 @@ export class AssignmentService {
     return of(assignment);
   }
 
-  getDraftAssignmentsCompany(companyID: string): Observable<Assignment[]> {
-    return of(this.assignments.filter(a => a.stage == AssignmentStage.Draft && a.companyID == companyID));
+  getDraftAssignmentsCompany(companyId: string): Observable<Assignment[]> {
+    return of(this.assignments.filter(a => a.stage == AssignmentStage.Draft && a.companyId == companyId));
   }
 
-  getOpenAssignmentsCompany(companyID: string): Observable<Assignment[]> {
-    return of(this.assignments.filter(a => a.stage == AssignmentStage.Open && a.companyID == companyID));
+  getOpenAssignmentsCompany(companyId: string): Observable<Assignment[]> {
+    return of(this.assignments.filter(a => a.stage == AssignmentStage.Open && a.companyId == companyId));
   }
 
-  getClosedAssignmentsCompany(companyID: string): Observable<Assignment[]> {
-    return of(this.assignments.filter(a => a.stage == AssignmentStage.Closed && a.companyID == companyID));
+  getClosedAssignmentsCompany(companyId: string): Observable<Assignment[]> {
+    return of(this.assignments.filter(a => a.stage == AssignmentStage.Closed && a.companyId == companyId));
   }
 
-  getFinishedAssignmentsCompany(companyID: string): Observable<Assignment[]> {
-    return of(this.assignments.filter(a => a.stage == AssignmentStage.Finished && a.companyID == companyID));
+  getFinishedAssignmentsCompany(companyId: string): Observable<Assignment[]> {
+    return of(this.assignments.filter(a => a.stage == AssignmentStage.Finished && a.companyId == companyId));
   }
 
-  delete(assignmentID: string): Observable<Assignment[]> {
-    var assignment = this.assignments.find(a => a.assignmentID === assignmentID);
+  delete(assignmentId: string): Observable<Assignment[]> {
+    var assignment = this.assignments.find(a => a.assignmentId === assignmentId);
     var index = this.assignments.indexOf(assignment);
     this.assignments.splice(index, 1)
     return of(this.assignments)
   }
 
-  publish(assignmentID: string): Observable<Assignment> {
-    var assignment = this.assignments.find(a => a.assignmentID === assignmentID);
+  publish(assignmentId: string): Observable<Assignment> {
+    var assignment = this.assignments.find(a => a.assignmentId === assignmentId);
     assignment.stage = AssignmentStage.Open;
     return of(assignment);
   }
 
-  toDraft(assignmentID: string): Observable<Assignment> {
-    var assignment = this.assignments.find(a => a.assignmentID === assignmentID);
+  toDraft(assignmentId: string): Observable<Assignment> {
+    var assignment = this.assignments.find(a => a.assignmentId === assignmentId);
     assignment.stage = AssignmentStage.Draft;
     return of(assignment);
   }
 
-  close(assignmentID: string): Observable<Assignment> {
-    var assignment = this.assignments.find(a => a.assignmentID === assignmentID);
+  close(assignmentId: string): Observable<Assignment> {
+    var assignment = this.assignments.find(a => a.assignmentId === assignmentId);
     assignment.stage = AssignmentStage.Closed;
     return of(assignment);
   }
 
-  toOpen(assignmentID: string): Observable<Assignment> {
-    var assignment = this.assignments.find(a => a.assignmentID === assignmentID);
+  toOpen(assignmentId: string): Observable<Assignment> {
+    var assignment = this.assignments.find(a => a.assignmentId === assignmentId);
     assignment.stage = AssignmentStage.Open;
     return of(assignment);
   }
 
-  finish(assignmentID: string): Observable<Assignment> {
-    var assignment = this.assignments.find(a => a.assignmentID === assignmentID);
+  finish(assignmentId: string): Observable<Assignment> {
+    var assignment = this.assignments.find(a => a.assignmentId === assignmentId);
     assignment.stage = AssignmentStage.Finished;
     return of(assignment);
   }
@@ -108,15 +108,15 @@ export class AssignmentService {
     return of(assignment);
   }
 
-  cancel(assignmentID: string): Observable<Assignment> {
-    var assignment = this.assignments.find(a => a.assignmentID === assignmentID);
+  cancel(assignmentId: string): Observable<Assignment> {
+    var assignment = this.assignments.find(a => a.assignmentId === assignmentId);
     assignment.stage = AssignmentStage.Cancelled;
     return of(assignment);
   }
 
-  setApplicationOnAssignment(assignmentID: string, applicationID: string): Observable<Assignment> {
-    var assignment = this.assignments.find(a => a.assignmentID === assignmentID);
-    assignment.applicationID = applicationID;
+  setApplicationOnAssignment(assignmentId: string, applicationId: string): Observable<Assignment> {
+    var assignment = this.assignments.find(a => a.assignmentId === assignmentId);
+    assignment.applicationId = applicationId;
     return of(assignment);
   }
 }

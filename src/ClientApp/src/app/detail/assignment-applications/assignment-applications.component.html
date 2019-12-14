@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-12">
             <mat-icon (click)="goBack()">keyboard_return</mat-icon>
-            <button mat-flat-button id="cancel" (click)="cancel(applications[0].assignmentID)" *ngIf="closed">
+            <button mat-flat-button id="cancel" (click)="cancel(applications[0].assignmentId)" *ngIf="closed">
                 Cancel
             </button>
         </div>
@@ -12,9 +12,9 @@
     <mat-card>
         <mat-list>
             <mat-list-item *ngFor="let application of applications; let i=index;">
-                <a [routerLink]="['/account/', applicants[i].accountID]">{{applicants[i].nickname}}</a>
+                <a [routerLink]="['/account/', applicants[i].accountId]">{{applicants[i].nickname}}</a>
                 <div class="fill"></div>
-                <button mat-flat-button id="verwijder" (click)="choose(application.applicationID)" *ngIf="closed"
+                <button mat-flat-button id="verwijder" (click)="choose(application.applicationId)" *ngIf="closed"
                     class="choose">
                     Choose!
                 </button>

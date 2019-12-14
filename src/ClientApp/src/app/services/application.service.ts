@@ -10,8 +10,8 @@ export class ApplicationService {
   isClosed = new BehaviorSubject(false);
 
   applications: Array<Application> = [
-    { applicationID: "1", assignmentID: "1", applicantID: "1", accepted: false },
-    { applicationID: "2", assignmentID: "1", applicantID: "2", accepted: false },
+    { applicationId: "1", assignmentId: "1", applicantId: "1", accepted: false },
+    { applicationId: "2", assignmentId: "1", applicantId: "2", accepted: false },
   ]
 
   constructor(private http: HttpClient) { }
@@ -25,12 +25,12 @@ export class ApplicationService {
     return this.http.get<Application[]>(AppComponent.API_URL + "/application");
   }
 
-  getApplicationsAssignment(assignmentID: string): Observable<Application[]> {
-    return of(this.applications.filter(a => a.assignmentID === assignmentID));
+  getApplicationsAssignment(assignmentId: string): Observable<Application[]> {
+    return of(this.applications.filter(a => a.assignmentId === assignmentId));
   }
 
-  choose(applicationID: string): Observable<Application> {
-    var application = this.applications.find(a => a.applicationID === applicationID);
+  choose(applicationId: string): Observable<Application> {
+    var application = this.applications.find(a => a.applicationId === applicationId);
     application.accepted = true;
     return of(application);
   }

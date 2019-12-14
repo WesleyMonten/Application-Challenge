@@ -22,43 +22,43 @@ export class AssignmentBoardComponent implements OnInit {
     })
   }
 
-  seeListOfApplicants(assignmentID: string, isClosed: boolean) {
+  seeListOfApplicants(assignmentId: string, isClosed: boolean) {
     this._applicationService.isClosed.next(isClosed);
-    this.router.navigate(["/applications", assignmentID])
+    this.router.navigate(["/applications", assignmentId])
   }
 
-  delete(assignmentID: string) {
-    this._assignmentService.delete(assignmentID).subscribe(() => {
+  delete(assignmentId: string) {
+    this._assignmentService.delete(assignmentId).subscribe(() => {
       this._assignmentService.refreshBoard.next(true);
     });
   }
 
-  publish(assignmentID: string) {
-    this._assignmentService.publish(assignmentID).subscribe(() => {
+  publish(assignmentId: string) {
+    this._assignmentService.publish(assignmentId).subscribe(() => {
       this._assignmentService.refreshBoard.next(true);
     })
   }
 
-  toDraft(assignmentID: string) {
-    this._assignmentService.toDraft(assignmentID).subscribe(() => {
+  toDraft(assignmentId: string) {
+    this._assignmentService.toDraft(assignmentId).subscribe(() => {
       this._assignmentService.refreshBoard.next(true);
     })
   }
 
-  close(assignmentID: string) {
-    this._assignmentService.close(assignmentID).subscribe(() => {
+  close(assignmentId: string) {
+    this._assignmentService.close(assignmentId).subscribe(() => {
       this._assignmentService.refreshBoard.next(true);
     })
   }
 
-  toOpen(assignmentID: string) {
-    this._assignmentService.toOpen(assignmentID).subscribe(() => {
+  toOpen(assignmentId: string) {
+    this._assignmentService.toOpen(assignmentId).subscribe(() => {
       this._assignmentService.refreshBoard.next(true);
     })
   }
 
-  finish(assignmentID: string) {
-    this._assignmentService.finish(assignmentID).subscribe(() => {
+  finish(assignmentId: string) {
+    this._assignmentService.finish(assignmentId).subscribe(() => {
       this._assignmentService.refreshBoard.next(true);
     })
   }
@@ -73,27 +73,27 @@ export class AssignmentBoardComponent implements OnInit {
     })
   }
 
-  getDraftAssignments(companyID: string) {
-    this._assignmentService.getDraftAssignmentsCompany(companyID).subscribe(res => {
+  getDraftAssignments(companyId: string) {
+    this._assignmentService.getDraftAssignmentsCompany(companyId).subscribe(res => {
       this.draftAssignments = res;
     });
   }
 
-  getOpenAssignments(companyID: string) {
-    this._assignmentService.getOpenAssignmentsCompany(companyID).subscribe(res => {
+  getOpenAssignments(companyId: string) {
+    this._assignmentService.getOpenAssignmentsCompany(companyId).subscribe(res => {
       this.openAssignments = res;
     });
   }
 
-  getClosedAssignments(companyID: string) {
-    this._assignmentService.getClosedAssignmentsCompany(companyID).subscribe(res => {
+  getClosedAssignments(companyId: string) {
+    this._assignmentService.getClosedAssignmentsCompany(companyId).subscribe(res => {
       this.closedAssignments = res;
       console.log(res);
     });
   }
 
-  getFinishedAssignments(companyID: string) {
-    this._assignmentService.getFinishedAssignmentsCompany(companyID).subscribe(res => {
+  getFinishedAssignments(companyId: string) {
+    this._assignmentService.getFinishedAssignmentsCompany(companyId).subscribe(res => {
       this.finishedAssignments = res;
     });
   }

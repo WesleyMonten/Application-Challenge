@@ -40,9 +40,9 @@ export class AccountEditComponent implements OnInit {
     if ((value || '').trim()) {
       var skill = this.skills.find(s => s.name.toLowerCase() == value.toLowerCase());
       if (skill != null) {
-        this.skillsAccount.push({ skillID: skill.skillID, name: skill.name, color: skill.color });
+        this.skillsAccount.push({ skillId: skill.skillId, name: skill.name, color: skill.color });
       } else {
-        this.skillsAccount.push({ skillID: "", name: value.trim(), color: '#007ACC' });
+        this.skillsAccount.push({ skillId: "", name: value.trim(), color: '#007ACC' });
       }
     }
     if (input) {
@@ -65,8 +65,8 @@ export class AccountEditComponent implements OnInit {
     })
   }
 
-  getAccount(accountID: string) {
-    this._accountService.get(accountID).subscribe(res => {
+  getAccount(accountId: string) {
+    this._accountService.get(accountId).subscribe(res => {
       this.account = res;
       this.skillsAccount = res.applicant.skills;
 
