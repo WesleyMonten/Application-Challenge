@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Account } from 'src/app/models/account.model';
 import { FormBuilder, Validators, Form, FormGroup, FormControl } from '@angular/forms';
 import { SkillService } from 'src/app/services/skill.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-account-edit',
@@ -26,7 +27,11 @@ export class AccountEditComponent implements OnInit {
   account: Account;
   editAccountForm: FormGroup;
 
-  constructor(private _accountService: AccountService, private _skillService: SkillService, private route: ActivatedRoute, private fb: FormBuilder) { }
+  constructor(private _accountService: AccountService, private _skillService: SkillService, private route: ActivatedRoute, private fb: FormBuilder, private _location: Location) { }
+
+  goBack() {
+    this._location.back();
+  }
 
   addSkill(event: MatChipInputEvent): void {
     const input = event.input;

@@ -13,16 +13,21 @@ img {
 mat-form-field {
     width: 100%;
 }
-  button {
+  
+button {
       width: 100%;
       margin-bottom: 20px;
-  }
+}
 
-  :host ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+mat-icon {
+    cursor: pointer;
+}
+
+:host ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
     color: #377DC0;
-  }
+}
 
-  @media only screen and (max-width: 1000px){
+@media only screen and (max-width: 1000px){
     img {
         width: 40% !important;
     }

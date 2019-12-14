@@ -30,7 +30,6 @@ export class AssignmentDetailComponent implements OnInit {
     Location: ['', Validators.required],
     StartTime: ['', Validators.required],
     EndTime: ['', Validators.required],
-    DateOfBirth: ['', Validators.required],
     Compensation: [{ value: 0, disabled: this.isInternship }, [Validators.required, Validators.min(0)]],
     isInternship: [this.isInternship]
   });
@@ -78,7 +77,7 @@ export class AssignmentDetailComponent implements OnInit {
     this.maxDate = date.setDate(this.minDate + 2);
     this._assignmentService.getAllAssignmentTopics().subscribe(res => {
       this.topics = res;
-    })
+    });
   }
 
 }

@@ -6,7 +6,8 @@
                     <mat-card-title class="listTitle">Draft</mat-card-title>
                 </mat-card-header>
                 <mat-card-content class="listItems">
-                    <mat-card class="listItem" *ngFor="let draft of draftAssignments">
+                    <mat-card class="listItem" *ngFor="let draft of draftAssignments" mat-ripple
+                        [routerLink]="['/edit-assignment/', draft.assignmentID]">
                         <mat-card-header>
                             <mat-card-title>
                                 {{draft.title}}
@@ -33,7 +34,8 @@
                     <mat-card-title class="listTitle">Open</mat-card-title>
                 </mat-card-header>
                 <mat-card-content class="listItems">
-                    <mat-card class="listItem" *ngFor="let open of openAssignments">
+                    <mat-card class="listItem" *ngFor="let open of openAssignments" mat-ripple
+                        (click)="seeListOfApplicants(open.assignmentID, false)">
                         <mat-card-header>
                             <mat-card-title>
                                 {{open.title}}
@@ -60,7 +62,8 @@
                     <mat-card-title class="listTitle">Closed</mat-card-title>
                 </mat-card-header>
                 <mat-card-content class="listItems">
-                    <mat-card class="listItem" *ngFor="let closed of closedAssignments">
+                    <mat-card class="listItem" *ngFor="let closed of closedAssignments" mat-ripple
+                        (click)="seeListOfApplicants(closed.assignmentID, true)">
                         <mat-card-header>
                             <mat-card-title>
                                 {{closed.title}}
@@ -70,10 +73,12 @@
                             </mat-card-subtitle>
                         </mat-card-header>
                         <div class="buttons">
-                            <button mat-flat-button class="back" (click)="toOpen(closed.assignmentID)">
+                            <button mat-flat-button class="back" (click)="toOpen(closed.assignmentID)"
+                                *ngIf="closed.applicationID == null">
                                 <mat-icon>backspace</mat-icon>
                             </button>
-                            <button mat-flat-button class="next" (click)="finish(closed.assignmentID)">
+                            <button mat-flat-button class="next" (click)="finish(closed.assignmentID)"
+                                *ngIf="closed.applicationID != null">
                                 <mat-icon>check</mat-icon>
                             </button>
                         </div>
@@ -87,7 +92,7 @@
                     <mat-card-title class="listTitle">Finished</mat-card-title>
                 </mat-card-header>
                 <mat-card-content class="listItems">
-                    <mat-card class="listItem" *ngFor="let finished of finishedAssignments">
+                    <mat-card class="listItem" *ngFor="let finished of finishedAssignments" mat-ripple>
                         <mat-card-header>
                             <mat-card-title>
                                 {{finished.title}}
@@ -96,6 +101,11 @@
                                 {{finished.topics[0].name}}
                             </mat-card-subtitle>
                         </mat-card-header>
+                        <div class="buttons">
+                            <button mat-flat-button id="close">
+                                Review
+                            </button>
+                        </div>
                     </mat-card>
                 </mat-card-content>
             </mat-card>

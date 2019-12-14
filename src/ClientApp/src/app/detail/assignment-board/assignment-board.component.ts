@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AssignmentService } from 'src/app/services/assignment.service';
 import { Assignment } from 'src/app/models/assignment.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApplicationService } from 'src/app/services/application.service';
 
 @Component({
   selector: 'app-assignment-board',
@@ -15,10 +16,15 @@ export class AssignmentBoardComponent implements OnInit {
   closedAssignments: Assignment[];
   finishedAssignments: Assignment[];
 
-  constructor(private _assignmentService: AssignmentService, private route: ActivatedRoute) {
+  constructor(private _assignmentService: AssignmentService, private route: ActivatedRoute, private router: Router, private _applicationService: ApplicationService) {
     this._assignmentService.refreshBoard.subscribe(() => {
       this.ngOnInit();
     })
+  }
+
+  seeListOfApplicants(assignmentID: string, isClosed: boolean) {
+    this._applicationService.isClosed.next(isClosed);
+    this.router.navigate(["/applications", assignmentID])
   }
 
   delete(assignmentID: string) {
@@ -82,6 +88,7 @@ export class AssignmentBoardComponent implements OnInit {
   getClosedAssignments(companyID: string) {
     this._assignmentService.getClosedAssignmentsCompany(companyID).subscribe(res => {
       this.closedAssignments = res;
+      console.log(res);
     });
   }
 

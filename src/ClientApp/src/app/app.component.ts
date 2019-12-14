@@ -18,7 +18,6 @@ export class AppComponent {
 
   constructor(private _accountService: AccountService, private router: Router) {
     this._accountService.isLoggedIn.subscribe(e => {
-      console.log(e);
       this.isLoggedIn = e;
     });
   }

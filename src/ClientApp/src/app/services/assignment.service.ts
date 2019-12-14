@@ -25,8 +25,8 @@ export class AssignmentService {
   ]
 
   assignments: Array<Assignment> = [
-    { assignmentID: "1", title: "Full stack application", description: "Frontend in Angular, Backend in .NET core", location: "Turnhout", startTime: this.startDate, endTime: this.endDate, isInternship: false, compensation: 200, stage: AssignmentStage.Draft, topics: this.assignmentTopics1, companyID: "1", applicationID: "1" },
-    { assignmentID: "2", title: "Frontend", description: "Frontend in Vue.js", location: "Mechelen", startTime: this.startDate, endTime: this.endDate, isInternship: false, compensation: 400, stage: AssignmentStage.Draft, topics: this.assignmentTopics2, companyID: "1", applicationID: "2" },
+    { assignmentID: "1", title: "Full stack application", description: "Frontend in Angular, Backend in .NET core", location: "Turnhout", startTime: this.startDate, endTime: this.endDate, isInternship: false, compensation: 200, stage: AssignmentStage.Draft, topics: this.assignmentTopics1, companyID: "1", applicationID: null },
+    { assignmentID: "2", title: "Frontend", description: "Frontend in Vue.js", location: "Mechelen", startTime: this.startDate, endTime: this.endDate, isInternship: false, compensation: 400, stage: AssignmentStage.Draft, topics: this.assignmentTopics2, companyID: "1", applicationID: null },
   ]
 
   constructor() { }
@@ -101,6 +101,22 @@ export class AssignmentService {
   finish(assignmentID: string): Observable<Assignment> {
     var assignment = this.assignments.find(a => a.assignmentID === assignmentID);
     assignment.stage = AssignmentStage.Finished;
+    return of(assignment);
+  }
+
+  put(assignment: Assignment): Observable<Assignment> {
+    return of(assignment);
+  }
+
+  cancel(assignmentID: string): Observable<Assignment> {
+    var assignment = this.assignments.find(a => a.assignmentID === assignmentID);
+    assignment.stage = AssignmentStage.Cancelled;
+    return of(assignment);
+  }
+
+  setApplicationOnAssignment(assignmentID: string, applicationID: string): Observable<Assignment> {
+    var assignment = this.assignments.find(a => a.assignmentID === assignmentID);
+    assignment.applicationID = applicationID;
     return of(assignment);
   }
 }

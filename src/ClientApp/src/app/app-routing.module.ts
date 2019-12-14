@@ -8,15 +8,18 @@ import { AccountDetailComponent } from './detail/account-detail/account-detail.c
 import { AccountEditComponent } from './edit/account-edit/account-edit.component';
 import { AssignmentDetailComponent } from './detail/assignment-detail/assignment-detail.component';
 import { AuthGuard } from './security/auth.guard';
-import { AssignmentBoardComponent } from './detail/assignment-board/assignment-board.component';
+import { AssignmentEditComponent } from './edit/assignment-edit/assignment-edit.component';
+import { AssignmentApplicationsComponent } from './detail/assignment-applications/assignment-applications.component';
 
 const appRoutes: Routes = [
   { path: '', component: FeedComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
   { path: 'account/:id', component: AccountDetailComponent, canActivate: [AuthGuard] },
   { path: 'edit-account/:id', component: AccountEditComponent, canActivate: [AuthGuard] },
   { path: 'assignments/:id', component: AssignmentDetailComponent, canActivate: [AuthGuard] },
+  { path: 'edit-assignment/:id', component: AssignmentEditComponent, canActivate: [AuthGuard] },
+  { path: 'applications/:id', component: AssignmentApplicationsComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: '**', redirectTo: '' }
 ];
 

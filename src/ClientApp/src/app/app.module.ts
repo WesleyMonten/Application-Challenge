@@ -22,6 +22,7 @@ import { ReviewService } from './services/review.service';
 import { AuthService } from './services/auth.service';
 import { SecurityInterceptor } from "./security/security.interceptor";
 import { AuthGuard } from './security/auth.guard';
+import { ApplicantService } from './services/applicant.service';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { AuthGuard } from './security/auth.guard';
     ReviewService,
     AuthService,
     AuthGuard,
+    ApplicantService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: SecurityInterceptor,
