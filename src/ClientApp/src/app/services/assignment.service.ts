@@ -32,7 +32,6 @@ export class AssignmentService {
     { assignmentId: "2", title: "Frontend", description: "Frontend in Vue.js", location: "Mechelen", startTime: this.startDate, endTime: this.endDate, isInternship: false, compensation: 400, stage: AssignmentStage.Draft, topics: this.assignmentTopics2, companyId: "1", applicationId: null },
   ]
 
-  constructor() { }
   constructor(private http: HttpClient) { }
 
   getAll() {

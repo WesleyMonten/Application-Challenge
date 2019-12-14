@@ -21,7 +21,7 @@ export class CompanyService {
 
   getCompany(companyID: string) {
     // TODO: fix als company controller af is
-    return of(this.companies.find(c => c.companyID === "1"));
+    return of(this.companies.find(c => c.companyId === "1"));
 //    return this.http.get<Company>(AppComponent.API_URL+"/company/"+companyID);
   }
 }
