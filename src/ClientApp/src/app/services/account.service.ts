@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Account } from '../models/account.model'
-import { of, BehaviorSubject } from 'rxjs';
+import { of, BehaviorSubject, Observable } from 'rxjs';
 import { Applicant } from '../models/applicant.model';
 import { Skill } from '../models/skill.model';
 import { Company } from '../models/company.model';
@@ -59,5 +59,9 @@ export class AccountService {
 
   put(account: Account) {
     return of(account)
+  }
+
+  putStatus(account): Observable<Account> {
+    return of(account);
   }
 }

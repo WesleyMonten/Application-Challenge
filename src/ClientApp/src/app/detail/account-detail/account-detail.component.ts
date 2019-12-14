@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AccountService } from 'src/app/services/account.service';
 import { ActivatedRoute } from '@angular/router';
 import { Account } from 'src/app/models/account.model';
@@ -12,8 +12,6 @@ import { CompanyService } from 'src/app/services/company.service';
 import { MatDialog } from '@angular/material';
 import { AccountDeleteComponent } from 'src/app/delete/account-delete/account-delete.component';
 import { CompanyReview } from 'src/app/models/company-review.model';
-import { Observable } from 'rxjs';
-import { CompanyDeleteComponent } from 'src/app/delete/company-delete/company-delete.component';
 import { ChoiceDeleteComponent } from 'src/app/delete/choice-delete/choice-delete.component';
 
 @Component({
@@ -33,6 +31,7 @@ export class AccountDetailComponent implements OnInit {
   applicantsCompanyReviews: Account[] = [];
   assignmentsCompanyReviews: Assignment[] = [];
   dateOfBirth: string;
+  status: boolean;
 
   constructor(private _accountService: AccountService, private _reviewService: ReviewService, private _assignmentService: AssignmentService, private _companyService: CompanyService, private route: ActivatedRoute, public datepipe: DatePipe, public dialog: MatDialog) {
     this._accountService.refreshProfile.subscribe(() => {
@@ -53,6 +52,7 @@ export class AccountDetailComponent implements OnInit {
         this.applicantsCompanyReviews.push(res);
       } else {
         this.account = res;
+        this.status = this.account.applicant.available;
         this.dateOfBirth = this.datepipe.transform(this.account.dateOfBirth, 'MM/dd/yyyy');
         this.getApplicantReviews(accountID);
         if (this.account.company != null) {
@@ -142,6 +142,15 @@ export class AccountDetailComponent implements OnInit {
     this.dialog.open(AccountDeleteComponent, {
       width: '400px',
       data: { accountID: this.account.accountID, nickname: this.account.nickname }
+    });
+  }
+
+  onChangeStatus() {
+    this.status = !this.status;
+    var account: Account;
+    account.applicant.available = this.status;
+    this._accountService.putStatus(account).subscribe(() => {
+      this._accountService.refreshProfile.next(true);
     });
   }
 

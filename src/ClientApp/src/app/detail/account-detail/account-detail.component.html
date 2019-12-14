@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="account">
     <div class="row">
         <div class="col-12">
             <div class="banner">
@@ -115,14 +115,18 @@
                                             <h4 mat-line>LinkedIn: {{account.linkedInUrl}}</h4>
                                         </mat-list-item>
                                         <mat-list-item *ngIf="account.applicant != null">
-                                            <mat-icon mat-list-icon *ngIf="account.applicant.Available">check_circle
-                                            </mat-icon>
-                                            <mat-icon mat-list-icon *ngIf="!account.applicant.Available">
-                                                remove_circle
-                                            </mat-icon>
-                                            <h4 mat-line>Status: <span
-                                                    *ngIf="account.applicant.Available">Available</span><span
-                                                    *ngIf="!account.applicant.Available">Occupied</span></h4>
+                                            <mat-slide-toggle color="primary" [checked]="status" mat-line
+                                                (change)="onChangeStatus()">
+                                                <!-- <mat-icon mat-list-icon *ngIf="account.applicant.Available">check_circle
+                                                </mat-icon>
+                                                <mat-icon mat-list-icon *ngIf="!account.applicant.Available">
+                                                    remove_circle
+                                                </mat-icon> -->
+
+                                                Status:
+                                                <span *ngIf="account.applicant.available">Available</span><span
+                                                    *ngIf="!account.applicant.available">Occupied</span>
+                                            </mat-slide-toggle>
                                         </mat-list-item>
                                         <mat-divider></mat-divider>
                                         <h3 mat-subheader>Biography</h3>
@@ -183,7 +187,8 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-12" *ngIf="assignmentsApplicantReviews.length != 0">
-                                <mat-card *ngFor="let assignment of assignmentsApplicantReviews;let i=index;">
+                                <mat-card *ngFor="let assignment of assignmentsApplicantReviews;let i=index;"
+                                    class="assignment">
                                     <mat-card-header>
                                         <div id="review" class="row">
                                             <div class="col-12">
