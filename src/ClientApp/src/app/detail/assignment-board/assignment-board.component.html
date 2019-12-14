@@ -7,7 +7,7 @@
                 </mat-card-header>
                 <mat-card-content class="listItems">
                     <mat-card class="listItem" *ngFor="let draft of draftAssignments" mat-ripple
-                        [routerLink]="['/edit-assignment/', draft.assignmentID]">
+                        [routerLink]="['/edit-assignment/', draft.assignmentId]">
                         <mat-card-header>
                             <mat-card-title>
                                 {{draft.title}}
@@ -17,10 +17,10 @@
                             </mat-card-subtitle>
                         </mat-card-header>
                         <div class="buttons">
-                            <button mat-flat-button id="verwijder" (click)="delete(draft.assignmentID)">
+                            <button mat-flat-button id="verwijder" (click)="delete(draft.assignmentId)">
                                 <mat-icon>delete</mat-icon>
                             </button>
-                            <button mat-flat-button class="next" (click)="publish(draft.assignmentID)">
+                            <button mat-flat-button class="next" (click)="publish(draft.assignmentId)">
                                 <mat-icon>publish</mat-icon>
                             </button>
                         </div>
@@ -35,7 +35,7 @@
                 </mat-card-header>
                 <mat-card-content class="listItems">
                     <mat-card class="listItem" *ngFor="let open of openAssignments" mat-ripple
-                        (click)="seeListOfApplicants(open.assignmentID, false)">
+                        (click)="seeListOfApplicants(open.assignmentId, false)">
                         <mat-card-header>
                             <mat-card-title>
                                 {{open.title}}
@@ -45,10 +45,10 @@
                             </mat-card-subtitle>
                         </mat-card-header>
                         <div class="buttons">
-                            <button mat-flat-button class="back" (click)="toDraft(open.assignmentID)">
+                            <button mat-flat-button class="back" (click)="toDraft(open.assignmentId)">
                                 <mat-icon>backspace</mat-icon>
                             </button>
-                            <button mat-flat-button id="close" (click)="close(open.assignmentID)">
+                            <button mat-flat-button id="close" (click)="close(open.assignmentId)">
                                 <mat-icon>not_interested</mat-icon>
                             </button>
                         </div>
@@ -63,7 +63,7 @@
                 </mat-card-header>
                 <mat-card-content class="listItems">
                     <mat-card class="listItem" *ngFor="let closed of closedAssignments" mat-ripple
-                        (click)="seeListOfApplicants(closed.assignmentID, true)">
+                        (click)="seeListOfApplicants(closed.assignmentId, true)">
                         <mat-card-header>
                             <mat-card-title>
                                 {{closed.title}}
@@ -73,12 +73,12 @@
                             </mat-card-subtitle>
                         </mat-card-header>
                         <div class="buttons">
-                            <button mat-flat-button class="back" (click)="toOpen(closed.assignmentID)"
-                                *ngIf="closed.applicationID == null">
+                            <button mat-flat-button class="back" (click)="toOpen(closed.assignmentId)"
+                                *ngIf="closed.applicationId == null">
                                 <mat-icon>backspace</mat-icon>
                             </button>
-                            <button mat-flat-button class="next" (click)="finish(closed.assignmentID)"
-                                *ngIf="closed.applicationID != null">
+                            <button mat-flat-button class="next" (click)="finish(closed.assignmentId)"
+                                *ngIf="closed.applicationId != null">
                                 <mat-icon>check</mat-icon>
                             </button>
                         </div>

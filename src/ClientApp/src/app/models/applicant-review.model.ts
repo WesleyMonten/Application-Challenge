@@ -1,5 +1,5 @@
 import { ApplicantCommendation } from "./applicant-commodation.model";
 
 export class ApplicantReview {
-    constructor(public applicantReviewID: string, public reviewText: string, public commendations: ApplicantCommendation[], public companyID: string, public assignmentID: string, public applicantID: string) { }
+    constructor(public applicantReviewId: string, public reviewText: string, public commendations: ApplicantCommendation[], public companyId: string, public assignmentId: string, public applicantId: string) { }
 }

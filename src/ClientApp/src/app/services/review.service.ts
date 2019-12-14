@@ -29,13 +29,13 @@ export class ReviewService {
   ]
 
   applicantReviews: Array<ApplicantReview> = [
-    { applicantReviewID: "1", reviewText: "Goede service geleverd, doet wat er van hem gevraagd wordt", companyID: "1", assignmentID: "1", applicantID: "1", commendations: this.applicantCommandations1 },
-    { applicantReviewID: "2", reviewText: "Goede samenwerking met ons team, overschreed onze verwachtingen", companyID: "1", assignmentID: "2", applicantID: "2", commendations: this.applicantCommandations2 },
+    { applicantReviewId: "1", reviewText: "Goede service geleverd, doet wat er van hem gevraagd wordt", companyId: "1", assignmentId: "1", applicantId: "1", commendations: this.applicantCommandations1 },
+    { applicantReviewId: "2", reviewText: "Goede samenwerking met ons team, overschreed onze verwachtingen", companyId: "1", assignmentId: "2", applicantId: "2", commendations: this.applicantCommandations2 },
   ]
 
   companyReviews: Array<CompanyReview> = [
-    { companyReviewID: "1", reviewText: "fijne sfeer, zeer hulpzaam wanneer het nodig is", companyID: "1", assignmentID: "1", applicantID: "1", commendations: this.companyCommandations1 },
-    { companyReviewID: "2", reviewText: "Heb veel geleerd tijdens deze opdracht, zal zeker nog eens een opdracht willen doen voro dit bedrijf", companyID: "1", assignmentID: "2", applicantID: "2", commendations: this.companyCommandations2 },
+    { companyReviewId: "1", reviewText: "fijne sfeer, zeer hulpzaam wanneer het nodig is", companyId: "1", assignmentId: "1", applicantId: "1", commendations: this.companyCommandations1 },
+    { companyReviewId: "2", reviewText: "Heb veel geleerd tijdens deze opdracht, zal zeker nog eens een opdracht willen doen voro dit bedrijf", companyId: "1", assignmentId: "2", applicantId: "2", commendations: this.companyCommandations2 },
   ]
 
   constructor() { }
@@ -50,7 +50,7 @@ export class ReviewService {
 
 
   getApplicantReviews(applicantID: string) {
-    return of(this.applicantReviews.filter(a => a.applicantID == applicantID));
+    return of(this.applicantReviews.filter(a => a.applicantId == applicantID));
   }
 
   getCompanyReviews(companyID: string) {

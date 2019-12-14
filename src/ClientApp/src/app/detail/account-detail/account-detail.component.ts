@@ -84,7 +84,6 @@ export class AccountDetailComponent implements OnInit {
     })
   }
 
-
   getCompanyReviews(companyID: string) {
     this._reviewService.getCompanyReviews(companyID).subscribe(res => {
       this.companyReviews = res;
@@ -141,7 +140,7 @@ export class AccountDetailComponent implements OnInit {
   openAccountDialog(): void {
     this.dialog.open(AccountDeleteComponent, {
       width: '400px',
-      data: { accountID: this.account.accountID, nickname: this.account.nickname }
+      data: { accountId: this.account.accountId, nickname: this.account.nickname }
     });
   }
 
