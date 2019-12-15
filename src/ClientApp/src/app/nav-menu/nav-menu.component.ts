@@ -18,9 +18,12 @@ export class NavMenuComponent {
     } else {
       this.adminMode = false;
     }
-    // this._accountService.isLoggedIn.subscribe(e => {
-    //   this.getAccount();
-    // })
+    this._accountService.isLoggedIn.subscribe(() => {
+      this.getAccount();
+    });
+    this._accountService.refreshNav.subscribe(() => {
+      this.getAccount();
+    })
   }
 
   onChangeMode() {
@@ -33,8 +36,10 @@ export class NavMenuComponent {
     this._accountService.refreshProfile.next(true);
   }
 
-  // getAccount() {
-  //   this._accountService.get()
-  // }
+  getAccount() {
+    this._accountService.get("me").subscribe(res => {
+      this.account = res;
+    })
+  }
 
 }
