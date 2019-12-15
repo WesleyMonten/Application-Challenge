@@ -38,8 +38,8 @@ export class AssignmentEditComponent implements OnInit {
 
   getIdFromParameter() {
     this.route.params.subscribe(params => {
-      var id = +params['id'];
-      this.getAssignment(id.toString());
+      var id = params['id'];
+      this.getAssignment(id);
     })
   }
 
