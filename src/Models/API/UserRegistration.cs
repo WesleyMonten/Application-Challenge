@@ -9,6 +9,9 @@ namespace ApplicationChallenge.Models.API
         public string Email { get; set; }
         public string Password { get; set; }
         public DateTime DateOfBirth { get; set; }
+        
+        public Applicant Applicant { get; set; }
+        public Company Company { get; set; }
 
         public User CreateNewUser()
         {
@@ -18,6 +21,9 @@ namespace ApplicationChallenge.Models.API
                 Email = Email,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(Password),
                 DateOfBirth = DateOfBirth,
+                
+                Applicant = Applicant,
+                Company = Company,
             };
         }
     }
