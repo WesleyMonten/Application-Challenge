@@ -1,41 +1,40 @@
 import { Injectable } from '@angular/core';
 import { Review } from '../models/review.model';
-import { ApplicantCommendation } from '../models/applicant-commodation.model';
 import { of, Observable } from 'rxjs';
-import { CompanyCommendation } from '../models/company-commendation.model';
 import { HttpClient } from '@angular/common/http';
+import {Commendation} from "../models/commendation.model";
 
 @Injectable()
 export class ReviewService {
 
-  applicantCommandations1: Array<string> = [
-    ApplicantCommendation.TakesInitiative.toString(),
-    ApplicantCommendation.HighQualityWork.toString()
+  applicantCommendations1: Array<Commendation> = [
+    new Commendation("Takes Initiative", "takesInitiative"),
+    new Commendation("High Quality Work", "highQualityWork"),
   ]
 
-  applicantCommandations2: Array<string> = [
-    ApplicantCommendation.TeamPlayer.toString(),
-    ApplicantCommendation.TechnicalGenius.toString(),
-    ApplicantCommendation.WorksHard.toString()
+  applicantCommendations2: Array<Commendation> = [
+    new Commendation("Team-Player", "TeamPlayer"),
+    new Commendation("Technical Genius", "TechnicalGenius"),
+    new Commendation("WorksHard", "WorksHard"),
   ]
 
-  companyCommandations1: Array<string> = [
-    CompanyCommendation.PleasantAtmosphere.toString(),
-    CompanyCommendation.StressFreeEnvironment.toString(),
+  companyCommendations1: Array<Commendation> = [
+    new Commendation("PleasantAtmosphere", "pleasantAtmosphere"),
+    new Commendation("Stress-Free Environment", "stressFreeEnvironment"),
   ]
 
-  companyCommandations2: Array<string> = [
-    CompanyCommendation.GoodAccommodation.toString()
+  companyCommendations2: Array<Commendation> = [
+    new Commendation("Good Accommodation", "goodAccommodation"),
   ]
 
   applicantReviews: Array<Review> = [
-    { isCompanyReview: false, reviewId: "1", reviewText: "Goede service geleverd, doet wat er van hem gevraagd wordt", companyId: "1", assignmentId: "1", applicantId: "1", commendations: this.applicantCommandations1 },
-    { isCompanyReview: false, reviewId: "2", reviewText: "Goede samenwerking met ons team, overschreed onze verwachtingen", companyId: "1", assignmentId: "2", applicantId: "2", commendations: this.applicantCommandations2 },
+    { isCompanyReview: false, reviewId: "1", reviewText: "Goede service geleverd, doet wat er van hem gevraagd wordt", companyId: "1", assignmentId: "1", applicantId: "1", commendations: this.applicantCommendations1 },
+    { isCompanyReview: false, reviewId: "2", reviewText: "Goede samenwerking met ons team, overschreed onze verwachtingen", companyId: "1", assignmentId: "2", applicantId: "2", commendations: this.applicantCommendations2 },
   ]
 
   companyReviews: Array<Review> = [
-    { isCompanyReview: true, reviewId: "1", reviewText: "fijne sfeer, zeer hulpzaam wanneer het nodig is", companyId: "1", assignmentId: "1", applicantId: "1", commendations: this.companyCommandations1 },
-    { isCompanyReview: true, reviewId: "2", reviewText: "Heb veel geleerd tijdens deze opdracht, zal zeker nog eens een opdracht willen doen voro dit bedrijf", companyId: "1", assignmentId: "2", applicantId: "2", commendations: this.companyCommandations2 },
+    { isCompanyReview: true, reviewId: "1", reviewText: "fijne sfeer, zeer hulpzaam wanneer het nodig is", companyId: "1", assignmentId: "1", applicantId: "1", commendations: this.companyCommendations1 },
+    { isCompanyReview: true, reviewId: "2", reviewText: "Heb veel geleerd tijdens deze opdracht, zal zeker nog eens een opdracht willen doen voro dit bedrijf", companyId: "1", assignmentId: "2", applicantId: "2", commendations: this.companyCommendations2 },
   ]
 
   constructor(private http: HttpClient) { }

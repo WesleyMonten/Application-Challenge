@@ -1,10 +1,12 @@
+import {Commendation} from "./commendation.model";
+
 export class Review {
 
   public reviewId: string;
 
   public reviewText: string;
 
-  public commendations: string[];
+  public commendations: Commendation[];
 
   public companyId: string;
 
@@ -20,7 +22,7 @@ export class Review {
 
   constructor(reviewId: string,
               reviewText: string,
-              commendations: string[],
+              commendations: Commendation[],
               companyId: string,
               assignmentId: string,
               applicantId: string) {
