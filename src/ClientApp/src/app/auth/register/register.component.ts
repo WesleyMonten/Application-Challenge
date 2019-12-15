@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { NewUser } from 'src/app/models/new-user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from "@angular/router";
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,7 @@ export class RegisterComponent implements OnInit {
   model: NewUser = new NewUser('', '', '', new Date(Date.now()));
   submitted: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private _authService: AuthService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private _authService: AuthService, private router: Router, private _location: Location) { }
 
   ngOnInit() { }
 
@@ -29,6 +30,9 @@ export class RegisterComponent implements OnInit {
         alert(val.errorMessage); // TODO: proper
       }
     })
+  }
 
+  goBack() {
+    this._location.back();
   }
 }

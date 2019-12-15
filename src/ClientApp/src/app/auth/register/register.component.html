@@ -1,7 +1,27 @@
-<div class="container">
+<div class="bg-landing">
+</div>
+<div class="container landingform">
+  <div class="row">
+    <div class="col-12 text-center">
+      <img src="../../../assets/full-logo.png" class="img-fluid">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+
+    </div>
+  </div>
   <mat-card>
-    <h1>Register</h1>
-    <form name="registerForm" #f="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-12">
+        <div class="title">
+          <mat-icon (click)="goBack()">keyboard_return</mat-icon>
+          <h1>Register</h1>
+        </div>
+      </div>
+    </div>
+    <br>
+    <form name=" registerForm" #f="ngForm" (ngSubmit)="onSubmit()">
 
       <mat-form-field appearance="outline">
         <mat-label for="username">Username</mat-label>

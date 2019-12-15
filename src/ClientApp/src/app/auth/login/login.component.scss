@@ -18,6 +18,31 @@ mat-card{
     margin: auto;
 }
 
+img {
+    width: 100%;
+    height: auto;
+}
+
+@media only screen and (min-width: 1140px){
+    img {
+        width: 40%;
+    }   
+}
+
+@media only screen and (max-width: 1140px){
+    img {
+        width: 50%;
+    }   
+}
+
+@media only screen and (max-width: 900px){
+    img {
+        margin-top: 200px;
+        width: 80%;
+    }       
+}
+
+
 button{
     width: 100%;
 }
@@ -32,6 +57,7 @@ button{
     position: absolute;
     top: 0;
     left: 0;
+    transform: scale(1.1); 
 }
 
 .landingform {
@@ -39,4 +65,8 @@ button{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+p {
+    text-align: center;
 }

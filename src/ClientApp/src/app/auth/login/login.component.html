@@ -1,19 +1,30 @@
 <div class="bg-landing">
 </div>
 <div class="container landingform">
-  <mat-card>
-    <h1>Log in</h1>
-    <form name="loginForm" #f="ngForm" (ngSubmit)="onSubmit()">
-      <mat-form-field appearance="outline">
-        <mat-label for="email">Email</mat-label>
-        <input name="email" #email="ngModel" [(ngModel)]="model.email" matInput placeholder="Email">
-      </mat-form-field><br>
-      <mat-form-field appearance="outline">
-        <mat-label for="password">Password</mat-label>
-        <input type="password" name="password" #password="ngModel" [(ngModel)]="model.password" matInput
-          placeholder="Password">
-      </mat-form-field><br>
-      <button color="primary" mat-flat-button>Login</button>
-    </form>
-  </mat-card>
+  <div class="row">
+    <div class="col-12 text-center">
+      <img src="../../../assets/full-logo.png" class="img-fluid">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <mat-card>
+        <h1>Log in</h1>
+        <form name="loginForm" #f="ngForm" (ngSubmit)="onSubmit()">
+          <mat-form-field appearance="outline">
+            <mat-label for="email">Email</mat-label>
+            <input name="email" #email="ngModel" [(ngModel)]="model.email" matInput placeholder="Email">
+          </mat-form-field><br>
+          <mat-form-field appearance="outline">
+            <mat-label for="password">Password</mat-label>
+            <input type="password" name="password" #password="ngModel" [(ngModel)]="model.password" matInput
+              placeholder="Password">
+          </mat-form-field><br>
+          <button color="primary" mat-flat-button>Login</button>
+        </form>
+        <br>
+        <p>Don't have an account? Register <a routerLink="/register">here</a></p>
+      </mat-card>
+    </div>
+  </div>
 </div>
