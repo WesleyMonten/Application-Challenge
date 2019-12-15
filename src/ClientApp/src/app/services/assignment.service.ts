@@ -25,8 +25,8 @@ export class AssignmentService {
   ]
 
   assignments: Array<Assignment> = [
-    { assignmentID: "1", title: "Full stack application", description: "Frontend in Angular, Backend in .NET core", location: "Turnhout", startTime: this.startDate, endTime: this.endDate, isInternship: false, compensation: 200, stage: AssignmentStage.Draft, topics: this.assignmentTopics1, companyID: "1", applicationID: null },
-    { assignmentID: "2", title: "Frontend", description: "Frontend in Vue.js", location: "Mechelen", startTime: this.startDate, endTime: this.endDate, isInternship: false, compensation: 400, stage: AssignmentStage.Draft, topics: this.assignmentTopics2, companyID: "1", applicationID: null },
+    { assignmentID: "1", title: "Full stack application", description: "Frontend in Angular, Backend in .NET core", location: "Turnhout", startTime: this.startDate, endTime: this.endDate, isInternship: false, compensation: 200, stage: AssignmentStage.Open, topics: this.assignmentTopics1, companyID: "1", applicationID: null },
+    { assignmentID: "2", title: "Frontend", description: "Frontend in Vue.js", location: "Mechelen", startTime: this.startDate, endTime: this.endDate, isInternship: false, compensation: 400, stage: AssignmentStage.Open, topics: this.assignmentTopics2, companyID: "1", applicationID: null },
   ]
 
   constructor() { }
@@ -41,6 +41,10 @@ export class AssignmentService {
 
   getAllOpenAssignments() {
     return of(this.assignments.filter(a => a.stage == AssignmentStage.Open));
+  }
+
+  getAllOpenAssignmentsByTitle(title: string){
+    return of(this.assignments.filter(a => a.title == title && a.stage == AssignmentStage.Open));
   }
 
   getAllAssignmentTopics() {
