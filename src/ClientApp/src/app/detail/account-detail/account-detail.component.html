@@ -62,14 +62,14 @@
                                                     <mat-list-item>
                                                         <img mat-list-icon
                                                             src="./../../assets/application-commendation0.png">
-                                                        <h4 mat-line>Works hard: {{counter}}</h4>
+                                                        <h4 mat-line>Works hard: {{applicantCommendations[0]}}</h4>
                                                     </mat-list-item>
                                                 </div>
                                                 <div class="col-xl-4 col-lg-6 col-sm-12">
                                                     <mat-list-item>
                                                         <img mat-list-icon
                                                             src="./../../assets/application-commendation1.png">
-                                                        <h4 mat-line>Teamplayer: {{counter}}</h4>
+                                                        <h4 mat-line>Teamplayer: {{applicantCommendations[1]}}</h4>
                                                     </mat-list-item>
                                                 </div>
                                                 <div class="col-xl-4 col-lg-6 col-sm-12">
@@ -77,7 +77,7 @@
                                                     <mat-list-item>
                                                         <img mat-list-icon
                                                             src="./../../assets/application-commendation4.png">
-                                                        <h4 mat-line>Technical genius: {{counter}}</h4>
+                                                        <h4 mat-line>Technical genius: {{applicantCommendations[2]}}</h4>
                                                     </mat-list-item>
                                                 </div>
                                             </div>
@@ -86,14 +86,14 @@
                                                     <mat-list-item>
                                                         <img mat-list-icon
                                                             src="./../../assets/application-commendation2.png">
-                                                        <h4 mat-line>High-quality work: {{counter}}</h4>
+                                                        <h4 mat-line>High-quality work: {{applicantCommendations[3]}}</h4>
                                                     </mat-list-item>
                                                 </div>
                                                 <div class="col-xl-4 col-lg-6 col-sm-12">
                                                     <mat-list-item>
                                                         <img mat-list-icon
                                                             src="./../../assets/application-commendation3.png">
-                                                        <h4 mat-line>Takes initiative: {{counter}}</h4>
+                                                        <h4 mat-line>Takes initiative: {{applicantCommendations[4]}}</h4>
                                                     </mat-list-item>
                                                 </div>
                                             </div>
@@ -153,14 +153,14 @@
                                                     <mat-list-item>
                                                         <img mat-list-icon
                                                             src="./../../assets/company-commendation0.png">
-                                                        <h4 mat-line>Pleasant Atmosphere: {{counter}}</h4>
+                                                        <h4 mat-line>Pleasant Atmosphere: {{companyCommendations[0]}}</h4>
                                                     </mat-list-item>
                                                 </div>
                                                 <div class="col-xl-4 col-lg-6 col-sm-12">
                                                     <mat-list-item>
                                                         <img mat-list-icon
                                                             src="./../../assets/company-commendation1.png">
-                                                        <h4 mat-line>Stress-Free Environment: {{counter}}</h4>
+                                                        <h4 mat-line>Stress-Free Environment: {{companyCommendations[1]}}</h4>
                                                     </mat-list-item>
                                                 </div>
                                                 <div class="col-xl-4 col-lg-6 col-sm-12">
@@ -168,7 +168,7 @@
                                                     <mat-list-item>
                                                         <img mat-list-icon
                                                             src="./../../assets/company-commendation2.png">
-                                                        <h4 mat-line>Good Accomodation: {{counter}}</h4>
+                                                        <h4 mat-line>Good Accomodation: {{companyCommendations[2]}}</h4>
                                                     </mat-list-item>
                                                 </div>
                                             </div>
@@ -192,7 +192,7 @@
                                     <mat-card-header>
                                         <div class="adminButtons row" *ngIf="adminMode">
                                             <div class="col-12">
-                                                <button mat-mini-fab id="verwijder"
+                                                <button mat-mini-fab id="verwijderAssignment"
                                                     (click)="deleteAssignment(assignment.assignmentId)">
                                                     <mat-icon>clear</mat-icon>
                                                 </button>
@@ -265,8 +265,8 @@
                                                                 <img *ngFor="let commendation of review.commendations"
                                                                     src="./../../assets/application-commendation{{commendation}}.png">
                                                             </div>
-                                                            <button mat-mini-fab id="verwijder"
-                                                                (click)="deleteApplicantReview(review.applicantReviewId)"
+                                                            <button mat-mini-fab id="verwijderApplicantReview"
+                                                                (click)="deleteApplicantReview(review.reviewId)"
                                                                 *ngIf="adminMode">
                                                                 <mat-icon>clear</mat-icon>
                                                             </button>
@@ -321,8 +321,8 @@
                                                                 <img *ngFor="let commendation of review.commendations"
                                                                     src="./../../assets/company-commendation{{commendation}}.png">
                                                             </div>
-                                                            <button mat-mini-fab id="verwijder"
-                                                                (click)="deleteCompanyReview(review.companyReviewId)"
+                                                            <button mat-mini-fab id="verwijderCompanyReview"
+                                                                (click)="deleteCompanyReview(review.reviewId)"
                                                                 *ngIf="adminMode">
                                                                 <mat-icon>clear</mat-icon>
                                                             </button>
@@ -336,7 +336,7 @@
                                                         <div class="col-lg-12 col-md-12 col-sm-8 col-8">
                                                             <mat-card-title>{{assignmentsCompanyReviews[i].title}}
                                                             </mat-card-title>
-                                                            <mat-card-subtitle>{{applicantsCompanyReviews[i].name}}
+                                                            <mat-card-subtitle>{{applicantsCompanyReviews[i].nickname}}
                                                             </mat-card-subtitle>
                                                         </div>
                                                     </div>

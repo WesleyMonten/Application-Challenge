@@ -34,6 +34,8 @@ export class AccountDetailComponent implements OnInit {
   applicantsCompanyReviews: UserInfo[] = [];
   assignmentsCompanyReviews: Assignment[] = [];
   assignmentsAccount: Assignment[] = [];
+  applicantCommendations: number[] = [1, 2, 0, 4, 5]; // TODO: use real data
+  companyCommendations: number[] = [1, 3, 5];
   dateOfBirth: string;
   status: boolean;
   adminMode: boolean;
