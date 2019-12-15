@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Review } from 'src/app/models/review.model';
 import { ReviewService } from 'src/app/services/review.service';
@@ -7,6 +7,7 @@ import { CommendationService } from 'src/app/services/commendation.service';
 import { ApplicationService } from 'src/app/services/application.service';
 import { AssignmentService } from 'src/app/services/assignment.service';
 import { Assignment } from 'src/app/models/assignment.model';
+import {MatSelectionList} from "@angular/material/list";
 
 @Component({
   selector: 'app-edit-review',
@@ -17,8 +18,14 @@ export class EditReviewComponent implements OnInit {
 
   model: Review = new Review('', '', [], '', '', '');
   applicantCommendations: Commendation[];
+  companyCommendations: Commendation[];
   reviewId: string;
+  isCompanyReview: boolean;
   assignment: Assignment;
+
+  @ViewChild("applicantCommendationsList", {static: false}) applicantCommendationsList: MatSelectionList;
+  @ViewChild("companyCommendationsList", {static: false}) companyCommendationsList: MatSelectionList;
+
   constructor(private _commendationService: CommendationService, private _assignmentService: AssignmentService,
     private _applicationService: ApplicationService, private _reviewService: ReviewService, private route: ActivatedRoute) { }
 
@@ -27,7 +34,8 @@ export class EditReviewComponent implements OnInit {
       this.reviewId = Params.get('id');
     });
     this.getReview();
-    this.getCommendations();
+    this.getApplicantCommendations();
+    this.getCompanyCommendations();
     this.getAssignment();
   }
 
@@ -43,12 +51,23 @@ export class EditReviewComponent implements OnInit {
     this._reviewService.getReview(this.reviewId).subscribe(result => {
       console.log(result);
       this.model = result;
+      if (result.isCompanyReview) {
+        this.isCompanyReview = true;
+      } else {
+        this.isCompanyReview = false;
+      }
     })
   }
 
-  getCommendations() {
+  getApplicantCommendations() {
     this._commendationService.getApplicantCommendation().subscribe(result => {
       this.applicantCommendations = result;
+    })
+  }
+
+  getCompanyCommendations() {
+    this._commendationService.getCompanyCommendation().subscribe(result => {
+      this.companyCommendations = result;
     })
   }
 
@@ -58,7 +77,13 @@ export class EditReviewComponent implements OnInit {
     })
   }
 
-  onSubmit() {
+  onSubmit(isCompany: boolean) {
+    const allCommendations = isCompany ? this.companyCommendations : this.applicantCommendations;
+    const list = isCompany ? this.companyCommendationsList : this.applicantCommendationsList;
+
+    const imageNames = list.selectedOptions.selected.map(option => <string>option.value);
+    this.model.commendations = allCommendations.filter(c => imageNames.includes(c.imageName));
+
     this._reviewService.changeReview(this.model).subscribe(result => {
       console.log(result);
     })
