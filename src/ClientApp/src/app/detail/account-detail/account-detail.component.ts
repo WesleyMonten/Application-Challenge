@@ -15,7 +15,9 @@ import { UserInfoService } from "../../services/user-info.service";
 import { ChoiceDeleteComponent } from 'src/app/delete/choice-delete/choice-delete.component';
 import { ApplicationService } from 'src/app/services/application.service';
 import { Application } from 'src/app/models/application.model';
-import {Review} from "../../models/review.model";
+import { Review } from "../../models/review.model";
+import { CommendationService } from 'src/app/services/commendation.service';
+import { Commendation } from 'src/app/models/commendation.model';
 
 @Component({
   selector: 'app-account-detail',
@@ -34,14 +36,16 @@ export class AccountDetailComponent implements OnInit {
   applicantsCompanyReviews: UserInfo[] = [];
   assignmentsCompanyReviews: Assignment[] = [];
   assignmentsAccount: Assignment[] = [];
-  applicantCommendations: number[] = [1, 2, 0, 4, 5]; // TODO: use real data
-  companyCommendations: number[] = [1, 3, 5];
+  applicantCommendationsCount: number[] = [1, 2, 0, 4, 5]; // TODO: use real data
+  companyCommendationsCount: number[] = [1, 3, 5];
   dateOfBirth: string;
   status: boolean;
   adminMode: boolean;
+  applicantCommendations: Commendation[];
+  companyCommendations: Commendation[];
 
 
-  constructor(private _userInfoService: UserInfoService, private _accountService: AccountService, private _reviewService: ReviewService, private _assignmentService: AssignmentService, private _companyService: CompanyService, private route: ActivatedRoute, public datepipe: DatePipe, public dialog: MatDialog, private _applicationService: ApplicationService) {
+  constructor(private _userInfoService: UserInfoService, private _accountService: AccountService, private _reviewService: ReviewService, private _assignmentService: AssignmentService, private _companyService: CompanyService, private route: ActivatedRoute, public datepipe: DatePipe, public dialog: MatDialog, private _applicationService: ApplicationService, private _commendationService: CommendationService) {
     this._accountService.refreshProfile.subscribe(() => {
       if (localStorage.getItem("adminMode")) {
         this.adminMode = true;
@@ -209,5 +213,11 @@ export class AccountDetailComponent implements OnInit {
 
   ngOnInit() {
     this.getIdFromParameter();
+    this._commendationService.getApplicantCommendation().subscribe(res => {
+      this.applicantCommendations = res;
+    });
+    this._commendationService.getCompanyCommendation().subscribe(res => {
+      this.companyCommendations = res;
+    });
   }
 }
