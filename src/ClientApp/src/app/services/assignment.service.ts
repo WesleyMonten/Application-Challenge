@@ -3,6 +3,9 @@ import { Assignment } from '../models/assignment.model';
 import { AssignmentStage } from '../models/assignment-stage.model';
 import { AssignmentTopic } from '../models/assignment-topic.model';
 import { of, Observable, BehaviorSubject } from 'rxjs';
+import {AppModule} from "../app.module";
+import {HttpClient} from "@angular/common/http";
+import {AppComponent} from "../app.component";
 
 @Injectable()
 export class AssignmentService {
@@ -29,18 +32,18 @@ export class AssignmentService {
     { assignmentId: "2", title: "Frontend", description: "Frontend in Vue.js", location: "Mechelen", startTime: this.startDate, endTime: this.endDate, isInternship: false, compensation: 400, stage: AssignmentStage.Draft, topics: this.assignmentTopics2, companyId: "1", applicationId: null },
   ]
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getAll() {
-    return of(this.assignments);
+    return this.http.get<Assignment[]>("/assignment");
   }
 
-  getAssignment(assignmentId: string) {
-    return of(this.assignments.find(a => a.assignmentId === assignmentId));
+  getAssignment(assignmentID: string) {
+    return this.http.get<Assignment>("/assignment/"+assignmentID);
   }
 
   getAllOpenAssignments() {
-    return of(this.assignments.filter(a => a.stage == AssignmentStage.Open));
+    return this.http.get<Assignment[]>("/assignment/open");
   }
 
   getAllOpenAssignmentsByTitle(title: string){
@@ -48,79 +51,69 @@ export class AssignmentService {
   }
 
   getAllAssignmentTopics() {
-    return of(this.assignmentTopics);
+    return of(this.assignmentTopics); // TODO
   }
 
   create(assignment: Assignment) {
-    return of(assignment);
+    return this.http.post<Assignment[]>("/assignment/", assignment);
   }
 
   getDraftAssignmentsCompany(companyId: string): Observable<Assignment[]> {
-    return of(this.assignments.filter(a => a.stage == AssignmentStage.Draft && a.companyId == companyId));
+    return this.http.get<Assignment[]>("/assignment/company/" + companyId + "/draft");
   }
 
   getOpenAssignmentsCompany(companyId: string): Observable<Assignment[]> {
-    return of(this.assignments.filter(a => a.stage == AssignmentStage.Open && a.companyId == companyId));
+    return this.http.get<Assignment[]>("/assignment/company/" + companyId + "/open");
   }
 
   getClosedAssignmentsCompany(companyId: string): Observable<Assignment[]> {
-    return of(this.assignments.filter(a => a.stage == AssignmentStage.Closed && a.companyId == companyId));
+    return this.http.get<Assignment[]>("/assignment/company/" + companyId + "/closed");
   }
 
   getFinishedAssignmentsCompany(companyId: string): Observable<Assignment[]> {
-    return of(this.assignments.filter(a => a.stage == AssignmentStage.Finished && a.companyId == companyId));
+    return this.http.get<Assignment[]>("/assignment/company/" + companyId + "/finished");
   }
 
-  delete(assignmentId: string): Observable<Assignment[]> {
-    var assignment = this.assignments.find(a => a.assignmentId === assignmentId);
-    var index = this.assignments.indexOf(assignment);
-    this.assignments.splice(index, 1);
-    return of(this.assignments);
+  delete(assignmentId: string) {
+    return this.http.delete("/assignment/" + assignmentId );
   }
 
-  publish(assignmentId: string): Observable<Assignment> {
-    var assignment = this.assignments.find(a => a.assignmentId === assignmentId);
+  publish(assignment: Assignment): Observable<Assignment> {
     assignment.stage = AssignmentStage.Open;
-    return of(assignment);
+    return this.http.put<Assignment>("/assignment/" + assignment.assignmentId, assignment);
   }
 
-  toDraft(assignmentId: string): Observable<Assignment> {
-    var assignment = this.assignments.find(a => a.assignmentId === assignmentId);
+  toDraft(assignment: Assignment): Observable<Assignment> {
     assignment.stage = AssignmentStage.Draft;
-    return of(assignment);
+    return this.http.put<Assignment>("/assignment/" + assignment.assignmentId, assignment);
   }
 
-  close(assignmentId: string): Observable<Assignment> {
-    var assignment = this.assignments.find(a => a.assignmentId === assignmentId);
+  close(assignment: Assignment): Observable<Assignment> {
     assignment.stage = AssignmentStage.Closed;
-    return of(assignment);
+    return this.http.put<Assignment>("/assignment/" + assignment.assignmentId, assignment);
   }
 
-  toOpen(assignmentId: string): Observable<Assignment> {
-    var assignment = this.assignments.find(a => a.assignmentId === assignmentId);
+  toOpen(assignment: Assignment): Observable<Assignment> {
     assignment.stage = AssignmentStage.Open;
-    return of(assignment);
+    return this.http.put<Assignment>("/assignment/" + assignment.assignmentId, assignment);
   }
 
-  finish(assignmentId: string): Observable<Assignment> {
-    var assignment = this.assignments.find(a => a.assignmentId === assignmentId);
+  finish(assignment: Assignment): Observable<Assignment> {
     assignment.stage = AssignmentStage.Finished;
-    return of(assignment);
+    return this.http.put<Assignment>("/assignment/" + assignment.assignmentId, assignment);
   }
 
   put(assignment: Assignment): Observable<Assignment> {
-    return of(assignment);
+    return this.http.put<Assignment>("/assignment/" + assignment.assignmentId, assignment);
   }
 
-  cancel(assignmentId: string): Observable<Assignment> {
-    var assignment = this.assignments.find(a => a.assignmentId === assignmentId);
+  cancel(assignment: Assignment): Observable<Assignment> {
     assignment.stage = AssignmentStage.Cancelled;
-    return of(assignment);
+    return this.http.put<Assignment>("/assignment/" + assignment.assignmentId, assignment);
   }
 
-  setApplicationOnAssignment(assignmentId: string, applicationId: string): Observable<Assignment> {
-    var assignment = this.assignments.find(a => a.assignmentId === assignmentId);
+  setApplicationOnAssignment(assignment: Assignment, applicationId: string): Observable<Assignment> {
     assignment.applicationId = applicationId;
-    return of(assignment);
+    return this.http.put<Assignment>("/assignment/" + assignment.assignmentId, assignment);
   }
 }

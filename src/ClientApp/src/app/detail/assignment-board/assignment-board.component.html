@@ -21,7 +21,7 @@
                                 matTooltip="Delete Assignment" matTooltipPosition="above">
                                 <mat-icon>delete</mat-icon>
                             </button>
-                            <button mat-flat-button class="next" (click)="publish(draft.assignmentId)"
+                            <button mat-flat-button class="next" (click)="publish(draft)"
                                 matTooltip="Publish Assignment" matTooltipPosition="above">
                                 <mat-icon>publish</mat-icon>
                             </button>
@@ -47,11 +47,11 @@
                             </mat-card-subtitle>
                         </mat-card-header>
                         <div class="buttons">
-                            <button mat-flat-button class="back" (click)="toDraft(open.assignmentId)"
+                            <button mat-flat-button class="back" (click)="toDraft(open)"
                                 matTooltip="Put Assignment Back in Draft" matTooltipPosition="above">
                                 <mat-icon>backspace</mat-icon>
                             </button>
-                            <button mat-flat-button id="close" (click)="close(open.assignmentId)"
+                            <button mat-flat-button id="close" (click)="close(open)"
                                 matTooltip="Close Assignment" matTooltipPosition="above">
                                 <mat-icon>not_interested</mat-icon>
                             </button>
@@ -77,12 +77,12 @@
                             </mat-card-subtitle>
                         </mat-card-header>
                         <div class="buttons">
-                            <button mat-flat-button class="back" (click)="toOpen(closed.assignmentId)"
+                            <button mat-flat-button class="back" (click)="toOpen(closed)"
                                 *ngIf="closed.applicationId == null" matTooltip="Put Assignment Back in Open"
                                 matTooltipPosition="above">
                                 <mat-icon>backspace</mat-icon>
                             </button>
-                            <button mat-flat-button class="next" (click)="finish(closed.assignmentId)"
+                            <button mat-flat-button class="next" (click)="finish(closed)"
                                 *ngIf="closed.applicationId != null" matTooltip="Finish Assignment"
                                 matTooltipPosition="above">
                                 <mat-icon>check</mat-icon>

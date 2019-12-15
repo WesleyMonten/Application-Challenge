@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Company } from '../models/company.model';
 import { of, Observable } from 'rxjs';
+import {Assignment} from "../models/assignment.model";
+import {AppComponent} from "../app.component";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable()
 export class CompanyService {
@@ -10,14 +13,16 @@ export class CompanyService {
     { companyId: "2", name: "Apple", contactEmail: "applet@apple.com", contactPhoneNumber: "4826568484", biography: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore nesciunt magnam vel laborum architecto quae quod eligendi dolores? Expedita in assumenda saepe ratione porro harum vero voluptatum praesentium adipisci nisi." }
   ]
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getAll() {
     return of(this.companies);
   }
 
-  getCompany(companyId: string) {
-    return of(this.companies.find(c => c.companyId === companyId));
+  getCompany(companyID: string) {
+    // TODO: fix als company controller af is
+    return of(this.companies.find(c => c.companyId === "1"));
+//    return this.http.get<Company>(AppComponent.API_URL+"/company/"+companyID);
   }
 
   put(company: Company): Observable<Company> {
@@ -30,3 +35,4 @@ export class CompanyService {
     return of(this.companies.splice(index, 1));
   }
 }
+

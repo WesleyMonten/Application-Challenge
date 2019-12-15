@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { AccountService } from 'src/app/services/account.service';
 import { Account } from 'src/app/models/account.model';
 import { AssignmentService } from 'src/app/services/assignment.service';
+import {Assignment} from "../../models/assignment.model";
 
 @Component({
   selector: 'app-assignment-applications',
@@ -28,20 +29,24 @@ export class AssignmentApplicationsComponent implements OnInit {
     this._location.back();
   }
 
-  cancel(assignmentId: string) {
-    this._assignmentService.cancel(assignmentId).subscribe(res => {
-      this._assignmentService.refreshBoard.next(true);
-      this.goBack();
+  cancel(application: Application) {
+    this._assignmentService.getAssignment(application.assignmentId).subscribe(ass => {
+      this._assignmentService.cancel(ass).subscribe(res => {
+        this._assignmentService.refreshBoard.next(true);
+        this.goBack();
+      })
     })
   }
 
-  choose(applicationId: string) {
-    this._applicationService.choose(applicationId).subscribe(res => {
-      this._assignmentService.setApplicationOnAssignment(res.assignmentId, res.applicationId).subscribe(res => {
-        console.log(res);
-        this._assignmentService.refreshBoard.next(true);
-        this.goBack();
-      });
+  choose(application: Application) {
+    this._applicationService.choose(application).subscribe(res => {
+      this._assignmentService.getAssignment(application.assignmentId).subscribe(ass => {
+        this._assignmentService.setApplicationOnAssignment(ass, res.applicationId).subscribe(app => {
+          console.log(app);
+          this._assignmentService.refreshBoard.next(true);
+          this.goBack();
+        });
+      })
     })
   }
 
