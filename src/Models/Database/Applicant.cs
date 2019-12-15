@@ -1,6 +1,3 @@
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-
 namespace ApplicationChallenge.Models.Database
 {
     /// <summary>
@@ -20,8 +17,5 @@ namespace ApplicationChallenge.Models.Database
         /// This person's primary skills, to be displayed on their profile
         /// </summary>
         public Skill[] Skills { get; set; }
-
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string[] Friends { get; set; }
     }
 }
