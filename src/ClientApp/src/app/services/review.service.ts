@@ -50,7 +50,7 @@ export class ReviewService {
 
   getReview(id: string): Observable<Review> {
     // TODO
-    return null;
+    return of(this.applicantReviews[0]);
   }
 
   changeReview(review: Review): Observable<Review> {
