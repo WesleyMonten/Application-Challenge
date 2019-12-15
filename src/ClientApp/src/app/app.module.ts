@@ -25,6 +25,7 @@ import { AuthGuard } from './security/auth.guard';
 import { ApplicantService } from './services/applicant.service';
 import { CompanyGuard } from './security/company.guard';
 import { CreateModule } from './create/create.module';
+import { UserInfoService } from './services/user-info.service';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { CreateModule } from './create/create.module';
     AuthGuard,
     CompanyGuard,
     ApplicantService,
+    UserInfoService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: SecurityInterceptor,

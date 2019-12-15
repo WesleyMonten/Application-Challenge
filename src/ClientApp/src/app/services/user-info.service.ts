@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {UserInfo} from "../models/user-info";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { UserInfo } from "../models/user-info";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class UserInfoService {
 
   constructor(private http: HttpClient) { }

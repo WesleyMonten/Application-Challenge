@@ -11,8 +11,8 @@ import { AssignmentService } from 'src/app/services/assignment.service';
 import { CompanyService } from 'src/app/services/company.service';
 import { MatDialog } from '@angular/material';
 import { AccountDeleteComponent } from 'src/app/delete/account-delete/account-delete.component';
-import {UserInfo} from "../../models/user-info";
-import {UserInfoService} from "../../services/user-info.service";
+import { UserInfo } from "../../models/user-info";
+import { UserInfoService } from "../../services/user-info.service";
 import { CompanyReview } from 'src/app/models/company-review.model';
 import { ChoiceDeleteComponent } from 'src/app/delete/choice-delete/choice-delete.component';
 import { ApplicationService } from 'src/app/services/application.service';
@@ -32,14 +32,14 @@ export class AccountDetailComponent implements OnInit {
   assignmentEndDates: string[] = [];
   companiesApplicantReviews: Company[] = [];
   assignmentsApplicantReviews: Assignment[] = [];
-  applicantsCompanyReviews: Account[] = [];
+  applicantsCompanyReviews: UserInfo[] = [];
   assignmentsCompanyReviews: Assignment[] = [];
   assignmentsAccount: Assignment[] = [];
   dateOfBirth: string;
   status: boolean;
   adminMode: boolean;
 
-  
+
   constructor(private _userInfoService: UserInfoService, private _accountService: AccountService, private _reviewService: ReviewService, private _assignmentService: AssignmentService, private _companyService: CompanyService, private route: ActivatedRoute, public datepipe: DatePipe, public dialog: MatDialog, private _applicationService: ApplicationService) {
     this._accountService.refreshProfile.subscribe(() => {
       if (localStorage.getItem("adminMode")) {
@@ -54,7 +54,7 @@ export class AccountDetailComponent implements OnInit {
   getIdFromParameter() {
     this.route.params.subscribe(params => {
       const id = params['id'];
-      this.getAccount(id);
+      this.getAccount(id, false);
     })
   }
 
@@ -69,7 +69,7 @@ export class AccountDetailComponent implements OnInit {
         this.getApplicationsOfAccount(accountId);
         this.getApplicantReviews(accountId);
         if (this.account.company != null) {
-          this.getCompanyReviews(this.account.company.companyId);
+          this.getCompanyReviews(this.account.accountId);
         }
       }
     });
