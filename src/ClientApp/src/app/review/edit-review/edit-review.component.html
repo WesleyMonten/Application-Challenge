@@ -9,7 +9,7 @@
             </mat-form-field><br>
             <div>
                 <p>Commendations:</p>
-                <mat-selection-list #applicantCommendations>
+                <mat-selection-list #applicantCommendationsList>
                     <mat-list-option *ngFor="let applicantCommendation of applicantCommendations"
                         [value]="applicantCommendation.imageName" [selected]="isChecked(applicantCommendation)"
                         color="primary">
@@ -33,7 +33,7 @@
             </mat-form-field><br>
             <div>
                 <p>Commendations:</p>
-                <mat-selection-list #companyCommendations>
+                <mat-selection-list #companyCommendationsList>
                     <mat-list-option *ngFor="let companyCommendation of companyCommendations"
                         [value]="companyCommendation.imageName" [selected]="isChecked(companyCommendation)"
                         color="primary">
