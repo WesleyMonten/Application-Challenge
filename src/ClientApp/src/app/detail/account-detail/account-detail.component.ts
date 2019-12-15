@@ -126,7 +126,7 @@ export class AccountDetailComponent implements OnInit {
 
   getApplicantsOfCompanyReviews(reviews: CompanyReview[]) {
     reviews.forEach(r => {
-      this.getAccount(r.applicantId);
+      this.getAccount(r.applicantId, true);
     })
   }
 
