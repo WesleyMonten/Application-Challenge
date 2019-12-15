@@ -13,10 +13,10 @@ import { MatDialog } from '@angular/material';
 import { AccountDeleteComponent } from 'src/app/delete/account-delete/account-delete.component';
 import { UserInfo } from "../../models/user-info";
 import { UserInfoService } from "../../services/user-info.service";
-import { CompanyReview } from 'src/app/models/company-review.model';
 import { ChoiceDeleteComponent } from 'src/app/delete/choice-delete/choice-delete.component';
 import { ApplicationService } from 'src/app/services/application.service';
 import { Application } from 'src/app/models/application.model';
+import {Review} from "../../models/review.model";
 
 @Component({
   selector: 'app-account-detail',
@@ -27,7 +27,7 @@ export class AccountDetailComponent implements OnInit {
 
   account: UserInfo;
   applicantReviews: ApplicantReview[] = [];
-  companyReviews: CompanyReview[] = [];
+  companyReviews: Review[] = [];
   assignmentStartDates: string[] = [];
   assignmentEndDates: string[] = [];
   companiesApplicantReviews: Company[] = [];
@@ -118,13 +118,13 @@ export class AccountDetailComponent implements OnInit {
     });
   }
 
-  getAssignmentsOfCompanyReviews(reviews: CompanyReview[]) {
+  getAssignmentsOfCompanyReviews(reviews: Review[]) {
     reviews.forEach(r => {
       this.getAssigment(r.assignmentId, false, false);
     })
   }
 
-  getApplicantsOfCompanyReviews(reviews: CompanyReview[]) {
+  getApplicantsOfCompanyReviews(reviews: Review[]) {
     reviews.forEach(r => {
       this.getAccount(r.applicantId, true);
     })

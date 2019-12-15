@@ -1,6 +1,6 @@
 export enum ApplicantCommendation {
-    Workshard,
-    Teamplayer,
+    WorksHard,
+    TeamPlayer,
     TechnicalGenius,
     HighQualityWork,
     TakesInitiative

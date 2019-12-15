@@ -1,5 +1,5 @@
 export enum CompanyCommendation {
     PleasantAtmosphere,
     StressFreeEnvironment,
-    GoodAccomodation
+    GoodAccommodation
 }

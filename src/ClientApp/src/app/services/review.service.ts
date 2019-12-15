@@ -17,9 +17,9 @@ export class ReviewService {
   ]
 
   applicantCommandations2: Array<ApplicantCommendation> = [
-    ApplicantCommendation.Teamplayer,
+    ApplicantCommendation.TeamPlayer,
     ApplicantCommendation.TechnicalGenius,
-    ApplicantCommendation.Workshard
+    ApplicantCommendation.WorksHard
   ]
 
   companyCommandations1: Array<CompanyCommendation> = [
@@ -28,7 +28,7 @@ export class ReviewService {
   ]
 
   companyCommandations2: Array<CompanyCommendation> = [
-    CompanyCommendation.GoodAccomodation
+    CompanyCommendation.GoodAccommodation
   ]
 
   applicantReviews: Array<ApplicantReview> = [
