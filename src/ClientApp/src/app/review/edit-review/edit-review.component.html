@@ -10,8 +10,14 @@
         <div>
             <p>Commendations:</p>
             <div class="checkbox-section">
-                <mat-checkbox class="ind-checkbox" name="{{c.key}}" #{{c.key}}="ngModel" [(ngModel)]="model.commendations[c.key]"
-                    *ngFor="let c of commendations | keyvalue">{{ c.value }}</mat-checkbox>
+
+                <label *ngFor="let c of commendations">
+                  <input type="checkbox"
+                         [(checklist)]="model.commendations"
+                         [checklistValue]="c"
+                          [checked]="true" />
+                  {{c.displayName}}
+                </label>
             </div><br>
         </div>
         <button color="primary" mat-flat-button>Submit</button>

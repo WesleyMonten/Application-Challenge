@@ -17,34 +17,34 @@ export class EditReviewComponent implements OnInit {
 
   model : Review = new Review('', '', [], '', '', '');
   commendations : Commendation[];
-  reviewID: string;
+  reviewId: string;
   assignment: Assignment;
-  constructor(private _commendationService: CommendationService, private _assignmentService: AssignmentService, 
+  constructor(private _commendationService: CommendationService, private _assignmentService: AssignmentService,
     private _applicationService: ApplicationService, private _reviewService: ReviewService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe(Params => {
-      this.reviewID = Params.get('id');
-    })
+      this.reviewId = Params.get('id');
+    });
     this.getReview();
     this.getCommendations();
     this.getAssignment();
   }
-  
+
   getReview(){
-    this._reviewService.getReview(this.reviewID).subscribe(result => {
+    this._reviewService.getReview(this.reviewId).subscribe(result => {
       console.log(result);
-      this.model = result[0];
+      this.model = result;
     })
   }
-  
+
   getCommendations(){
     this._commendationService.getApplicantCommendation().subscribe(result => {
       this.commendations = result;})
   }
 
   getAssignment(){
-    this._assignmentService.getAssignment(this.reviewID).subscribe(result => {
+    this._assignmentService.getAssignment(this.reviewId).subscribe(result => {
       this.assignment = result;
     })
   }
@@ -53,5 +53,35 @@ export class EditReviewComponent implements OnInit {
     this._reviewService.changeReview(this.model).subscribe(result => {
       console.log(result);
     })
+  }
+
+  shouldBeChecked(c: Commendation) {
+    return true;
+  }
+
+  isEquivalent(a, b) {
+    // Create arrays of property names
+    var aProps = Object.getOwnPropertyNames(a);
+    var bProps = Object.getOwnPropertyNames(b);
+
+    // If number of properties is different,
+    // objects are not equivalent
+    if (aProps.length != bProps.length) {
+      return false;
+    }
+
+    for (var i = 0; i < aProps.length; i++) {
+      var propName = aProps[i];
+
+      // If values of same property are not equal,
+      // objects are not equivalent
+      if (a[propName] !== b[propName]) {
+        return false;
+      }
+    }
+
+    // If we made it this far, objects
+    // are considered equivalent
+    return true;
   }
 }
