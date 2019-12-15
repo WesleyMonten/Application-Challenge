@@ -48,7 +48,7 @@ export class AddReviewComponent implements OnInit {
     //   this.model.applicantID = result.applicantID;
     // })
     console.log(this.model);
-    this._reviewService.addApplicantreview(this.model).subscribe(result => {
+    this._reviewService.addApplicantReview(this.model).subscribe(result => {
       console.log(result);
     })
   }

@@ -7,7 +7,7 @@
                     <mat-card-title>{{companies[i].name}}</mat-card-title>
                     <mat-card-subtitle>{{assignment.location}}</mat-card-subtitle>
                     <div class="fill"></div>
-                    <mat-icon (click)="apply(assignment.assignmentID)" matTooltip="Apply">add_box</mat-icon>
+                    <mat-icon (click)="apply(assignment.assignmentId)" matTooltip="Apply">add_box</mat-icon>
                 </mat-card-header>
                 <mat-chip-list>
                     <mat-chip *ngFor="let topic of assignment.topics;"

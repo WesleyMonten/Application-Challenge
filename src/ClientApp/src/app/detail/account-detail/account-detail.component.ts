@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Account } from 'src/app/models/account.model';
 import { DatePipe } from '@angular/common';
 import { ReviewService } from 'src/app/services/review.service';
-import { ApplicantReview } from 'src/app/models/applicant-review.model';
 import { Assignment } from 'src/app/models/assignment.model';
 import { Company } from 'src/app/models/company.model';
 import { AssignmentService } from 'src/app/services/assignment.service';
@@ -26,7 +25,7 @@ import {Review} from "../../models/review.model";
 export class AccountDetailComponent implements OnInit {
 
   account: UserInfo;
-  applicantReviews: ApplicantReview[] = [];
+  applicantReviews: Review[] = [];
   companyReviews: Review[] = [];
   assignmentStartDates: string[] = [];
   assignmentEndDates: string[] = [];
@@ -97,14 +96,14 @@ export class AccountDetailComponent implements OnInit {
   }
 
 
-  getAssignmentsOfApplicantReviews(reviews: ApplicantReview[]) {
+  getAssignmentsOfApplicantReviews(reviews: Review[]) {
     this.assignmentsApplicantReviews = [];
     reviews.forEach(r => {
       this.getAssigment(r.assignmentId, true, false);
     })
   }
 
-  getCompaniesOfApplicantReviews(reviews: ApplicantReview[]) {
+  getCompaniesOfApplicantReviews(reviews: Review[]) {
     reviews.forEach(r => {
       this.getCompany(r.companyId);
     })

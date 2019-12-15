@@ -1,10 +1,34 @@
-import { ApplicantCommendation } from "./applicant-commodation.model";
-
 export class Review {
-    constructor(public applicantReviewId: string,
-        public reviewText: string,
-        public commendations: ApplicantCommendation[],
-        public companyId: string,
-        public assignmentId: string,
-        public applicantId: string) { }
+
+  public reviewId: string;
+
+  public reviewText: string;
+
+  public commendations: string[];
+
+  public companyId: string;
+
+  public assignmentId: string;
+
+  public applicantId: string; // duplicaat?
+
+  /**
+   *  @description Is this review from a company about an applicant?
+   *  @
+   */
+  public isCompanyReview: boolean;
+
+  constructor(reviewId: string,
+              reviewText: string,
+              commendations: string[],
+              companyId: string,
+              assignmentId: string,
+              applicantId: string) {
+    this.applicantId = applicantId;
+    this.assignmentId = assignmentId;
+    this.companyId = companyId;
+    this.commendations = commendations;
+    this.reviewText = reviewText;
+    this.reviewId = reviewId;
+  }
 }
