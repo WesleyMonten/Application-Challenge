@@ -24,7 +24,6 @@ import { ChoiceDeleteComponent } from 'src/app/delete/choice-delete/choice-delet
 export class AccountDetailComponent implements OnInit {
 
   account: UserInfo;
-  assignments: Assignment[] = [];
   applicantReviews: ApplicantReview[];
   companyReviews: CompanyReview[] = [];
   assignmentStartDates: string[] = [];
@@ -36,7 +35,7 @@ export class AccountDetailComponent implements OnInit {
   dateOfBirth: string;
   status: boolean;
 
-  constructor(private _reviewService: ReviewService, private _assignmentService: AssignmentService, private _companyService: CompanyService, private route: ActivatedRoute, public datepipe: DatePipe, public dialog: MatDialog) { }
+  constructor(private _userInfoService: UserInfoService, private _accountService: AccountService, private _reviewService: ReviewService, private _assignmentService: AssignmentService, private _companyService: CompanyService, private route: ActivatedRoute, public datepipe: DatePipe, public dialog: MatDialog) { }
 
   getIdFromParameter() {
     this.route.params.subscribe(params => {
@@ -49,7 +48,7 @@ export class AccountDetailComponent implements OnInit {
     this._userInfoService.get(accountID).subscribe(res => {
       this.account = res;
       this.dateOfBirth = this.datepipe.transform(this.account.dateOfBirth, 'MM/dd/yyyy');
-      this.getReviewsOfApplicant(accountID);
+      // this.getReviewsOfApplicant(accountID); // TODO
     });
   }
 
@@ -82,7 +81,7 @@ export class AccountDetailComponent implements OnInit {
 
   getApplicantsOfCompanyReviews(reviews: CompanyReview[]) {
     reviews.forEach(r => {
-      this.getAccount(r.applicantId, true);
+      this.getAccount(r.applicantId);
     })
   }
 
@@ -115,7 +114,8 @@ export class AccountDetailComponent implements OnInit {
   openChoiceDialog(): void {
     this.dialog.open(ChoiceDeleteComponent, {
       width: '400px',
-      data: { accountId: this.account.accountId, nickname: this.account.nickname, companyId: this.account.company.companyId, name: this.account.company.name }
+      // TODO: juiste parameters?
+      data: { accountId: this.account.accountId, nickname: this.account.nickname, companyId: this.account.accountId, name: this.account.company.name }
     });
   }
 

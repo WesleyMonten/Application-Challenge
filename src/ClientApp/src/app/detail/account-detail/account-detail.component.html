@@ -235,7 +235,7 @@
                     <br>
                     <div class="container">
                         <div class="row">
-                            <div class="col-12" *ngIf="applicantReviews.length != 0">
+                            <div class="col-12" *ngIf="applicantReviews && applicantReviews.length != 0">
                                 <mat-card>
                                     <mat-card-header>
                                         <mat-card-title>
@@ -247,7 +247,7 @@
                                             class="mat-elevation-z0">
                                             <mat-card-header>
                                                 <div class="row">
-                                                    <div id="commendations" class="row">
+                                                    <div id="applicantCommendations" class="row">
                                                         <div class="col-12">
                                                             <img *ngFor="let commendation of review.commendations"
                                                                 src="./../../assets/application-commendation{{commendation}}.png">
@@ -292,7 +292,7 @@
                                             class="mat-elevation-z0">
                                             <mat-card-header>
                                                 <div class="row">
-                                                    <div id="commendations" class="row">
+                                                    <div id="companyCommendations" class="row">
                                                         <div class="col-12">
                                                             <img *ngFor="let commendation of review.commendations"
                                                                 src="./../../assets/company-commendation{{commendation}}.png">
@@ -322,7 +322,7 @@
                                     </mat-card-content>
                                 </mat-card>
                             </div>
-                            <div class="col-12" *ngIf="applicantReviews.length == 0 && companyReviews.length == 0">
+                            <div class="col-12" *ngIf="applicantReviews && companyReviews && applicantReviews.length == 0 && companyReviews.length == 0">
                                 <div class="row">
                                     <div class="col-12 notfound">
                                         <img src="../../../assets/404.png">
