@@ -58,42 +58,13 @@
                                         <h3 mat-subheader>Total commendations</h3>
                                         <div id="totalCommendationsApplicant">
                                             <div class="row">
-                                                <div class="col-xl-4 col-lg-6 col-sm-12">
+                                                <div class="col-xl-4 col-lg-6 col-sm-12"
+                                                    *ngFor="let applicantCommendation of applicantCommendations">
                                                     <mat-list-item>
                                                         <img mat-list-icon
-                                                            src="./../../assets/application-commendation0.png">
-                                                        <h4 mat-line>Works hard: {{applicantCommendations[0]}}</h4>
-                                                    </mat-list-item>
-                                                </div>
-                                                <div class="col-xl-4 col-lg-6 col-sm-12">
-                                                    <mat-list-item>
-                                                        <img mat-list-icon
-                                                            src="./../../assets/application-commendation1.png">
-                                                        <h4 mat-line>Teamplayer: {{applicantCommendations[1]}}</h4>
-                                                    </mat-list-item>
-                                                </div>
-                                                <div class="col-xl-4 col-lg-6 col-sm-12">
-
-                                                    <mat-list-item>
-                                                        <img mat-list-icon
-                                                            src="./../../assets/application-commendation4.png">
-                                                        <h4 mat-line>Technical genius: {{applicantCommendations[2]}}</h4>
-                                                    </mat-list-item>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-xl-4 col-lg-6 col-sm-12">
-                                                    <mat-list-item>
-                                                        <img mat-list-icon
-                                                            src="./../../assets/application-commendation2.png">
-                                                        <h4 mat-line>High-quality work: {{applicantCommendations[3]}}</h4>
-                                                    </mat-list-item>
-                                                </div>
-                                                <div class="col-xl-4 col-lg-6 col-sm-12">
-                                                    <mat-list-item>
-                                                        <img mat-list-icon
-                                                            src="./../../assets/application-commendation3.png">
-                                                        <h4 mat-line>Takes initiative: {{applicantCommendations[4]}}</h4>
+                                                            src="./../../assets/{{applicantCommendation.imageName}}.png">
+                                                        <h4 mat-line>{{applicantCommendation.displayName}}:
+                                                            {{applicantCommendationsCount[0]}}</h4>
                                                     </mat-list-item>
                                                 </div>
                                             </div>
@@ -149,33 +120,21 @@
                                         <h3 mat-subheader>Total commendations</h3>
                                         <div id="totalCommendationsCompany">
                                             <div class="row">
-                                                <div class="col-xl-4 col-lg-6 col-sm-12">
-                                                    <mat-list-item>
-                                                        <img mat-list-icon
-                                                            src="./../../assets/company-commendation0.png">
-                                                        <h4 mat-line>Pleasant Atmosphere: {{companyCommendations[0]}}</h4>
-                                                    </mat-list-item>
-                                                </div>
-                                                <div class="col-xl-4 col-lg-6 col-sm-12">
-                                                    <mat-list-item>
-                                                        <img mat-list-icon
-                                                            src="./../../assets/company-commendation1.png">
-                                                        <h4 mat-line>Stress-Free Environment: {{companyCommendations[1]}}</h4>
-                                                    </mat-list-item>
-                                                </div>
-                                                <div class="col-xl-4 col-lg-6 col-sm-12">
-
-                                                    <mat-list-item>
-                                                        <img mat-list-icon
-                                                            src="./../../assets/company-commendation2.png">
-                                                        <h4 mat-line>Good Accomodation: {{companyCommendations[2]}}</h4>
-                                                    </mat-list-item>
+                                                <div class="row">
+                                                    <div class="col-xl-4 col-lg-6 col-sm-12"
+                                                        *ngFor="let companyCommendation of companyCommendations">
+                                                        <mat-list-item>
+                                                            <img mat-list-icon
+                                                                src="./../../assets/{{companyCommendation.imageName}}.png">
+                                                            <h4 mat-line>{{companyCommendation.displayName}}:
+                                                                {{companyCommendationsCount[0]}}</h4>
+                                                        </mat-list-item>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <mat-divider></mat-divider>
-                                        <h3 mat-subheader>Biography</h3>
-                                        <p mat-line> {{account.company.biography}} </p>
+                                            <mat-divider></mat-divider>
+                                            <h3 mat-subheader>Biography</h3>
+                                            <p mat-line> {{account.company.biography}} </p>
                                     </mat-list>
                                 </mat-card>
                                 <br>
@@ -356,7 +315,8 @@
                                     </mat-card-content>
                                 </mat-card>
                             </div>
-                            <div class="col-12" *ngIf="applicantReviews && companyReviews && applicantReviews.length == 0 && companyReviews.length == 0">
+                            <div class="col-12"
+                                *ngIf="applicantReviews && companyReviews && applicantReviews.length == 0 && companyReviews.length == 0">
                                 <div class="row">
                                     <div class="col-12 notfound">
                                         <img src="../../../assets/404.png">
