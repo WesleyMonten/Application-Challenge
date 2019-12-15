@@ -43,6 +43,10 @@ export class AssignmentService {
     return of(this.assignments.filter(a => a.stage == AssignmentStage.Open));
   }
 
+  getAllOpenAssignmentsByTitle(title: string){
+    return of(this.assignments.filter(a => a.title == title && a.stage == AssignmentStage.Open));
+  }
+
   getAllAssignmentTopics() {
     return of(this.assignmentTopics);
   }

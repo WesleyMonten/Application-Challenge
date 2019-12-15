@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
-import { ApplicantReview } from '../models/applicant-review.model';
+import { of } from 'rxjs';
+import { Review } from '../models/review.model';
 import { ApplicantCommendation } from '../models/applicant-commodation.model';
 import { of, Observable } from 'rxjs';
 import { CompanyReview } from '../models/company-review.model';
 import { CompanyCommendation } from '../models/company-commendation.model';
+import { ApplicantReview } from '../models/applicant-review.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class ReviewService {
@@ -38,7 +41,7 @@ export class ReviewService {
     { companyReviewId: "2", reviewText: "Heb veel geleerd tijdens deze opdracht, zal zeker nog eens een opdracht willen doen voro dit bedrijf", companyId: "1", assignmentId: "2", applicantId: "2", commendations: this.companyCommandations2 },
   ]
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getAllApplicantReviews() {
     return of(this.applicantReviews);

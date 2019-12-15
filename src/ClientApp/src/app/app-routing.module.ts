@@ -12,6 +12,8 @@ import { AssignmentEditComponent } from './edit/assignment-edit/assignment-edit.
 import { AssignmentApplicationsComponent } from './detail/assignment-applications/assignment-applications.component';
 import { CompanyGuard } from './security/company.guard';
 import { CompanyCreateComponent } from './create/company-create/company-create.component';
+import { AddReviewComponent } from './review/add-review/add-review.component';
+import { EditReviewComponent } from './review/edit-review/edit-review.component';
 
 const appRoutes: Routes = [
   { path: '', component: FeedComponent, pathMatch: 'full', canActivate: [AuthGuard] },
@@ -23,6 +25,8 @@ const appRoutes: Routes = [
   { path: 'new-company', component: CompanyCreateComponent, canActivate: [AuthGuard, CompanyGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'review/:id', component: AddReviewComponent},
+  { path: 'editreview/:id', component: EditReviewComponent},
   { path: '**', redirectTo: '' }
 ];
 

@@ -23,6 +23,7 @@ import { AuthService } from './services/auth.service';
 import { SecurityInterceptor } from "./security/security.interceptor";
 import { AuthGuard } from './security/auth.guard';
 import { ApplicantService } from './services/applicant.service';
+import { ReviewModule } from './review/review.module';
 import { CompanyGuard } from './security/company.guard';
 import { CreateModule } from './create/create.module';
 import { UserInfoService } from './services/user-info.service';
@@ -45,7 +46,8 @@ import { UserInfoService } from './services/user-info.service';
     DetailModule,
     EditModule,
     DeleteModule,
-    CreateModule
+    CreateModule,
+    ReviewModule
   ],
   providers: [
     AccountService,

@@ -1,0 +1,20 @@
+<div class="container">
+<mat-card>
+    <h1>Review</h1>
+    <form name="reviewForm" #f="ngForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline">
+            <mat-label for="reviewText">Review</mat-label>
+            <textarea type="text" name="reviewText" #reviewText="ngModel" [(ngModel)]="model.reviewText" matInput
+                placeholder="Review"></textarea>
+        </mat-form-field><br>
+        <div>
+            <p>Commendations:</p>
+            <div class="checkbox-section">
+                <mat-checkbox class="ind-checkbox" name="{{c.key}}" #{{c.key}}="ngModel" [(ngModel)]="model.commendations[c.key]"
+                    *ngFor="let c of commendations | keyvalue">{{ c.value }}</mat-checkbox>
+            </div><br>
+        </div>
+        <button color="primary" mat-flat-button>Submit</button>
+    </form>
+</mat-card>
+</div>

@@ -21,7 +21,7 @@
       </div>
     </div>
     <br>
-    <form name=" registerForm" #f="ngForm" (ngSubmit)="onSubmit()">
+    <form name=" registerForm" #f="ngForm" (ngSubmit)="f.valid && onSubmit()">
 
       <mat-form-field appearance="outline">
         <mat-label for="username">Username</mat-label>
@@ -31,8 +31,8 @@
       <br>
       <mat-form-field appearance="outline">
         <mat-label for="password">Password</mat-label>
-        <input name="password" #password="ngModel" [(ngModel)]="model.password" type="password" required matInput
-          placeholder="Password">
+        <input name="password" #password="ngModel"
+          [(ngModel)]="model.password" type="password" matInput placeholder="Password" required>
       </mat-form-field>
       <br>
 
@@ -44,20 +44,21 @@
 
       <mat-form-field appearance="outline">
         <mat-label for="email">Email</mat-label>
-        <input [(ngModel)]="model.email" required name="email" type="email" matInput placeholder="Email">
+        <input [(ngModel)]="model.email" name="email"
+          type="email" matInput placeholder="Email" required email>
       </mat-form-field>
       <br>
 
       <mat-form-field appearance="outline">
-        <mat-label for="dateofbirth">Date of birth</mat-label>
-        <input matInput name="dateofbirth" [(ngModel)]="model.dateofbirth" [matDatepicker]="picker"
-          placeholder="Choose a date">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker startView="month" [startAt]="startdate"></mat-datepicker>
-      </mat-form-field>
-      <br>
-
+          <mat-label for="dateofbirth">Date of birth</mat-label>
+          <input matInput name="dateofbirth" [(ngModel)]="model.dateofbirth" 
+            [matDatepicker]="picker" placeholder="Choose a date" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker startView="month" [startAt]="startdate"></mat-datepicker>
+        </mat-form-field>
+        <br>
       <button color="primary" mat-flat-button>Register</button>
+      <p>Already an account? <a routerLink="/login">Login</a></p>
     </form>
   </mat-card>
 </div>
