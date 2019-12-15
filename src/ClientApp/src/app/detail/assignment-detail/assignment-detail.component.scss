@@ -6,8 +6,8 @@
     border-bottom: none;
 }
 
-:host ::ng-deep  .mat-tab-label:nth-child(3), #submit {
-    background: linear-gradient(229deg, #1dbf73, #377dc0);
+.submit {
+    background-color: linear-gradient(229deg, #1dbf73, #377dc0);
     color: #fff;
 }
 

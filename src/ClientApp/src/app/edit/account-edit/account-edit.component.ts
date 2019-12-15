@@ -84,12 +84,15 @@ export class AccountEditComponent implements OnInit {
         Biography: [this.account.applicant.biography],
       });
 
-      this.editCompanyForm = this.fb.group({
-        Name: [this.account.company.name],
-        PhoneNumber: [this.account.company.contactPhoneNumber],
-        Email: [this.account.company.contactEmail],
-        Biography: [this.account.company.biography]
-      });
+      if (this.account.company != null) {
+        this.editCompanyForm = this.fb.group({
+          Name: [this.account.company.name],
+          PhoneNumber: [this.account.company.contactPhoneNumber],
+          Email: [this.account.company.contactEmail],
+          Biography: [this.account.company.biography]
+        });
+      }
+
 
     });
   }

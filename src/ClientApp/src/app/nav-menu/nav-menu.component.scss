@@ -18,7 +18,7 @@
   margin-top: 10px;
 }
 
-.menu-item span {
+.menu-item span, mat-slide-toggle {
   margin-left: 10px;
 }
 
@@ -26,4 +26,10 @@
   outline: none;
 }
 
+:host ::ng-deep .mat-button-focus-overlay {
+  background-color: transparent!important;
+}
 
+mat-slide-toggle {
+  width: 95% !important;
+}

@@ -20,5 +20,7 @@
     <mat-icon>archive</mat-icon>
     <span>Saved</span>
   </button>
-  <mat-icon id="logout">logout</mat-icon>
-</div>
+  <mat-slide-toggle color="primary" [checked]="adminMode" (change)="onChangeMode()" class="menu-item">
+    Admin Mode
+  </mat-slide-toggle>
+

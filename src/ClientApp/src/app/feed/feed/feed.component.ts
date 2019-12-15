@@ -31,7 +31,7 @@ export class FeedComponent implements OnInit {
     this.expanded = this.expanded != true
   }
 
-  getCompaniesOfAssignments(assignments: Assignment[]) {
+  getAccountsAndCompaniesOfAssignments(assignments: Assignment[]) {
     assignments.forEach(a => {
       this.getCompanyOfAssignment(a.companyId);
     })
@@ -43,11 +43,10 @@ export class FeedComponent implements OnInit {
     });
   }
 
-
   ngOnInit() {
     this._assignmentService.getAllOpenAssignments().subscribe(res => {
       this.assignments = res;
-      this.getCompaniesOfAssignments(res);
+      this.getAccountsAndCompaniesOfAssignments(res);
     })
   }
 

@@ -34,4 +34,8 @@ export class ApplicationService {
     application.accepted = true;
     return of(application);
   }
+
+  getApplicationsOfAccount(accountId: string): Observable<Application[]> {
+    return of(this.applications.filter(a => a.applicantId == accountId));
+  }
 }

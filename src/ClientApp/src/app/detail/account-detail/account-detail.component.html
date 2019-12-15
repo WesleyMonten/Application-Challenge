@@ -4,11 +4,12 @@
             <div class="banner">
                 <div class="row">
                     <div class="col-12 buttons">
-                        <button mat-fab id="verwijder" (click)="openDialog()">
+                        <div class="spacer" *ngIf="account.company != null && !adminMode"></div>
+                        <button mat-fab id="verwijder" (click)="openDialog()" *ngIf="adminMode">
                             <mat-icon>clear</mat-icon>
                         </button>
                         <button mat-fab color="primary" type="button"
-                            [routerLink]="['/edit-account/', account.accountId]" routerLink="active">
+                            [routerLink]="['/edit-account/', account.accountId]" routerLink="active" *ngIf="adminMode">
                             <mat-icon>edit</mat-icon>
                         </button>
                         <button mat-fab id="company" type="button" routerLink="/new-company" routerLinkActive="active"
@@ -187,9 +188,20 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-12" *ngIf="assignmentsApplicantReviews.length != 0">
-                                <mat-card *ngFor="let assignment of assignmentsApplicantReviews;let i=index;"
-                                    class="assignment">
+                                <mat-card *ngFor="let assignment of assignmentsAccount;let i=index;" class="assignment">
                                     <mat-card-header>
+                                        <div class="adminButtons row" *ngIf="adminMode">
+                                            <div class="col-12">
+                                                <button mat-mini-fab id="verwijder"
+                                                    (click)="deleteAssignment(assignment.assignmentId)">
+                                                    <mat-icon>clear</mat-icon>
+                                                </button>
+                                                <button mat-mini-fab color="primary" type="button"
+                                                    [routerLink]="['/edit-assignment/', assignment.assignmentId]">
+                                                    <mat-icon>edit</mat-icon>
+                                                </button>
+                                            </div>
+                                        </div>
                                         <div id="review" class="row">
                                             <div class="col-12">
                                                 <button mat-flat-button color="primary" type="button">
@@ -249,8 +261,19 @@
                                                 <div class="row">
                                                     <div id="applicantCommendations" class="row">
                                                         <div class="col-12">
-                                                            <img *ngFor="let commendation of review.commendations"
-                                                                src="./../../assets/application-commendation{{commendation}}.png">
+                                                            <div *ngIf="!adminMode">
+                                                                <img *ngFor="let commendation of review.commendations"
+                                                                    src="./../../assets/application-commendation{{commendation}}.png">
+                                                            </div>
+                                                            <button mat-mini-fab id="verwijder"
+                                                                (click)="deleteApplicantReview(review.applicantReviewId)"
+                                                                *ngIf="adminMode">
+                                                                <mat-icon>clear</mat-icon>
+                                                            </button>
+                                                            <button mat-mini-fab color="primary" type="button"
+                                                                *ngIf="adminMode">
+                                                                <mat-icon>edit</mat-icon>
+                                                            </button>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -294,8 +317,19 @@
                                                 <div class="row">
                                                     <div id="companyCommendations" class="row">
                                                         <div class="col-12">
-                                                            <img *ngFor="let commendation of review.commendations"
-                                                                src="./../../assets/company-commendation{{commendation}}.png">
+                                                            <div *ngIf="!adminMode">
+                                                                <img *ngFor="let commendation of review.commendations"
+                                                                    src="./../../assets/company-commendation{{commendation}}.png">
+                                                            </div>
+                                                            <button mat-mini-fab id="verwijder"
+                                                                (click)="deleteCompanyReview(review.companyReviewId)"
+                                                                *ngIf="adminMode">
+                                                                <mat-icon>clear</mat-icon>
+                                                            </button>
+                                                            <button mat-mini-fab color="primary" type="button"
+                                                                *ngIf="adminMode">
+                                                                <mat-icon>edit</mat-icon>
+                                                            </button>
                                                         </div>
                                                     </div>
                                                     <div class="row">
