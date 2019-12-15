@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApplicantReview } from '../models/applicant-review.model';
 import { ApplicantCommendation } from '../models/applicant-commodation.model';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 import { CompanyReview } from '../models/company-review.model';
 import { CompanyCommendation } from '../models/company-commendation.model';
 
@@ -56,4 +56,20 @@ export class ReviewService {
   getCompanyReviews(companyId: string) {
     return of(this.companyReviews.filter(c => c.companyId == companyId));
   }
+
+  deleteApplicantReview(reviewId: string): Observable<ApplicantReview[]> {
+    var review = this.applicantReviews.find(r => r.applicantReviewId === reviewId);
+    var index = this.applicantReviews.indexOf(review);
+    return of(this.applicantReviews.splice(index, 1));
+  }
+
+
+  deleteCompanyReview(reviewId: string): Observable<CompanyReview[]> {
+    var review = this.companyReviews.find(r => r.companyReviewId === reviewId);
+    var index = this.companyReviews.indexOf(review);
+    return of(this.companyReviews.splice(index, 1));
+  }
+
+
+
 }

@@ -7,7 +7,7 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [FeedComponent],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
   ]
 })
 export class FeedModule { }

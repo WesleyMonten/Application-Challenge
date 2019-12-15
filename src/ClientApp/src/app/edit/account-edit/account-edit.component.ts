@@ -31,8 +31,39 @@ export class AccountEditComponent implements OnInit {
 
   constructor(private _accountService: AccountService, private _skillService: SkillService, private route: ActivatedRoute, private fb: FormBuilder, private _location: Location, private _companyService: CompanyService) { }
 
-  goBack() {
-    this._location.back();
+  ngOnInit() {
+    this.route.params.subscribe(params => { this.getAccount(params['id']); });
+    this._skillService.get().subscribe(res => { this.skills = res; });
+  }
+
+  getAccount(accountId: string) {
+    this._accountService.get(accountId).subscribe(res => {
+      this.account = res;
+      this.skillsAccount = res.applicant.skills;
+
+      this.editAccountForm = this.fb.group({
+        Nickname: [this.account.nickname],
+        FirstName: [this.account.firstName],
+        LastName: [this.account.lastName],
+        Email: [this.account.email],
+        DateOfBirth: [this.account.dateOfBirth],
+        LinkedIn: [this.account.linkedInUrl],
+        Password: [''],
+        ConfirmPassword: [''],
+        Biography: [this.account.applicant.biography],
+      });
+
+      if (this.account.company != null) {
+        this.editCompanyForm = this.fb.group({
+          Name: [this.account.company.name],
+          PhoneNumber: [this.account.company.contactPhoneNumber],
+          Email: [this.account.company.contactEmail],
+          Biography: [this.account.company.biography]
+        });
+      }
+
+
+    });
   }
 
   addSkill(event: MatChipInputEvent): void {
@@ -60,40 +91,6 @@ export class AccountEditComponent implements OnInit {
     }
   }
 
-  getIdFromParameter() {
-    this.route.params.subscribe(params => {
-      var id = +params['id'];
-      this.getAccount(id.toString());
-    })
-  }
-
-  getAccount(accountId: string) {
-    this._accountService.get(accountId).subscribe(res => {
-      this.account = res;
-      this.skillsAccount = res.applicant.skills;
-
-      this.editAccountForm = this.fb.group({
-        Nickname: [this.account.nickname],
-        FirstName: [this.account.firstName],
-        LastName: [this.account.lastName],
-        Email: [this.account.email],
-        DateOfBirth: [this.account.dateOfBirth],
-        LinkedIn: [this.account.linkedInUrl],
-        Password: [''],
-        ConfirmPassword: [''],
-        Biography: [this.account.applicant.biography],
-      });
-
-      this.editCompanyForm = this.fb.group({
-        Name: [this.account.company.name],
-        PhoneNumber: [this.account.company.contactPhoneNumber],
-        Email: [this.account.company.contactEmail],
-        Biography: [this.account.company.biography]
-      });
-
-    });
-  }
-
   onSubmitEditAccount() {
     this.editAccountForm.addControl('Skills', new FormControl(this.skillsAccount));
     this._accountService.put(this.editAccountForm.value).subscribe(res => {
@@ -111,11 +108,8 @@ export class AccountEditComponent implements OnInit {
     })
   }
 
-  ngOnInit() {
-    this.getIdFromParameter();
-    this._skillService.get().subscribe(res => {
-      this.skills = res;
-    })
+  goBack() {
+    this._location.back();
   }
 
 }

@@ -38,7 +38,8 @@
                                                     <textarea matInput name="Description" placeholder="Description"
                                                         formControlName="Description" cols="30" rows="8"></textarea>
                                                 </mat-form-field>
-                                                <button mat-flat-button color="primary" matStepperNext>Next</button>
+                                                <button mat-flat-button color="primary" type="button"
+                                                    matStepperNext>Next</button>
                                             </div>
                                         </div>
                                     </div>
@@ -71,8 +72,10 @@
                                         </mat-form-field>
                                     </div>
                                     <div class="horizontalContent">
-                                        <button mat-flat-button color="primary" matStepperPrevious>Back</button>
-                                        <button mat-flat-button color="primary" matStepperNext>Next</button>
+                                        <button mat-flat-button color="primary" type="button"
+                                            matStepperPrevious>Back</button>
+                                        <button mat-flat-button color="primary" type="button"
+                                            matStepperNext>Next</button>
                                     </div>
                                 </mat-step>
                                 <mat-step>
@@ -88,8 +91,10 @@
                                         </mat-form-field>
                                     </div>
                                     <div class="horizontalContent">
-                                        <button mat-flat-button color="primary" matStepperPrevious>Back</button>
-                                        <button mat-flat-button type="submit" id="submit">Create</button>
+                                        <button mat-flat-button color="primary" type="button"
+                                            matStepperPrevious>Back</button>
+                                        <button mat-flat-button type="submit" class="submit"
+                                            [disabled]="!newAssignmentForm.valid">Create</button>
                                     </div>
                                 </mat-step>
                             </mat-horizontal-stepper>

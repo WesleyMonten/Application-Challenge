@@ -23,8 +23,12 @@ export class AssignmentBoardComponent implements OnInit {
   }
 
   seeListOfApplicants(assignmentId: string, isClosed: boolean) {
-    this._applicationService.isClosed.next(isClosed);
-    this.router.navigate(["/applications", assignmentId])
+    this._assignmentService.getAssignment(assignmentId).subscribe(res => {
+      if (res.applicationId == null) {
+        this._applicationService.isClosed.next(isClosed);
+        this.router.navigate(["/applications", assignmentId]);
+      }
+    })
   }
 
   delete(assignmentId: string) {

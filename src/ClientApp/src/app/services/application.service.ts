@@ -27,4 +27,8 @@ export class ApplicationService {
     application.Accepted = true;
     return this.http.put<Application>("/application/" + application.applicationId, application);
   }
+
+  getApplicationsOfAccount(accountId: string): Observable<Application[]> {
+    return of(this.applications.filter(a => a.applicantId == accountId));
+  }
 }
