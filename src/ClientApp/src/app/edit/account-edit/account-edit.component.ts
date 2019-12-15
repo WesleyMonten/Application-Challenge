@@ -39,7 +39,7 @@ export class AccountEditComponent implements OnInit {
   getAccount(accountId: string) {
     this._accountService.get(accountId).subscribe(res => {
       this.account = res;
-      this.skillsAccount = res.applicant.skills;
+      this.skillsAccount = res.applicant ? res.applicant.skills : null;
 
       this.editAccountForm = this.fb.group({
         Nickname: [this.account.nickname],
@@ -50,7 +50,7 @@ export class AccountEditComponent implements OnInit {
         LinkedIn: [this.account.linkedInUrl],
         Password: [''],
         ConfirmPassword: [''],
-        Biography: [this.account.applicant.biography],
+        Biography: [this.account.applicant ? this.account.applicant.biography : null],
       });
 
       if (this.account.company != null) {
