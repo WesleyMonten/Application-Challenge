@@ -17,7 +17,9 @@ export class EditReviewComponent implements OnInit {
 
   model: Review = new Review('', '', [], '', '', '');
   applicantCommendations: Commendation[];
+  companyCommendations: Commendation[];
   reviewId: string;
+  isCompanyReview: boolean;
   assignment: Assignment;
   constructor(private _commendationService: CommendationService, private _assignmentService: AssignmentService,
     private _applicationService: ApplicationService, private _reviewService: ReviewService, private route: ActivatedRoute) { }
@@ -27,7 +29,8 @@ export class EditReviewComponent implements OnInit {
       this.reviewId = Params.get('id');
     });
     this.getReview();
-    this.getCommendations();
+    this.getApplicantCommendations();
+    this.getCompanyCommendations();
     this.getAssignment();
   }
 
@@ -43,12 +46,23 @@ export class EditReviewComponent implements OnInit {
     this._reviewService.getReview(this.reviewId).subscribe(result => {
       console.log(result);
       this.model = result;
+      if (result.isCompanyReview) {
+        this.isCompanyReview = true;
+      } else {
+        this.isCompanyReview = false;
+      }
     })
   }
 
-  getCommendations() {
+  getApplicantCommendations() {
     this._commendationService.getApplicantCommendation().subscribe(result => {
       this.applicantCommendations = result;
+    })
+  }
+
+  getCompanyCommendations() {
+    this._commendationService.getCompanyCommendation().subscribe(result => {
+      this.companyCommendations = result;
     })
   }
 

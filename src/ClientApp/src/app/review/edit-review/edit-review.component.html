@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="!isCompanyReview">
     <mat-card>
         <h1>Review</h1>
         <form name="reviewForm" #f="ngForm" (ngSubmit)="onSubmit()">
@@ -9,14 +9,39 @@
             </mat-form-field><br>
             <div>
                 <p>Commendations:</p>
-                <mat-selection-list #commendations>
-                    <mat-list-option *ngFor="let commendation of applicantCommendations"
-                        [value]="commendation.imageName" [selected]="isChecked(commendation)" color="primary">
-                        {{commendation.displayName}}
+                <mat-selection-list #applicantCommendations>
+                    <mat-list-option *ngFor="let applicantCommendation of applicantCommendations"
+                        [value]="applicantCommendation.imageName" [selected]="isChecked(applicantCommendation)"
+                        color="primary">
+                        {{applicantCommendation.displayName}}
                     </mat-list-option>
                 </mat-selection-list>
             </div>
-            <button color="primary" mat-flat-button>Submit</button>
+            <button color="primary" mat-flat-button>Edit</button>
+        </form>
+    </mat-card>
+</div>
+
+<div class="container" *ngIf="isCompanyReview">
+    <mat-card>
+        <h1>Review</h1>
+        <form name="reviewForm" #f="ngForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="outline">
+                <mat-label for="reviewText">Review</mat-label>
+                <textarea type="text" name="reviewText" #reviewText="ngModel" [(ngModel)]="model.reviewText" matInput
+                    placeholder="Review"></textarea>
+            </mat-form-field><br>
+            <div>
+                <p>Commendations:</p>
+                <mat-selection-list #companyCommendations>
+                    <mat-list-option *ngFor="let companyCommendation of companyCommendations"
+                        [value]="companyCommendation.imageName" [selected]="isChecked(companyCommendation)"
+                        color="primary">
+                        {{companyCommendation.displayName}}
+                    </mat-list-option>
+                </mat-selection-list>
+            </div>
+            <button color="primary" mat-flat-button>Edit</button>
         </form>
     </mat-card>
 </div>
