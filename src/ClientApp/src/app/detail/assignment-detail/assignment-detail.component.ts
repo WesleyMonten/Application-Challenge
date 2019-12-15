@@ -30,7 +30,7 @@ export class AssignmentDetailComponent implements OnInit {
     Location: ['', Validators.required],
     StartTime: ['', Validators.required],
     EndTime: ['', Validators.required],
-    Compensation: [{ value: 0, disabled: this.isInternship }, [Validators.required, Validators.min(0)]],
+    Compensation: [0, [Validators.required, Validators.min(0)]],
     isInternship: [this.isInternship]
   });
 
