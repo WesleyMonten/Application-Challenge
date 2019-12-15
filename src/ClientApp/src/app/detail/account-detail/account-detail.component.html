@@ -4,6 +4,7 @@
             <div class="banner">
                 <div class="row">
                     <div class="col-12 buttons">
+                        <div class="spacer" *ngIf="account.company != null && !adminMode"></div>
                         <button mat-fab id="verwijder" (click)="openDialog()" *ngIf="adminMode">
                             <mat-icon>clear</mat-icon>
                         </button>
@@ -187,8 +188,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-12" *ngIf="assignmentsApplicantReviews.length != 0">
-                                <mat-card *ngFor="let assignment of assignmentsApplicantReviews;let i=index;"
-                                    class="assignment">
+                                <mat-card *ngFor="let assignment of assignmentsAccount;let i=index;" class="assignment">
                                     <mat-card-header>
                                         <div class="adminButtons row" *ngIf="adminMode">
                                             <div class="col-12">

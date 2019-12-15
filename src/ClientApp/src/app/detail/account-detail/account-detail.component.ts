@@ -13,6 +13,8 @@ import { MatDialog } from '@angular/material';
 import { AccountDeleteComponent } from 'src/app/delete/account-delete/account-delete.component';
 import { CompanyReview } from 'src/app/models/company-review.model';
 import { ChoiceDeleteComponent } from 'src/app/delete/choice-delete/choice-delete.component';
+import { ApplicationService } from 'src/app/services/application.service';
+import { Application } from 'src/app/models/application.model';
 
 @Component({
   selector: 'app-account-detail',
@@ -30,11 +32,13 @@ export class AccountDetailComponent implements OnInit {
   assignmentsApplicantReviews: Assignment[] = [];
   applicantsCompanyReviews: Account[] = [];
   assignmentsCompanyReviews: Assignment[] = [];
+  assignmentsAccount: Assignment[] = [];
   dateOfBirth: string;
   status: boolean;
   adminMode: boolean;
 
-  constructor(private _accountService: AccountService, private _reviewService: ReviewService, private _assignmentService: AssignmentService, private _companyService: CompanyService, private route: ActivatedRoute, public datepipe: DatePipe, public dialog: MatDialog) {
+
+  constructor(private _accountService: AccountService, private _reviewService: ReviewService, private _assignmentService: AssignmentService, private _companyService: CompanyService, private route: ActivatedRoute, public datepipe: DatePipe, public dialog: MatDialog, private _applicationService: ApplicationService) {
     this._accountService.refreshProfile.subscribe(() => {
       if (localStorage.getItem("adminMode")) {
         this.adminMode = true;
@@ -60,6 +64,7 @@ export class AccountDetailComponent implements OnInit {
         this.account = res;
         this.status = this.account.applicant.available;
         this.dateOfBirth = this.datepipe.transform(this.account.dateOfBirth, 'MM/dd/yyyy');
+        this.getApplicationsOfAccount(accountId);
         this.getApplicantReviews(accountId);
         if (this.account.company != null) {
           this.getCompanyReviews(this.account.company.companyId);
@@ -68,6 +73,18 @@ export class AccountDetailComponent implements OnInit {
     });
   }
 
+  getApplicationsOfAccount(accountId: string) {
+    this._applicationService.getApplicationsOfAccount(accountId).subscribe(res => {
+      this.getAssignmentsOfAccount(res);
+    })
+  }
+
+  getAssignmentsOfAccount(applications: Application[]) {
+    this.assignmentsAccount = []
+    applications.forEach(a => {
+      this.getAssigment(a.assignmentId, false, true);
+    })
+  }
 
   getApplicantReviews(accountId: string) {
     this._reviewService.getApplicantReviews(accountId).subscribe(res => {
@@ -81,7 +98,7 @@ export class AccountDetailComponent implements OnInit {
   getAssignmentsOfApplicantReviews(reviews: ApplicantReview[]) {
     this.assignmentsApplicantReviews = [];
     reviews.forEach(r => {
-      this.getAssigment(r.assignmentId, true);
+      this.getAssigment(r.assignmentId, true, false);
     })
   }
 
@@ -101,7 +118,7 @@ export class AccountDetailComponent implements OnInit {
 
   getAssignmentsOfCompanyReviews(reviews: CompanyReview[]) {
     reviews.forEach(r => {
-      this.getAssigment(r.assignmentId, false);
+      this.getAssigment(r.assignmentId, false, false);
     })
   }
 
@@ -111,14 +128,20 @@ export class AccountDetailComponent implements OnInit {
     })
   }
 
-  getAssigment(assignmentId: string, applicantReview: boolean) {
+  getAssigment(assignmentId: string, applicantReview: boolean, assignmentList: boolean) {
     this._assignmentService.getAssignment(assignmentId).subscribe(res => {
       this.assignmentEndDates.push(this.datepipe.transform(res.endTime, 'MM/dd/yyyy'));
       this.assignmentStartDates.push(this.datepipe.transform(res.startTime, 'MM/dd/yyyy'));
       if (applicantReview) {
         this.assignmentsApplicantReviews.push(res);
-      } else {
+      }
+
+      if (applicantReview == false && assignmentList == false) {
         this.assignmentsCompanyReviews.push(res);
+      }
+
+      if (assignmentList) {
+        this.assignmentsAccount.push(res);
       }
     });
   }
