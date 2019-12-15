@@ -6,7 +6,7 @@
                 <mat-icon (click)="goBack()">keyboard_return</mat-icon>
                 <h4>Applies</h4>
             </div>
-            <button mat-flat-button id="cancel" (click)="cancel(applications[0].assignmentId)" *ngIf="closed">
+            <button mat-flat-button id="cancel" (click)="cancel(applications[0])" *ngIf="closed">
                 Cancel
             </button>
         </div>
@@ -17,7 +17,7 @@
             <mat-list-item *ngFor="let application of applications; let i=index;">
                 <a [routerLink]="['/account/', applicants[i].accountId]">{{applicants[i].nickname}}</a>
                 <div class="fill"></div>
-                <button mat-flat-button id="verwijder" (click)="choose(application.applicationId)" *ngIf="closed"
+                <button mat-flat-button id="verwijder" (click)="choose(application)" *ngIf="closed"
                     class="choose">
                     Choose!
                 </button>

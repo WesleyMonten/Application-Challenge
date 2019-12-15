@@ -34,7 +34,7 @@ export class FeedComponent implements OnInit {
   getAccountsAndCompaniesOfAssignments(assignments: Assignment[]) {
     assignments.forEach(a => {
       this.getCompanyOfAssignment(a.companyId);
-    })
+    });
   }
 
   getCompanyOfAssignment(companyId: string) {
