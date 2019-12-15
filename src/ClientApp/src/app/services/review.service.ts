@@ -3,6 +3,7 @@ import { Review } from '../models/review.model';
 import { of, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import {Commendation} from "../models/commendation.model";
+import {Assignment} from "../models/assignment.model";
 
 @Injectable()
 export class ReviewService {
@@ -39,12 +40,12 @@ export class ReviewService {
 
   constructor(private http: HttpClient) { }
 
-  getAllApplicantReviews() {
-    return of(this.applicantReviews);
+  getAllApplicantReviews(): Observable<Review[]>{
+    return this.http.get<Review[]>("/applicantreview/");
   }
 
-  getAllCompanyReviews() {
-    return of(this.companyReviews);
+  getAllCompanyReviews(): Observable<Review[]>{
+    return this.http.get<Review[]>("/companyreview/");
   }
 
   getReview(id: string): Observable<Review> {
@@ -58,34 +59,28 @@ export class ReviewService {
   }
 
   addApplicantReview(review: Review): Observable<Review> {
-    // TODO
-    return null;
+    return this.http.post<Review>("/applicantreview/",review);
   }
 
   addCompanyReview(review: Review): Observable<Review> {
-    // TODO
-    return null;
+    return this.http.post<Review>("/companyreview/",review);
   }
 
-  getApplicantReviews(applicantId: string) {
-    return of(this.applicantReviews.filter(a => a.applicantId == applicantId));
+  getApplicantReviews(applicantId: string): Observable<Review[]> {
+    return this.http.get<Review[]>("/applicantreview/applicant" + applicantId);
   }
 
-  getCompanyReviews(companyId: string) {
-    return of(this.companyReviews.filter(c => c.companyId == companyId));
+  getCompanyReviews(companyId: string): Observable<Review[]> {
+    return this.http.get<Review[]>("/companyreview/company" + companyId);
   }
 
-  deleteApplicantReview(reviewId: string): Observable<Review[]> {
-    var review = this.applicantReviews.find(r => r.reviewId === reviewId);
-    var index = this.applicantReviews.indexOf(review);
-    return of(this.applicantReviews.splice(index, 1));
+  deleteApplicantReview(reviewId: string): Observable<Review> {
+    return this.http.delete<Review>("/applicantreview/" + reviewId);
   }
 
 
-  deleteCompanyReview(reviewId: string): Observable<Review[]> {
-    var review = this.companyReviews.find(r => r.reviewId === reviewId);
-    var index = this.companyReviews.indexOf(review);
-    return of(this.companyReviews.splice(index, 1));
+  deleteCompanyReview(reviewId: string): Observable<Review> {
+    return this.http.delete<Review>("/companyreview/" + reviewId);
   }
 
 

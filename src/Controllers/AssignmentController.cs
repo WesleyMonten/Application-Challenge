@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using ApplicationChallenge.Models;
 using ApplicationChallenge.Models.Database;
 using Microsoft.AspNetCore.Authorization;
@@ -14,9 +15,11 @@ namespace ApplicationChallenge.Controllers
     {
             // TODO: return enkel drafts als companyId uit session matcht
             private IMongoCollection<Assignment> Assignments { get; }
+            private IMongoCollection<AssignmentTopic> Topics { get; }
             public AssignmentController(IDatabaseSettings databaseSettings)
             {
                 Assignments = databaseSettings.GetCollection<Assignment>();
+                Topics = databaseSettings.GetCollection<AssignmentTopic>();
             }
             
             [HttpGet]
@@ -24,21 +27,47 @@ namespace ApplicationChallenge.Controllers
             {
                 return Assignments.Find(tag => true).ToList();
             }
+            [HttpGet("topics")]
+            public IEnumerable<AssignmentTopic> GetTopics()
+            {
+                return Topics.Find(tag => true).ToList();
+            }
             [HttpGet("open")]
             public IEnumerable<Assignment> GetOpen()
             {
                 return Assignments.Find(assignment =>  assignment.Stage == AssignmentStage.Open).ToList();
             }
-
+            [HttpGet("open/title/{name}")]
+            public IEnumerable<Assignment> GetOpenByName(string name)
+            {
+                return Assignments.Find(assignment =>  assignment.Stage == AssignmentStage.Open && assignment.Title == name).ToList(); // FIXME: title LIKE * name *
+            }
             [HttpGet("company/{id}")]
             public IEnumerable<Assignment> GetByCompany(string id)
             {
-                return Assignments.Find(assignment => assignment.CompanyId == id).ToList();
+// werkt alleen as de sterre goe staan en das nu dus ni naart schijnt
+//                return Assignments.Find(assignment => assignment.CompanyId == id).ToList();
+                IEnumerable<Assignment> ass = Assignments.Find(tag => true).ToList();
+                List<Assignment> retval = new List<Assignment>();
+                foreach(Assignment a in ass)
+                {
+                    if (a.CompanyId.Equals(id))
+                        retval.Add(a);
+                }
+                return retval;
             }
             [HttpGet("company/{id}/{stage}")]
             public IEnumerable<Assignment> GetByCompanyAndStage(string id, AssignmentStage stage)
             {
-                return Assignments.Find(assignment => assignment.CompanyId == id && assignment.Stage == stage).ToList();
+//                return Assignments.Find(assignment => assignment.CompanyId == id && assignment.Stage == stage).ToList();
+                IEnumerable<Assignment> ass = Assignments.Find(tag => tag.Stage == stage).ToList();
+                List<Assignment> retval = new List<Assignment>();
+                foreach(Assignment a in ass)
+                {
+                    if (a.CompanyId.Equals(id))
+                        retval.Add(a);
+                }
+                return retval;
             }
 
             [HttpGet("{id}")]
@@ -68,4 +97,5 @@ namespace ApplicationChallenge.Controllers
             }
     
         }
+
 }

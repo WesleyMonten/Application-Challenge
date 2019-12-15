@@ -80,15 +80,20 @@
                                                 <img src="../../../assets/linkedIn.png" mat-list-icon />
                                                 <h4 mat-line>LinkedIn: {{account.linkedInUrl}}</h4>
                                             </mat-list-item>
+                                            <mat-list-item *ngIf="!myAccount">
+                                                <mat-icon mat-list-icon *ngIf="account.applicant.Available">
+                                                    check_circle
+                                                </mat-icon>
+                                                <mat-icon mat-list-icon *ngIf="!account.applicant.Available">
+                                                    remove_circle
+                                                </mat-icon>
+                                                Status:
+                                                <span *ngIf="account.applicant.available">Available</span><span
+                                                    *ngIf="!account.applicant.available">Occupied</span>
+                                            </mat-list-item>
                                             <mat-list-item>
                                                 <mat-slide-toggle color="primary" [checked]="status" mat-line
-                                                    (change)="onChangeStatus()">
-                                                    <!-- <mat-icon mat-list-icon *ngIf="account.applicant.Available">
-                                                        check_circle
-                                                    </mat-icon>
-                                                    <mat-icon mat-list-icon *ngIf="!account.applicant.Available">
-                                                        remove_circle
-                                                    </mat-icon> -->
+                                                    (change)="onChangeStatus()" *ngIf="myAccount">
                                                     Status:
                                                     <span *ngIf="account.applicant.available">Available</span><span
                                                         *ngIf="!account.applicant.available">Occupied</span>
@@ -126,7 +131,7 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                            <div id="review" class="row">
+                                            <div id="review" class="row" *ngIf="myAccount">
                                                 <div class="col-12">
                                                     <button mat-flat-button color="primary" type="button">
                                                         Review
