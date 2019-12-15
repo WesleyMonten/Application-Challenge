@@ -70,8 +70,8 @@ export class AssignmentService {
   delete(assignmentId: string): Observable<Assignment[]> {
     var assignment = this.assignments.find(a => a.assignmentId === assignmentId);
     var index = this.assignments.indexOf(assignment);
-    this.assignments.splice(index, 1)
-    return of(this.assignments)
+    this.assignments.splice(index, 1);
+    return of(this.assignments);
   }
 
   publish(assignmentId: string): Observable<Assignment> {

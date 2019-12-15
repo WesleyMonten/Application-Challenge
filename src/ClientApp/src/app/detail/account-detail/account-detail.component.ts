@@ -22,7 +22,7 @@ import { ChoiceDeleteComponent } from 'src/app/delete/choice-delete/choice-delet
 export class AccountDetailComponent implements OnInit {
 
   account: Account;
-  applicantReviews: ApplicantReview[];
+  applicantReviews: ApplicantReview[] = [];
   companyReviews: CompanyReview[] = [];
   assignmentStartDates: string[] = [];
   assignmentEndDates: string[] = [];
@@ -32,9 +32,15 @@ export class AccountDetailComponent implements OnInit {
   assignmentsCompanyReviews: Assignment[] = [];
   dateOfBirth: string;
   status: boolean;
+  adminMode: boolean;
 
   constructor(private _accountService: AccountService, private _reviewService: ReviewService, private _assignmentService: AssignmentService, private _companyService: CompanyService, private route: ActivatedRoute, public datepipe: DatePipe, public dialog: MatDialog) {
     this._accountService.refreshProfile.subscribe(() => {
+      if (localStorage.getItem("adminMode")) {
+        this.adminMode = true;
+      } else {
+        this.adminMode = false;
+      }
       this.ngOnInit();
     })
   }
@@ -73,6 +79,7 @@ export class AccountDetailComponent implements OnInit {
 
 
   getAssignmentsOfApplicantReviews(reviews: ApplicantReview[]) {
+    this.assignmentsApplicantReviews = [];
     reviews.forEach(r => {
       this.getAssigment(r.assignmentId, true);
     })
@@ -149,6 +156,26 @@ export class AccountDetailComponent implements OnInit {
     var account: Account;
     account.applicant.available = this.status;
     this._accountService.putStatus(account).subscribe(() => {
+      this._accountService.refreshProfile.next(true);
+    });
+  }
+
+  deleteAssignment(assignmentId: string) {
+    console.log(assignmentId);
+    this._assignmentService.delete(assignmentId).subscribe(res => {
+      console.log(res);
+      this._accountService.refreshProfile.next(true);
+    })
+  }
+
+  deleteApplicantReview(reviewId: string) {
+    this._reviewService.deleteApplicantReview(reviewId).subscribe(() => {
+      this._accountService.refreshProfile.next(true);
+    });
+  }
+
+  deleteCompanyReview(reviewId: string) {
+    this._reviewService.deleteCompanyReview(reviewId).subscribe(() => {
       this._accountService.refreshProfile.next(true);
     });
   }

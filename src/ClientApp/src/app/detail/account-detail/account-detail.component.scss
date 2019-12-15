@@ -92,10 +92,14 @@ img {
     border-bottom: none;
 }
 
-#commendations {
+#commendations, .adminButtons {
     position: absolute;
     right: 15px;
     top: 5px;
+}
+
+#commendations mat-icon, .adminButtons mat-icon {
+    color: #fff;
 }
 
 #review {
