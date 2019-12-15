@@ -43,9 +43,9 @@ export class AssignmentDetailComponent implements OnInit {
     if ((value || '').trim()) {
       var topic = this.topics.find(a => a.name.toLowerCase() == value.toLowerCase());
       if (topic != null) {
-        this.assignmentTopics.push({ assignmentTopicID: topic.assignmentTopicID, name: topic.name, color: topic.color });
+        this.assignmentTopics.push({ assignmentTopicId: topic.assignmentTopicId, name: topic.name, color: topic.color });
       } else {
-        this.assignmentTopics.push({ assignmentTopicID: "", name: value.trim(), color: '#007ACC' });
+        this.assignmentTopics.push({ assignmentTopicId: "", name: value.trim(), color: '#007ACC' });
       }
     }
     if (input) {

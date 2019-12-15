@@ -28,16 +28,16 @@ export class AssignmentApplicationsComponent implements OnInit {
     this._location.back();
   }
 
-  cancel(assignmentID: string) {
-    this._assignmentService.cancel(assignmentID).subscribe(res => {
+  cancel(assignmentId: string) {
+    this._assignmentService.cancel(assignmentId).subscribe(res => {
       this._assignmentService.refreshBoard.next(true);
       this.goBack();
     })
   }
 
-  choose(applicationID: string) {
-    this._applicationService.choose(applicationID).subscribe(res => {
-      this._assignmentService.setApplicationOnAssignment(res.assignmentID, res.applicationID).subscribe(res => {
+  choose(applicationId: string) {
+    this._applicationService.choose(applicationId).subscribe(res => {
+      this._assignmentService.setApplicationOnAssignment(res.assignmentId, res.applicationId).subscribe(res => {
         console.log(res);
         this._assignmentService.refreshBoard.next(true);
         this.goBack();
@@ -52,8 +52,8 @@ export class AssignmentApplicationsComponent implements OnInit {
     })
   }
 
-  getApplicationsAssignment(assignmentID: string) {
-    this._applicationService.getApplicationsAssignment(assignmentID).subscribe(res => {
+  getApplicationsAssignment(assignmentId: string) {
+    this._applicationService.getApplicationsAssignment(assignmentId).subscribe(res => {
       this.applications = res;
       this.getApplicantsOfApplications(res);
     });
@@ -61,12 +61,12 @@ export class AssignmentApplicationsComponent implements OnInit {
 
   getApplicantsOfApplications(applications: Application[]) {
     applications.forEach(a => {
-      this.getApplicantOfApplication(a.applicantID);
+      this.getApplicantOfApplication(a.applicantId);
     });
   }
 
-  getApplicantOfApplication(applicantID: string) {
-    this._accountService.get(applicantID).subscribe(res => {
+  getApplicantOfApplication(applicantId: string) {
+    this._accountService.get(applicantId).subscribe(res => {
       this.applicants.push(res);
     })
   }

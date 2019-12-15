@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AccountService } from 'src/app/services/account.service';
 import { ActivatedRoute } from '@angular/router';
 import { Account } from 'src/app/models/account.model';
@@ -13,6 +13,8 @@ import { MatDialog } from '@angular/material';
 import { AccountDeleteComponent } from 'src/app/delete/account-delete/account-delete.component';
 import {UserInfo} from "../../models/user-info";
 import {UserInfoService} from "../../services/user-info.service";
+import { CompanyReview } from 'src/app/models/company-review.model';
+import { ChoiceDeleteComponent } from 'src/app/delete/choice-delete/choice-delete.component';
 
 @Component({
   selector: 'app-account-detail',
@@ -22,14 +24,19 @@ import {UserInfoService} from "../../services/user-info.service";
 export class AccountDetailComponent implements OnInit {
 
   account: UserInfo;
-  reviews: ApplicantReview[];
   assignments: Assignment[] = [];
+  applicantReviews: ApplicantReview[];
+  companyReviews: CompanyReview[] = [];
   assignmentStartDates: string[] = [];
   assignmentEndDates: string[] = [];
-  companies: Company[] = [];
+  companiesApplicantReviews: Company[] = [];
+  assignmentsApplicantReviews: Assignment[] = [];
+  applicantsCompanyReviews: Account[] = [];
+  assignmentsCompanyReviews: Assignment[] = [];
   dateOfBirth: string;
+  status: boolean;
 
-  constructor(private _userInfoService: UserInfoService, private _reviewService: ReviewService, private _assignmentService: AssignmentService, private _companyService: CompanyService, private route: ActivatedRoute, public datepipe: DatePipe, public dialog: MatDialog) { }
+  constructor(private _reviewService: ReviewService, private _assignmentService: AssignmentService, private _companyService: CompanyService, private route: ActivatedRoute, public datepipe: DatePipe, public dialog: MatDialog) { }
 
   getIdFromParameter() {
     this.route.params.subscribe(params => {
@@ -46,47 +53,85 @@ export class AccountDetailComponent implements OnInit {
     });
   }
 
-  getReviewsOfApplicant(accountID: string) {
-    this._reviewService.getReviewsApplicant(accountID).subscribe(res => {
-      this.reviews = res;
-      this.getAssignmentsOfReviews(res);
-      this.getCompaniesOfReviews(res);
-      console.log(this.reviews);
-    });
-  }
 
-  getAssignmentsOfReviews(reviews: ApplicantReview[]) {
+  getAssignmentsOfApplicantReviews(reviews: ApplicantReview[]) {
     reviews.forEach(r => {
-      this.getAssigmentOfReview(r.assignmentID);
-    });
-    console.log(this.assignments);
-  }
-
-  getCompaniesOfReviews(reviews: ApplicantReview[]) {
-    reviews.forEach(r => {
-      this.getCompanyOfReview(r.companyID);
+      this.getAssigment(r.assignmentId, true);
     })
-    console.log(this.companies);
   }
 
-  getAssigmentOfReview(assignmentID: string) {
-    this._assignmentService.getAssignment(assignmentID).subscribe(res => {
+  getCompaniesOfApplicantReviews(reviews: ApplicantReview[]) {
+    reviews.forEach(r => {
+      this.getCompany(r.companyId);
+    })
+  }
+
+  getCompanyReviews(companyId: string) {
+    this._reviewService.getCompanyReviews(companyId).subscribe(res => {
+      this.companyReviews = res;
+      this.getAssignmentsOfCompanyReviews(res);
+      this.getApplicantsOfCompanyReviews(res);
+    });
+  }
+
+  getAssignmentsOfCompanyReviews(reviews: CompanyReview[]) {
+    reviews.forEach(r => {
+      this.getAssigment(r.assignmentId, false);
+    })
+  }
+
+  getApplicantsOfCompanyReviews(reviews: CompanyReview[]) {
+    reviews.forEach(r => {
+      this.getAccount(r.applicantId, true);
+    })
+  }
+
+  getAssigment(assignmentId: string, applicantReview: boolean) {
+    this._assignmentService.getAssignment(assignmentId).subscribe(res => {
       this.assignmentEndDates.push(this.datepipe.transform(res.endTime, 'MM/dd/yyyy'));
       this.assignmentStartDates.push(this.datepipe.transform(res.startTime, 'MM/dd/yyyy'));
-      this.assignments.push(res);
+      if (applicantReview) {
+        this.assignmentsApplicantReviews.push(res);
+      } else {
+        this.assignmentsCompanyReviews.push(res);
+      }
     });
   }
 
-  getCompanyOfReview(companyID: string) {
-    this._companyService.getCompany(companyID).subscribe(res => {
-      this.companies.push(res);
+  getCompany(companyId: string) {
+    this._companyService.getCompany(companyId).subscribe(res => {
+      this.companiesApplicantReviews.push(res);
     })
   }
 
-  openDialog(): void {
+  openDialog() {
+    if (this.account.company != null) {
+      this.openChoiceDialog();
+    } else {
+      this.openAccountDialog();
+    }
+  }
+
+  openChoiceDialog(): void {
+    this.dialog.open(ChoiceDeleteComponent, {
+      width: '400px',
+      data: { accountId: this.account.accountId, nickname: this.account.nickname, companyId: this.account.company.companyId, name: this.account.company.name }
+    });
+  }
+
+  openAccountDialog(): void {
     this.dialog.open(AccountDeleteComponent, {
       width: '400px',
-      data: { accountID: this.account.accountId, nickname: this.account.nickname }
+      data: { accountId: this.account.accountId, nickname: this.account.nickname }
+    });
+  }
+
+  onChangeStatus() {
+    this.status = !this.status;
+    var account: Account;
+    account.applicant.available = this.status;
+    this._accountService.putStatus(account).subscribe(() => {
+      this._accountService.refreshProfile.next(true);
     });
   }
 

@@ -33,12 +33,12 @@ export class FeedComponent implements OnInit {
 
   getCompaniesOfAssignments(assignments: Assignment[]) {
     assignments.forEach(a => {
-      this.getCompanyOfAssignment(a.companyID);
+      this.getCompanyOfAssignment(a.companyId);
     })
   }
 
-  getCompanyOfAssignment(companyID: string) {
-    this._companyService.getCompany(companyID).subscribe(res => {
+  getCompanyOfAssignment(companyId: string) {
+    this._companyService.getCompany(companyId).subscribe(res => {
       this.companies.push(res);
     });
   }
