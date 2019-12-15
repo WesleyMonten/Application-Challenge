@@ -25,7 +25,7 @@
                             </div>
                             <div class="col-12">
                                 <h2>{{account.nickname}}</h2>
-                                <mat-chip-list *ngIf="account.applicant != null">
+                                <mat-chip-list *ngIf="account.applicant">
                                     <div *ngFor="let skill of account.applicant.skills; let i=index;">
                                         <mat-chip [ngStyle]="{'background-color': skill.color, 'color':'#fff'}">
                                             {{skill.name}}
@@ -55,7 +55,7 @@
                                     </mat-card-header>
                                     <mat-list>
                                         <h3 mat-subheader>Total commendations</h3>
-                                        <div id="totalCommendations">
+                                        <div id="totalCommendationsApplicant">
                                             <div class="row">
                                                 <div class="col-xl-4 col-lg-6 col-sm-12">
                                                     <mat-list-item>
@@ -114,7 +114,7 @@
                                             <img src="../../../assets/linkedIn.png" mat-list-icon />
                                             <h4 mat-line>LinkedIn: {{account.linkedInUrl}}</h4>
                                         </mat-list-item>
-                                        <mat-list-item *ngIf="account.applicant != null">
+                                        <mat-list-item *ngIf="account.applicant">
                                             <mat-slide-toggle color="primary" [checked]="status" mat-line
                                                 (change)="onChangeStatus()">
                                                 <!-- <mat-icon mat-list-icon *ngIf="account.applicant.Available">check_circle
@@ -130,7 +130,7 @@
                                         </mat-list-item>
                                         <mat-divider></mat-divider>
                                         <h3 mat-subheader>Biography</h3>
-                                        <p mat-line> {{account.applicant.biography}} </p>
+                                        <p mat-line *ngIf="account.applicant"> {{account.applicant.biography}} </p>
                                     </mat-list>
                                 </mat-card>
                                 <br>
@@ -146,7 +146,7 @@
                                     </mat-card-header>
                                     <mat-list>
                                         <h3 mat-subheader>Total commendations</h3>
-                                        <div id="totalCommendations">
+                                        <div id="totalCommendationsCompany">
                                             <div class="row">
                                                 <div class="col-xl-4 col-lg-6 col-sm-12">
                                                     <mat-list-item>
@@ -235,7 +235,7 @@
                     <br>
                     <div class="container">
                         <div class="row">
-                            <div class="col-12" *ngIf="applicantReviews.length != 0">
+                            <div class="col-12" *ngIf="applicantReviews && applicantReviews.length != 0">
                                 <mat-card>
                                     <mat-card-header>
                                         <mat-card-title>
@@ -247,7 +247,7 @@
                                             class="mat-elevation-z0">
                                             <mat-card-header>
                                                 <div class="row">
-                                                    <div id="commendations" class="row">
+                                                    <div id="applicantCommendations" class="row">
                                                         <div class="col-12">
                                                             <img *ngFor="let commendation of review.commendations"
                                                                 src="./../../assets/application-commendation{{commendation}}.png">
@@ -292,7 +292,7 @@
                                             class="mat-elevation-z0">
                                             <mat-card-header>
                                                 <div class="row">
-                                                    <div id="commendations" class="row">
+                                                    <div id="companyCommendations" class="row">
                                                         <div class="col-12">
                                                             <img *ngFor="let commendation of review.commendations"
                                                                 src="./../../assets/company-commendation{{commendation}}.png">
@@ -322,7 +322,7 @@
                                     </mat-card-content>
                                 </mat-card>
                             </div>
-                            <div class="col-12" *ngIf="applicantReviews.length == 0 && companyReviews.length == 0">
+                            <div class="col-12" *ngIf="applicantReviews && companyReviews && applicantReviews.length == 0 && companyReviews.length == 0">
                                 <div class="row">
                                     <div class="col-12 notfound">
                                         <img src="../../../assets/404.png">

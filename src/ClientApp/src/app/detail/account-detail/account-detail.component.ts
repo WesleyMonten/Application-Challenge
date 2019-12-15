@@ -11,6 +11,8 @@ import { AssignmentService } from 'src/app/services/assignment.service';
 import { CompanyService } from 'src/app/services/company.service';
 import { MatDialog } from '@angular/material';
 import { AccountDeleteComponent } from 'src/app/delete/account-delete/account-delete.component';
+import {UserInfo} from "../../models/user-info";
+import {UserInfoService} from "../../services/user-info.service";
 import { CompanyReview } from 'src/app/models/company-review.model';
 import { ChoiceDeleteComponent } from 'src/app/delete/choice-delete/choice-delete.component';
 
@@ -21,7 +23,7 @@ import { ChoiceDeleteComponent } from 'src/app/delete/choice-delete/choice-delet
 })
 export class AccountDetailComponent implements OnInit {
 
-  account: Account;
+  account: UserInfo;
   applicantReviews: ApplicantReview[];
   companyReviews: CompanyReview[] = [];
   assignmentStartDates: string[] = [];
@@ -33,41 +35,20 @@ export class AccountDetailComponent implements OnInit {
   dateOfBirth: string;
   status: boolean;
 
-  constructor(private _accountService: AccountService, private _reviewService: ReviewService, private _assignmentService: AssignmentService, private _companyService: CompanyService, private route: ActivatedRoute, public datepipe: DatePipe, public dialog: MatDialog) {
-    this._accountService.refreshProfile.subscribe(() => {
-      this.ngOnInit();
-    })
-  }
+  constructor(private _userInfoService: UserInfoService, private _accountService: AccountService, private _reviewService: ReviewService, private _assignmentService: AssignmentService, private _companyService: CompanyService, private route: ActivatedRoute, public datepipe: DatePipe, public dialog: MatDialog) { }
 
   getIdFromParameter() {
     this.route.params.subscribe(params => {
-      var id = +params['id'];
-      this.getAccount(id.toString(), false);
+      const id = params['id'];
+      this.getAccount(id);
     })
   }
 
-  getAccount(accountId: string, companyReview: boolean) {
-    this._accountService.get(accountId).subscribe(res => {
-      if (companyReview) {
-        this.applicantsCompanyReviews.push(res);
-      } else {
-        this.account = res;
-        this.status = this.account.applicant.available;
-        this.dateOfBirth = this.datepipe.transform(this.account.dateOfBirth, 'MM/dd/yyyy');
-        this.getApplicantReviews(accountId);
-        if (this.account.company != null) {
-          this.getCompanyReviews(this.account.company.companyId);
-        }
-      }
-    });
-  }
-
-
-  getApplicantReviews(accountId: string) {
-    this._reviewService.getApplicantReviews(accountId).subscribe(res => {
-      this.applicantReviews = res;
-      this.getAssignmentsOfApplicantReviews(res);
-      this.getCompaniesOfApplicantReviews(res);
+  getAccount(accountID: string) {
+    this._userInfoService.get(accountID).subscribe(res => {
+      this.account = res;
+      this.dateOfBirth = this.datepipe.transform(this.account.dateOfBirth, 'MM/dd/yyyy');
+      // this.getReviewsOfApplicant(accountID); // TODO
     });
   }
 
@@ -100,7 +81,7 @@ export class AccountDetailComponent implements OnInit {
 
   getApplicantsOfCompanyReviews(reviews: CompanyReview[]) {
     reviews.forEach(r => {
-      this.getAccount(r.applicantId, true);
+      this.getAccount(r.applicantId);
     })
   }
 
@@ -133,7 +114,8 @@ export class AccountDetailComponent implements OnInit {
   openChoiceDialog(): void {
     this.dialog.open(ChoiceDeleteComponent, {
       width: '400px',
-      data: { accountId: this.account.accountId, nickname: this.account.nickname, companyId: this.account.company.companyId, name: this.account.company.name }
+      // TODO: juiste parameters?
+      data: { accountId: this.account.accountId, nickname: this.account.nickname, companyId: this.account.accountId, name: this.account.company.name }
     });
   }
 

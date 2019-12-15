@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { ApplicantReview } from '../models/applicant-review.model';
-import { ApplicantCommendation } from '../models/applicant-commodation.model';
-import { of } from 'rxjs';
-import { CompanyReview } from '../models/company-review.model';
-import { CompanyCommendation } from '../models/company-commendation.model';
+import {Injectable} from '@angular/core';
+import {ApplicantReview} from '../models/applicant-review.model';
+import {ApplicantCommendation} from '../models/applicant-commodation.model';
+import {Observable, of} from 'rxjs';
+import {CompanyReview} from '../models/company-review.model';
+import {CompanyCommendation} from '../models/company-commendation.model';
 
 @Injectable()
 export class ReviewService {
