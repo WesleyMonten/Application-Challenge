@@ -31,40 +31,9 @@ export class AccountEditComponent implements OnInit {
 
   constructor(private _accountService: AccountService, private _skillService: SkillService, private route: ActivatedRoute, private fb: FormBuilder, private _location: Location, private _companyService: CompanyService) { }
 
-  goBack() {
-    this._location.back();
-  }
-
-  addSkill(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
-
-    if ((value || '').trim()) {
-      var skill = this.skills.find(s => s.name.toLowerCase() == value.toLowerCase());
-      if (skill != null) {
-        this.skillsAccount.push({ skillId: skill.skillId, name: skill.name, color: skill.color });
-      } else {
-        this.skillsAccount.push({ skillId: "", name: value.trim(), color: '#007ACC' });
-      }
-    }
-    if (input) {
-      input.value = '';
-    }
-  }
-
-  removeSkill(skill: Skill): void {
-    const index = this.skillsAccount.indexOf(skill);
-
-    if (index >= 0) {
-      this.skillsAccount.splice(index, 1);
-    }
-  }
-
-  getIdFromParameter() {
-    this.route.params.subscribe(params => {
-      var id = +params['id'];
-      this.getAccount(id.toString());
-    })
+  ngOnInit() {
+    this.route.params.subscribe(params => { this.getAccount(params['id']); });
+    this._skillService.get().subscribe(res => { this.skills = res; });
   }
 
   getAccount(accountId: string) {
@@ -97,6 +66,31 @@ export class AccountEditComponent implements OnInit {
     });
   }
 
+  addSkill(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    if ((value || '').trim()) {
+      var skill = this.skills.find(s => s.name.toLowerCase() == value.toLowerCase());
+      if (skill != null) {
+        this.skillsAccount.push({ skillId: skill.skillId, name: skill.name, color: skill.color });
+      } else {
+        this.skillsAccount.push({ skillId: "", name: value.trim(), color: '#007ACC' });
+      }
+    }
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  removeSkill(skill: Skill): void {
+    const index = this.skillsAccount.indexOf(skill);
+
+    if (index >= 0) {
+      this.skillsAccount.splice(index, 1);
+    }
+  }
+
   onSubmitEditAccount() {
     this.editAccountForm.addControl('Skills', new FormControl(this.skillsAccount));
     this._accountService.put(this.editAccountForm.value).subscribe(res => {
@@ -114,11 +108,8 @@ export class AccountEditComponent implements OnInit {
     })
   }
 
-  ngOnInit() {
-    this.getIdFromParameter();
-    this._skillService.get().subscribe(res => {
-      this.skills = res;
-    })
+  goBack() {
+    this._location.back();
   }
 
 }
