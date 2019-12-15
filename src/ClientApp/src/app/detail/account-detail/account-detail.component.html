@@ -21,7 +21,7 @@
                             </div>
                             <div class="col-12">
                                 <h2>{{account.nickname}}</h2>
-                                <mat-chip-list *ngIf="account.applicant != null">
+                                <mat-chip-list *ngIf="account.applicant">
                                     <div *ngFor="let skill of account.applicant.skills; let i=index;">
                                         <mat-chip [ngStyle]="{'background-color': skill.color, 'color':'#fff'}"
                                             *ngIf="i<5">
@@ -111,7 +111,7 @@
                                             <img src="../../../assets/linkedIn.png" mat-list-icon />
                                             <h4 mat-line>LinkedIn: {{account.linkedInUrl}}</h4>
                                         </mat-list-item>
-                                        <mat-list-item *ngIf="account.applicant != null">
+                                        <mat-list-item *ngIf="account.applicant">
                                             <mat-icon mat-list-icon *ngIf="account.applicant.available">check_circle
                                             </mat-icon>
                                             <mat-icon mat-list-icon *ngIf="!account.applicant.available">remove_circle
@@ -122,7 +122,7 @@
                                         </mat-list-item>
                                         <mat-divider></mat-divider>
                                         <h3 mat-subheader>Biography</h3>
-                                        <p mat-line> {{account.applicant.biography}} </p>
+                                        <p mat-line *ngIf="account.applicant"> {{account.applicant.biography}} </p>
                                     </mat-list>
                                 </mat-card>
                                 <br>
