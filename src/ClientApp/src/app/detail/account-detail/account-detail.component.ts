@@ -12,7 +12,6 @@ import { MatDialog } from '@angular/material';
 import { AccountDeleteComponent } from 'src/app/delete/account-delete/account-delete.component';
 import { UserInfo } from "../../models/user-info";
 import { UserInfoService } from "../../services/user-info.service";
-import { ChoiceDeleteComponent } from 'src/app/delete/choice-delete/choice-delete.component';
 import { ApplicationService } from 'src/app/services/application.service';
 import { Application } from 'src/app/models/application.model';
 import { Review } from "../../models/review.model";
@@ -43,6 +42,7 @@ export class AccountDetailComponent implements OnInit {
   adminMode: boolean;
   applicantCommendations: Commendation[];
   companyCommendations: Commendation[];
+  myAccount: boolean;
 
 
   constructor(private _userInfoService: UserInfoService, private _accountService: AccountService, private _reviewService: ReviewService, private _assignmentService: AssignmentService, private _companyService: CompanyService, private route: ActivatedRoute, public datepipe: DatePipe, public dialog: MatDialog, private _applicationService: ApplicationService, private _commendationService: CommendationService) {
@@ -59,6 +59,12 @@ export class AccountDetailComponent implements OnInit {
   getIdFromParameter() {
     this.route.params.subscribe(params => {
       const id = params['id'];
+      if (id == "me") {
+        this.myAccount = true;
+      } else {
+        this.myAccount = false;
+      }
+
       this.getAccount(id, false);
     })
   }
@@ -69,13 +75,15 @@ export class AccountDetailComponent implements OnInit {
         this.applicantsCompanyReviews.push(res);
       } else {
         this.account = res;
-        this.status = this.account.applicant.available;
         this.dateOfBirth = this.datepipe.transform(this.account.dateOfBirth, 'MM/dd/yyyy');
         this.getApplicationsOfAccount(accountId);
         this.getApplicantReviews(accountId);
         if (this.account.company != null) {
           this.getCompanyReviews(this.account.accountId);
         }
+      }
+      if (this.account.applicant != null) {
+        this.status = this.account.applicant.available;
       }
     });
   }
@@ -157,22 +165,6 @@ export class AccountDetailComponent implements OnInit {
     this._companyService.getCompany(companyId).subscribe(res => {
       this.companiesApplicantReviews.push(res);
     })
-  }
-
-  openDialog() {
-    if (this.account.company != null) {
-      this.openChoiceDialog();
-    } else {
-      this.openAccountDialog();
-    }
-  }
-
-  openChoiceDialog(): void {
-    this.dialog.open(ChoiceDeleteComponent, {
-      width: '400px',
-      // TODO: juiste parameters?
-      data: { accountId: this.account.accountId, nickname: this.account.nickname, companyId: this.account.accountId, name: this.account.company.name }
-    });
   }
 
   openAccountDialog(): void {

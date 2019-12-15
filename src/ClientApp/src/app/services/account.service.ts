@@ -1,17 +1,14 @@
-import {Injectable} from '@angular/core';
-import {Account} from '../models/account.model'
-import {BehaviorSubject, Observable, of} from 'rxjs';
-import {Applicant} from '../models/applicant.model';
-import {Skill} from '../models/skill.model';
-import {Company} from '../models/company.model';
-import {MatSidenav} from '@angular/material';
-import {HttpClient} from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { Account } from '../models/account.model'
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export class AccountService {
 
   isLoggedIn = new BehaviorSubject(false);
   refreshProfile = new BehaviorSubject(false);
+  refreshNav = new BehaviorSubject(false);
   dateString = '1968-11-16T00:00:00';
   date = new Date(this.dateString);
 
