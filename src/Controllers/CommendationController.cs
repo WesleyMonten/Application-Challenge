@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using ApplicationChallenge.Models.API;
 using ApplicationChallenge.Models.Database;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,14 +15,15 @@ namespace ApplicationChallenge.Controllers
     public class CommendationController : ControllerBase
     {
         [HttpGet("company")]
-        public Dictionary<string, string> GetCompanyCommendations() => GetPrettyNames<CompanyCommendation>();
+        public List<Commendation> GetCompanyCommendations() => GetPrettyNames<CompanyCommendation>();
 
         [HttpGet("applicant")]
-        public Dictionary<string, string> GetApplicantCommendations() => GetPrettyNames<ApplicantCommendation>();
+        public List<Commendation> GetApplicantCommendations() => GetPrettyNames<ApplicantCommendation>();
 
-        private static Dictionary<string, string> GetPrettyNames<T>() where T : Enum =>
-            new Dictionary<string, string>(typeof(T)
+        private static List<Commendation> GetPrettyNames<T>() where T : Enum =>
+            typeof(T)
                 .GetFields(BindingFlags.Static | BindingFlags.Public)
-                .Select(fi => new KeyValuePair<string, string>(fi.Name, fi.GetCustomAttribute<DescriptionAttribute>()?.Description)));
+                .Select(fi => new Commendation(fi.Name, fi.GetCustomAttribute<DescriptionAttribute>()?.Description))
+                .ToList();
     }
 }
