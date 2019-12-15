@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using ApplicationChallenge.Models;
 using ApplicationChallenge.Models.Database;
 using Microsoft.AspNetCore.Authorization;
@@ -33,12 +34,29 @@ namespace ApplicationChallenge.Controllers
             [HttpGet("company/{id}")]
             public IEnumerable<Assignment> GetByCompany(string id)
             {
-                return Assignments.Find(assignment => assignment.CompanyId == id).ToList();
+// werkt alleen as de sterre goe staan en das nu dus ni naart schijnt
+//                return Assignments.Find(assignment => assignment.CompanyId == id).ToList();
+                IEnumerable<Assignment> ass = Assignments.Find(tag => true).ToList();
+                List<Assignment> retval = new List<Assignment>();
+                foreach(Assignment a in ass)
+                {
+                    if (a.CompanyId.Equals(id))
+                        retval.Add(a);
+                }
+                return retval;
             }
             [HttpGet("company/{id}/{stage}")]
             public IEnumerable<Assignment> GetByCompanyAndStage(string id, AssignmentStage stage)
             {
-                return Assignments.Find(assignment => assignment.CompanyId == id && assignment.Stage == stage).ToList();
+//                return Assignments.Find(assignment => assignment.CompanyId == id && assignment.Stage == stage).ToList();
+                IEnumerable<Assignment> ass = Assignments.Find(tag => tag.Stage == stage).ToList();
+                List<Assignment> retval = new List<Assignment>();
+                foreach(Assignment a in ass)
+                {
+                    if (a.CompanyId.Equals(id))
+                        retval.Add(a);
+                }
+                return retval;
             }
 
             [HttpGet("{id}")]
@@ -68,4 +86,5 @@ namespace ApplicationChallenge.Controllers
             }
     
         }
+
 }
