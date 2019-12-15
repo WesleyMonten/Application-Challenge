@@ -10,6 +10,8 @@ import { AssignmentDetailComponent } from './detail/assignment-detail/assignment
 import { AuthGuard } from './security/auth.guard';
 import { AssignmentEditComponent } from './edit/assignment-edit/assignment-edit.component';
 import { AssignmentApplicationsComponent } from './detail/assignment-applications/assignment-applications.component';
+import { CompanyGuard } from './security/company.guard';
+import { CompanyCreateComponent } from './create/company-create/company-create.component';
 
 const appRoutes: Routes = [
   { path: '', component: FeedComponent, pathMatch: 'full', canActivate: [AuthGuard] },
@@ -18,6 +20,7 @@ const appRoutes: Routes = [
   { path: 'assignments/:id', component: AssignmentDetailComponent, canActivate: [AuthGuard] },
   { path: 'edit-assignment/:id', component: AssignmentEditComponent, canActivate: [AuthGuard] },
   { path: 'applications/:id', component: AssignmentApplicationsComponent, canActivate: [AuthGuard] },
+  { path: 'new-company', component: CompanyCreateComponent, canActivate: [AuthGuard, CompanyGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: '**', redirectTo: '' }

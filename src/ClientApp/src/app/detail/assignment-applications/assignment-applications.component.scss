@@ -19,3 +19,13 @@ button {
     color: #fff;
     float: right;
 }
+
+.title {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+h4 {
+    margin-left: 15px;
+}

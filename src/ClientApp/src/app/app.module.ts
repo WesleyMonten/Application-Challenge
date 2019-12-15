@@ -23,6 +23,8 @@ import { AuthService } from './services/auth.service';
 import { SecurityInterceptor } from "./security/security.interceptor";
 import { AuthGuard } from './security/auth.guard';
 import { ApplicantService } from './services/applicant.service';
+import { CompanyGuard } from './security/company.guard';
+import { CreateModule } from './create/create.module';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { ApplicantService } from './services/applicant.service';
     FeedModule,
     DetailModule,
     EditModule,
-    DeleteModule
+    DeleteModule,
+    CreateModule
   ],
   providers: [
     AccountService,
@@ -52,6 +55,7 @@ import { ApplicantService } from './services/applicant.service';
     ReviewService,
     AuthService,
     AuthGuard,
+    CompanyGuard,
     ApplicantService,
     {
       provide: HTTP_INTERCEPTORS,

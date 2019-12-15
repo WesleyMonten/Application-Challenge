@@ -49,7 +49,11 @@ export class ReviewService {
   }
 
 
-  getReviewsApplicant(applicantId: string) {
+  getApplicantReviews(applicantId: string) {
     return of(this.applicantReviews.filter(a => a.applicantId == applicantId));
+  }
+
+  getCompanyReviews(companyId: string) {
+    return of(this.companyReviews.filter(c => c.companyId == companyId));
   }
 }

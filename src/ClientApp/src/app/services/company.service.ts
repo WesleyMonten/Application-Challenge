@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Company } from '../models/company.model';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 import {Assignment} from "../models/assignment.model";
 import {AppComponent} from "../app.component";
 import {HttpClient} from "@angular/common/http";
@@ -23,6 +23,16 @@ export class CompanyService {
     // TODO: fix als company controller af is
     return of(this.companies.find(c => c.companyId === "1"));
 //    return this.http.get<Company>(AppComponent.API_URL+"/company/"+companyID);
+  }
+
+  put(company: Company): Observable<Company> {
+    return of(company);
+  }
+
+  delete(companyId: string): Observable<Company[]> {
+    var company = this.companies.find(c => c.companyId === companyId);
+    var index = this.companies.indexOf(company);
+    return of(this.companies.splice(index, 1));
   }
 }
 
