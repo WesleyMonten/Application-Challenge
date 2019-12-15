@@ -26,7 +26,7 @@ export class AccountEditComponent implements OnInit {
   skillsAccount: Skill[];
   skills: Skill[];
   account: Account;
-  editAccountForm: FormGroup;
+  editApplicantForm: FormGroup;
   editCompanyForm: FormGroup;
 
   constructor(private _accountService: AccountService, private _skillService: SkillService, private route: ActivatedRoute, private fb: FormBuilder, private _location: Location, private _companyService: CompanyService) { }
@@ -41,28 +41,36 @@ export class AccountEditComponent implements OnInit {
       this.account = res;
       this.skillsAccount = res.applicant ? res.applicant.skills : null;
 
-      this.editAccountForm = this.fb.group({
-        Nickname: [this.account.nickname],
-        FirstName: [this.account.firstName],
-        LastName: [this.account.lastName],
-        Email: [this.account.email],
-        DateOfBirth: [this.account.dateOfBirth],
-        LinkedIn: [this.account.linkedInUrl],
-        Password: [''],
-        ConfirmPassword: [''],
-        Biography: [this.account.applicant ? this.account.applicant.biography : null],
-      });
-
-      if (this.account.company != null) {
-        this.editCompanyForm = this.fb.group({
-          Name: [this.account.company.name],
-          PhoneNumber: [this.account.company.contactPhoneNumber],
-          Email: [this.account.company.contactEmail],
-          Biography: [this.account.company.biography]
+      if (this.account.applicant) {
+        this.editApplicantForm = this.fb.group({
+          Nickname: [this.account.nickname],
+          FirstName: [this.account.firstName],
+          LastName: [this.account.lastName],
+          Email: [this.account.email],
+          DateOfBirth: [this.account.dateOfBirth],
+          LinkedIn: [this.account.linkedInUrl],
+          Password: [''],
+          ConfirmPassword: [''],
+          Biography: [this.account.applicant ? this.account.applicant.biography : null],
         });
       }
 
-
+      if (this.account.company) {
+        this.editCompanyForm = this.fb.group({
+          Nickname: [this.account.nickname],
+          FirstName: [this.account.firstName],
+          LastName: [this.account.lastName],
+          Email: [this.account.email],
+          DateOfBirth: [this.account.dateOfBirth],
+          LinkedIn: [this.account.linkedInUrl],
+          Password: [''],
+          ConfirmPassword: [''],
+          Name: [this.account.company.name],
+          PhoneNumber: [this.account.company.contactPhoneNumber],
+          CompanyEmail: [this.account.company.contactEmail],
+          Biography: [this.account.company.biography]
+        });
+      }
     });
   }
 
@@ -92,9 +100,10 @@ export class AccountEditComponent implements OnInit {
   }
 
   onSubmitEditAccount() {
-    this.editAccountForm.addControl('Skills', new FormControl(this.skillsAccount));
-    this._accountService.put(this.editAccountForm.value).subscribe(res => {
+    this.editApplicantForm.addControl('Skills', new FormControl(this.skillsAccount));
+    this._accountService.put(this.editApplicantForm.value).subscribe(res => {
       this._accountService.refreshProfile.next(true);
+      this._accountService.refreshNav.next(true);
       this.goBack();
       console.log(res);
     })
@@ -103,6 +112,7 @@ export class AccountEditComponent implements OnInit {
   onSubmitEditCompany() {
     this._companyService.put(this.editCompanyForm.value).subscribe(res => {
       this._accountService.refreshProfile.next(true);
+      this._accountService.refreshNav.next(true);
       this.goBack();
       console.log(res);
     })

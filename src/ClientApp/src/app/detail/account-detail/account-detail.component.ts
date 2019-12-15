@@ -12,10 +12,11 @@ import { MatDialog } from '@angular/material';
 import { AccountDeleteComponent } from 'src/app/delete/account-delete/account-delete.component';
 import { UserInfo } from "../../models/user-info";
 import { UserInfoService } from "../../services/user-info.service";
-import { ChoiceDeleteComponent } from 'src/app/delete/choice-delete/choice-delete.component';
 import { ApplicationService } from 'src/app/services/application.service';
 import { Application } from 'src/app/models/application.model';
-import {Review} from "../../models/review.model";
+import { Review } from "../../models/review.model";
+import { CommendationService } from 'src/app/services/commendation.service';
+import { Commendation } from 'src/app/models/commendation.model';
 
 @Component({
   selector: 'app-account-detail',
@@ -34,14 +35,17 @@ export class AccountDetailComponent implements OnInit {
   applicantsCompanyReviews: UserInfo[] = [];
   assignmentsCompanyReviews: Assignment[] = [];
   assignmentsAccount: Assignment[] = [];
-  applicantCommendations: number[] = [1, 2, 0, 4, 5]; // TODO: use real data
-  companyCommendations: number[] = [1, 3, 5];
+  applicantCommendationsCount: number[] = [1, 2, 0, 4, 5]; // TODO: use real data
+  companyCommendationsCount: number[] = [1, 3, 5];
   dateOfBirth: string;
   status: boolean;
   adminMode: boolean;
+  applicantCommendations: Commendation[];
+  companyCommendations: Commendation[];
+  myAccount: boolean;
 
 
-  constructor(private _userInfoService: UserInfoService, private _accountService: AccountService, private _reviewService: ReviewService, private _assignmentService: AssignmentService, private _companyService: CompanyService, private route: ActivatedRoute, public datepipe: DatePipe, public dialog: MatDialog, private _applicationService: ApplicationService) {
+  constructor(private _userInfoService: UserInfoService, private _accountService: AccountService, private _reviewService: ReviewService, private _assignmentService: AssignmentService, private _companyService: CompanyService, private route: ActivatedRoute, public datepipe: DatePipe, public dialog: MatDialog, private _applicationService: ApplicationService, private _commendationService: CommendationService) {
     this._accountService.refreshProfile.subscribe(() => {
       if (localStorage.getItem("adminMode")) {
         this.adminMode = true;
@@ -55,6 +59,12 @@ export class AccountDetailComponent implements OnInit {
   getIdFromParameter() {
     this.route.params.subscribe(params => {
       const id = params['id'];
+      if (id == "me") {
+        this.myAccount = true;
+      } else {
+        this.myAccount = false;
+      }
+
       this.getAccount(id, false);
     })
   }
@@ -65,13 +75,15 @@ export class AccountDetailComponent implements OnInit {
         this.applicantsCompanyReviews.push(res);
       } else {
         this.account = res;
-        this.status = this.account.applicant.available;
         this.dateOfBirth = this.datepipe.transform(this.account.dateOfBirth, 'MM/dd/yyyy');
         this.getApplicationsOfAccount(accountId);
         this.getApplicantReviews(accountId);
         if (this.account.company != null) {
           this.getCompanyReviews(this.account.accountId);
         }
+      }
+      if (this.account.applicant != null) {
+        this.status = this.account.applicant.available;
       }
     });
   }
@@ -155,22 +167,6 @@ export class AccountDetailComponent implements OnInit {
     })
   }
 
-  openDialog() {
-    if (this.account.company != null) {
-      this.openChoiceDialog();
-    } else {
-      this.openAccountDialog();
-    }
-  }
-
-  openChoiceDialog(): void {
-    this.dialog.open(ChoiceDeleteComponent, {
-      width: '400px',
-      // TODO: juiste parameters?
-      data: { accountId: this.account.accountId, nickname: this.account.nickname, companyId: this.account.accountId, name: this.account.company.name }
-    });
-  }
-
   openAccountDialog(): void {
     this.dialog.open(AccountDeleteComponent, {
       width: '400px',
@@ -209,5 +205,11 @@ export class AccountDetailComponent implements OnInit {
 
   ngOnInit() {
     this.getIdFromParameter();
+    this._commendationService.getApplicantCommendation().subscribe(res => {
+      this.applicantCommendations = res;
+    });
+    this._commendationService.getCompanyCommendation().subscribe(res => {
+      this.companyCommendations = res;
+    });
   }
 }

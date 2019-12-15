@@ -3,6 +3,7 @@ import { Application } from '../models/application.model';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { AppComponent } from "../app.component";
 import { HttpClient } from "@angular/common/http";
+import {Assignment} from "../models/assignment.model";
 
 @Injectable()
 export class ApplicationService {
@@ -33,12 +34,11 @@ export class ApplicationService {
   }
 
   addApplication(application: Application){
-    application.applicantId = (this.applications.length + 1).toString();
-    return of(this.applications.push(application));
+    return this.http.post<Application[]>("/application/", application);
   }
 
 
   getApplicationsOfAccount(accountId: string): Observable<Application[]> {
-    return of(this.applications.filter(a => a.applicantId == accountId));
+    return this.http.post<Application[]>("/application/applicant/", accountId);
   }
 }
