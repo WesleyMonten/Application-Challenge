@@ -4,11 +4,11 @@
 </div>
 <br>
 <div class="divider"> <span class="span"></span>
-  <button mat-button routerLink="" routerLinkActive="active" class="menu-item">
+  <button mat-button routerLink="/" routerLinkActive="active" class="menu-item">
     <mat-icon>library_books</mat-icon>
     <span>Feed</span>
   </button>
-  <button mat-button routerLink="/account/1" routerLinkActive="active" class="menu-item">
+  <button mat-button routerLink="/account/me" routerLinkActive="active" class="menu-item">
     <mat-icon>account_box</mat-icon>
     <span>Profile</span>
   </button>
@@ -23,3 +23,4 @@
   <mat-slide-toggle color="primary" [checked]="adminMode" (change)="onChangeMode()" class="menu-item">
     Admin Mode
   </mat-slide-toggle>
+

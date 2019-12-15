@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { Account } from '../models/account.model'
-import { of, BehaviorSubject, Observable } from 'rxjs';
-import { Applicant } from '../models/applicant.model';
-import { Skill } from '../models/skill.model';
-import { Company } from '../models/company.model';
-import { MatSidenav } from '@angular/material';
+import {Injectable} from '@angular/core';
+import {Account} from '../models/account.model'
+import {BehaviorSubject, Observable, of} from 'rxjs';
+import {Applicant} from '../models/applicant.model';
+import {Skill} from '../models/skill.model';
+import {Company} from '../models/company.model';
+import {MatSidenav} from '@angular/material';
 
 @Injectable()
 export class AccountService {
@@ -57,7 +57,7 @@ export class AccountService {
     return of(this.accounts.splice(index, 1));
   }
 
-  put(account: Account) {
+  put(account: Account): Observable<Account> {
     return of(account)
   }
 

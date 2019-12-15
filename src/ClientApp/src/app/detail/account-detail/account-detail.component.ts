@@ -11,6 +11,8 @@ import { AssignmentService } from 'src/app/services/assignment.service';
 import { CompanyService } from 'src/app/services/company.service';
 import { MatDialog } from '@angular/material';
 import { AccountDeleteComponent } from 'src/app/delete/account-delete/account-delete.component';
+import {UserInfo} from "../../models/user-info";
+import {UserInfoService} from "../../services/user-info.service";
 import { CompanyReview } from 'src/app/models/company-review.model';
 import { ChoiceDeleteComponent } from 'src/app/delete/choice-delete/choice-delete.component';
 import { ApplicationService } from 'src/app/services/application.service';
@@ -23,7 +25,7 @@ import { Application } from 'src/app/models/application.model';
 })
 export class AccountDetailComponent implements OnInit {
 
-  account: Account;
+  account: UserInfo;
   applicantReviews: ApplicantReview[] = [];
   companyReviews: CompanyReview[] = [];
   assignmentStartDates: string[] = [];
@@ -37,8 +39,8 @@ export class AccountDetailComponent implements OnInit {
   status: boolean;
   adminMode: boolean;
 
-
-  constructor(private _accountService: AccountService, private _reviewService: ReviewService, private _assignmentService: AssignmentService, private _companyService: CompanyService, private route: ActivatedRoute, public datepipe: DatePipe, public dialog: MatDialog, private _applicationService: ApplicationService) {
+  
+  constructor(private _userInfoService: UserInfoService, private _accountService: AccountService, private _reviewService: ReviewService, private _assignmentService: AssignmentService, private _companyService: CompanyService, private route: ActivatedRoute, public datepipe: DatePipe, public dialog: MatDialog, private _applicationService: ApplicationService) {
     this._accountService.refreshProfile.subscribe(() => {
       if (localStorage.getItem("adminMode")) {
         this.adminMode = true;
@@ -51,13 +53,13 @@ export class AccountDetailComponent implements OnInit {
 
   getIdFromParameter() {
     this.route.params.subscribe(params => {
-      var id = +params['id'];
-      this.getAccount(id.toString(), false);
+      const id = params['id'];
+      this.getAccount(id);
     })
   }
 
   getAccount(accountId: string, companyReview: boolean) {
-    this._accountService.get(accountId).subscribe(res => {
+    this._userInfoService.get(accountId).subscribe(res => {
       if (companyReview) {
         this.applicantsCompanyReviews.push(res);
       } else {
@@ -124,7 +126,7 @@ export class AccountDetailComponent implements OnInit {
 
   getApplicantsOfCompanyReviews(reviews: CompanyReview[]) {
     reviews.forEach(r => {
-      this.getAccount(r.applicantId, true);
+      this.getAccount(r.applicantId);
     })
   }
 
@@ -163,7 +165,8 @@ export class AccountDetailComponent implements OnInit {
   openChoiceDialog(): void {
     this.dialog.open(ChoiceDeleteComponent, {
       width: '400px',
-      data: { accountId: this.account.accountId, nickname: this.account.nickname, companyId: this.account.company.companyId, name: this.account.company.name }
+      // TODO: juiste parameters?
+      data: { accountId: this.account.accountId, nickname: this.account.nickname, companyId: this.account.accountId, name: this.account.company.name }
     });
   }
 
