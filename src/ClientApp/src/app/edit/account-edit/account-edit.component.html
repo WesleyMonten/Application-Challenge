@@ -91,17 +91,17 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <mat-chip-list #skillList>
-                            <mat-chip *ngFor="let skill of skillsAccount" [selectable]="selectable"
-                                [removable]="removable" (removed)="removeSkill(skill)"
-                                [ngStyle]="{'background-color': skill.color, 'color':'#fff'}">
-                                {{skill.name}}
-                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                            </mat-chip>
-                            <input placeholder="Skills..." [matChipInputFor]="skillList"
-                                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-                                (matChipInputTokenEnd)="addSkill($event)">
-                        </mat-chip-list>
+                            <mat-chip-list #skillList>
+                                <mat-chip *ngFor="let skill of skillsAccount" [selectable]="selectable"
+                                    [removable]="removable" (removed)="removeSkill(skill)"
+                                    [ngStyle]="{'background-color': skill.color, 'color':'#fff'}">
+                                    {{skill.name}}
+                                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                </mat-chip>
+                                <input placeholder="Skills..." [matChipInputFor]="skillList"
+                                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                    [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="addSkill($event)">
+                            </mat-chip-list>
                     </div>
                 </div>
                 <br>
