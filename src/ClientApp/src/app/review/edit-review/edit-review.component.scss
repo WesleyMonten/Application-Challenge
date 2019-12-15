@@ -1,0 +1,15 @@
+.checkbox-section{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+  }
+  
+  .ind-checkbox{
+      margin: 0 10px;
+  }
+
+  mat-form-field{
+    width: 100%;
+    font-size: 15px;
+}

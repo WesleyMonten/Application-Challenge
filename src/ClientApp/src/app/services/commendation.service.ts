@@ -14,4 +14,8 @@ export class CommendationService {
    return this.http.get<Commendation[]>("https://localhost:5001/commendation/applicant");
   }
 
+  getCompanyCommendation(){
+    return this.http.get<Commendation[]>("https://localhost:5001/commendation/company");
+   }
+
 }

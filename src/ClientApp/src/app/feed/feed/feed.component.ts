@@ -4,6 +4,8 @@ import { Assignment } from 'src/app/models/assignment.model';
 import { Company } from 'src/app/models/company.model';
 import { CompanyService } from 'src/app/services/company.service';
 import { SearchService } from 'src/app/services/search.service';
+import { ApplicationService } from 'src/app/services/application.service';
+import { Application } from 'src/app/models/application.model';
 
 @Component({
   selector: 'app-feed',
@@ -17,8 +19,10 @@ export class FeedComponent implements OnInit {
   liked2: boolean = false;
   expanded: boolean = false;
   search: string;
+  model: Application = new Application("", "", "", false);
 
-  constructor(private _assignmentService: AssignmentService, private _companyService: CompanyService, private _searchService: SearchService) {
+  constructor(private _assignmentService: AssignmentService, private _companyService: CompanyService, 
+    private _searchService: SearchService, private _applicationService: ApplicationService) {
     this._searchService.currentSearch.subscribe(result => {
       this.search = result;
       this.getOpenAssignments();
@@ -62,6 +66,17 @@ export class FeedComponent implements OnInit {
         this.getCompaniesOfAssignments(res);
       })
     }
+  }
+
+  apply(assignment: string){
+    this.model.assignmentID = assignment;
+    this.model.accepted = false;
+    //TODO: Userid
+    this.model.applicantID = "1";
+    console.log(this.model);
+    this._applicationService.addApplication(this.model).subscribe(result => {
+      console.log(result);
+    })
   }
 
   ngOnInit() {

@@ -53,8 +53,16 @@ export class ReviewService {
     return of(this.applicantReviews.filter(a => a.applicantID == applicantID));
   }
 
+  getReview(reviewID: string){
+    return of(this.applicantReviews.filter(a => a.applicantReviewID == reviewID));
+  }
+
   addApplicantreview(review: Review){
     review.applicantReviewID = (this.applicantReviews.length + 1).toString();
     return of(this.applicantReviews.push(review));
+  }
+
+  changeReview(review: Review){
+    return of(review);
   }
 }

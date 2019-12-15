@@ -38,4 +38,10 @@ export class ApplicationService {
   getApplication(id: string){
     return this.http.get<Application>(AppComponent.API_URL+"/application/" + id);
   }
+
+  addApplication(application: Application){
+    application.applicantID = (this.applications.length + 1).toString();
+    return of(this.applications.push(application));
+  }
+
 }
