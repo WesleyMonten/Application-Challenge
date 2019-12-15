@@ -15,9 +15,11 @@ namespace ApplicationChallenge.Controllers
     {
             // TODO: return enkel drafts als companyId uit session matcht
             private IMongoCollection<Assignment> Assignments { get; }
+            private IMongoCollection<AssignmentTopic> Topics { get; }
             public AssignmentController(IDatabaseSettings databaseSettings)
             {
                 Assignments = databaseSettings.GetCollection<Assignment>();
+                Topics = databaseSettings.GetCollection<AssignmentTopic>();
             }
             
             [HttpGet]
@@ -25,12 +27,21 @@ namespace ApplicationChallenge.Controllers
             {
                 return Assignments.Find(tag => true).ToList();
             }
+            [HttpGet("topics")]
+            public IEnumerable<AssignmentTopic> GetTopics()
+            {
+                return Topics.Find(tag => true).ToList();
+            }
             [HttpGet("open")]
             public IEnumerable<Assignment> GetOpen()
             {
                 return Assignments.Find(assignment =>  assignment.Stage == AssignmentStage.Open).ToList();
             }
-
+            [HttpGet("open/title/{name}")]
+            public IEnumerable<Assignment> GetOpenByName(string name)
+            {
+                return Assignments.Find(assignment =>  assignment.Stage == AssignmentStage.Open && assignment.Title == name).ToList(); // FIXME: title LIKE * name *
+            }
             [HttpGet("company/{id}")]
             public IEnumerable<Assignment> GetByCompany(string id)
             {

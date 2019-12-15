@@ -47,11 +47,11 @@ export class AssignmentService {
   }
 
   getAllOpenAssignmentsByTitle(title: string){
-    return of(this.assignments.filter(a => a.title == title && a.stage == AssignmentStage.Open));
+    return this.http.get<Assignment[]>("/assignment/open/title/"+title);
   }
 
   getAllAssignmentTopics() {
-    return of(this.assignmentTopics); // TODO
+    return this.http.get<AssignmentTopic[]>("/assignment/topics");
   }
 
   create(assignment: Assignment) {
