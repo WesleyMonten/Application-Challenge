@@ -20,7 +20,7 @@
                             <button mat-flat-button id="verwijder" (click)="delete(draft.assignmentId)">
                                 <mat-icon>delete</mat-icon>
                             </button>
-                            <button mat-flat-button class="next" (click)="publish(draft.assignmentId)">
+                            <button mat-flat-button class="next" (click)="publish(draft)">
                                 <mat-icon>publish</mat-icon>
                             </button>
                         </div>
@@ -45,10 +45,10 @@
                             </mat-card-subtitle>
                         </mat-card-header>
                         <div class="buttons">
-                            <button mat-flat-button class="back" (click)="toDraft(open.assignmentId)">
+                            <button mat-flat-button class="back" (click)="toDraft(open)">
                                 <mat-icon>backspace</mat-icon>
                             </button>
-                            <button mat-flat-button id="close" (click)="close(open.assignmentId)">
+                            <button mat-flat-button id="close" (click)="close(open)">
                                 <mat-icon>not_interested</mat-icon>
                             </button>
                         </div>
@@ -73,11 +73,11 @@
                             </mat-card-subtitle>
                         </mat-card-header>
                         <div class="buttons">
-                            <button mat-flat-button class="back" (click)="toOpen(closed.assignmentId)"
+                            <button mat-flat-button class="back" (click)="toOpen(closed)"
                                 *ngIf="closed.applicationId == null">
                                 <mat-icon>backspace</mat-icon>
                             </button>
-                            <button mat-flat-button class="next" (click)="finish(closed.assignmentId)"
+                            <button mat-flat-button class="next" (click)="finish(closed)"
                                 *ngIf="closed.applicationId != null">
                                 <mat-icon>check</mat-icon>
                             </button>

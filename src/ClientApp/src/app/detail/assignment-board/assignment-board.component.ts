@@ -33,39 +33,39 @@ export class AssignmentBoardComponent implements OnInit {
     });
   }
 
-  publish(assignmentId: string) {
-    this._assignmentService.publish(assignmentId).subscribe(() => {
+  publish(assignment: Assignment) {
+    this._assignmentService.publish(assignment).subscribe(() => {
       this._assignmentService.refreshBoard.next(true);
     })
   }
 
-  toDraft(assignmentId: string) {
-    this._assignmentService.toDraft(assignmentId).subscribe(() => {
+  toDraft(assignment: Assignment) {
+    this._assignmentService.toDraft(assignment).subscribe(() => {
       this._assignmentService.refreshBoard.next(true);
     })
   }
 
-  close(assignmentId: string) {
-    this._assignmentService.close(assignmentId).subscribe(() => {
+  close(assignment: Assignment) {
+    this._assignmentService.close(assignment).subscribe(() => {
       this._assignmentService.refreshBoard.next(true);
     })
   }
 
-  toOpen(assignmentId: string) {
-    this._assignmentService.toOpen(assignmentId).subscribe(() => {
+  toOpen(assignment: Assignment) {
+    this._assignmentService.toOpen(assignment).subscribe(() => {
       this._assignmentService.refreshBoard.next(true);
     })
   }
 
-  finish(assignmentId: string) {
-    this._assignmentService.finish(assignmentId).subscribe(() => {
+  finish(assignment: Assignment) {
+    this._assignmentService.finish(assignment).subscribe(() => {
       this._assignmentService.refreshBoard.next(true);
     })
   }
 
   getIdFromParameter() {
     this.route.params.subscribe(params => {
-      var id = +params['id'];
+      let id = params.id;
       this.getDraftAssignments(id.toString());
       this.getOpenAssignments(id.toString());
       this.getClosedAssignments(id.toString());
