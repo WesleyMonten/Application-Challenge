@@ -11,7 +11,7 @@
                         <form [formGroup]="newAssignmentForm"
                             (ngSubmit)="newAssignmentForm.valid && onSubmitNewAssignment()">
                             <mat-horizontal-stepper #stepper>
-                                <mat-step [stepControl]="firstFormGroup">
+                                <mat-step>
                                     <div class="row">
                                         <div class="col-12">
                                             <ng-template matStepLabel>Assignment</ng-template>
@@ -45,7 +45,7 @@
                                         </div>
                                     </div>
                                 </mat-step>
-                                <mat-step [stepControl]="secondFormGroup">
+                                <mat-step>
                                     <ng-template matStepLabel>Additional Information</ng-template>
                                     <br>
                                     <div class="horizontalContent">

@@ -30,8 +30,6 @@ import { UserInfoService } from './services/user-info.service';
   declarations: [
     AppComponent,
     NavMenuComponent,
-    LoginComponent,
-    RegisterComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
