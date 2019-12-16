@@ -13,7 +13,6 @@ export class AppComponent {
   title = 'app';
   showFiller = false;
   isLoggedIn: boolean;
-  public static API_URL = "https://localhost:5001";
 
   @ViewChild('drawer', { static: false }) drawer: MatDrawer;
   constructor(private _accountService: AccountService, private _searchService: SearchService , private router: Router) {

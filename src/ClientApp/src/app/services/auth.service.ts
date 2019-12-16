@@ -12,11 +12,11 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   register(user: NewUser): Observable<SuccessWrapper<string>> {
-    return this.http.post<SuccessWrapper<string>>("https://localhost:5001/auth/register", user).pipe(map(AuthService.setTokenIfAny));
+    return this.http.post<SuccessWrapper<string>>("/auth/register", user).pipe(map(AuthService.setTokenIfAny));
   }
 
   login(user: UserLogin): Observable<SuccessWrapper<string>> {
-    return this.http.post<SuccessWrapper<string>>("https://localhost:5001/auth/login", user).pipe(map(AuthService.setTokenIfAny));
+    return this.http.post<SuccessWrapper<string>>("/auth/login", user).pipe(map(AuthService.setTokenIfAny));
   }
 
   private static setTokenIfAny(val: SuccessWrapper<string>): SuccessWrapper<string> {

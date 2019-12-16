@@ -25,7 +25,7 @@ export class ApplicationService {
   }
 
   getApplication(id: string){
-    return this.http.get<Application>(AppComponent.API_URL+"/application/" + id);
+    return this.http.get<Application>("/application/" + id);
   }
 
   addApplication(application: Application){

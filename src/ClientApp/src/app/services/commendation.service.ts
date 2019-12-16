@@ -11,11 +11,11 @@ export class CommendationService {
   constructor(private http: HttpClient) { }
 
   getApplicantCommendation(){
-   return this.http.get<Commendation[]>("https://localhost:5001/commendation/applicant");
+   return this.http.get<Commendation[]>("/commendation/applicant");
   }
 
   getCompanyCommendation(){
-    return this.http.get<Commendation[]>("https://localhost:5001/commendation/company");
+    return this.http.get<Commendation[]>("/commendation/company");
    }
 
 }
