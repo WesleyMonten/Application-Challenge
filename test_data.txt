@@ -1,0 +1,160 @@
+db.ApplicantReview.insertMany([
+	{ 
+		ReviewText: "Goede service geleverd, doet wat er van hem gevraagd wordt", 
+		CompanyId: "FEEDBABEFEEDBABEFEEDBABE",
+		AssignmentId: "DEADBEEFDEADBEEFDEADBEEF",
+		ApplicantId: "DEADBEEFDEADBEEFDEADBEEF",
+		ApplicantCommendations: [
+			3,
+			4,
+			5
+		]
+	},
+	{ 
+		ReviewText: "Goede samenwerking met ons team, overschreed onze verwachtingen",
+		CompanyId: "DEADBEEFDEADBEEFDEADBEEF",
+		AssignmentId: "DEADBEEFDEADBEEFDEADBEEF",
+		ApplicantId: "DEADBEEFDEADBEEFDEADBEEF",
+		ApplicantCommendations: [
+			1,
+			2
+		]
+	}
+]);
+
+
+db.CompanyReview.insertMany([
+	{ 
+		reviewText: "fijne sfeer, zeer hulpzaam wanneer het nodig is",
+		companyId: "DEADBEEFDEADBEEFDEADBEEF",
+		assignmentId: "DEADBEEFDEADBEEFDEADBEEF",
+		applicantId: "DEADBEEFDEADBEEFDEADBEEF",
+		commendations: [
+			3,
+			4,
+			5
+		]
+	},
+	{ 
+		reviewText: "Heb veel geleerd tijdens deze opdracht, zal zeker nog eens een opdracht willen doen voro dit bedrijf",
+		companyId: "DEADBEEFDEADBEEFDEADBEEF",
+		assignmentId: "DEADBEEFDEADBEEFDEADBEEF",
+		applicantId: "DEADBEEFDEADBEEFDEADBEEF",
+		commendations: [
+			1,
+			2
+		]
+	}
+]);
+
+db.Application.insertMany([
+    { 
+		Text: "Dit is een unaccepted application",
+		AssignmentId: "DEADBEEFDEADBEEFDEADBEEF",
+		ApplicantId: "DEADBEEFDEADBEEFDEADBEEF",
+		Accepted: false 
+	},
+    { 
+		Text: "En dit is een accepted application",
+		AssignmentId: "DEADBEEFDEADBEEFDEADBEEF",
+		ApplicantId: "DEADBEEFDEADBEEFDEADBEEF",
+		Accepted: true
+	},
+
+]);
+db.Assignment.insertMany([
+    { 
+		Title: "Full stack application",
+		Description: "Frontend in Angular, Backend in .NET core",
+		Location: "Turnhout",
+		StartTime: "2019-12-12T00:00:00",
+		EndTime: "2019-12-12T00:00:00",
+		IsInternship: false,
+		Compensation: 200,
+		Stage: 0,
+		Topics: [
+			{Name: "Frontend", Color: "#7D5667"}
+		],
+		CompanyId: "DEADBEEFDEADBEEFDEADBEEF",
+		ApplicationId: null 
+	},
+    {
+		Title: "Frontend", description: "Frontend in Vue.js",
+		Location: "Mechelen",
+		StartTime: "2012-12-12T00:00:00",
+		EndTime: "2012-12-12T00:00:00",
+		IsInternship: false,
+		Compensation: 400,
+		Stage: 1,
+		Topics: [
+			{Name: "Fullstack", Color: "#21A296"}
+		],
+		CompanyId: "DEADBEEFDEADBEEFDEADBEEF",
+		ApplicationId: null 
+	}
+])
+
+
+db.AssignmentTopic.insertMany([
+			{Name: "Fullstack", Color: "#21A296"},
+			{Name: "Frontend", Color: "#7D5667"}
+]);
+
+db.Skill.insertMany([
+    { Name: ".NET", Color: "#5C2D91" },
+    { Name: "Angular", Color: "#C3002F" },
+    { Name: "Freelance", Color: "#1DBF73" },
+    { Name: "Java", Color: "#E44D26" },
+    { Name: "Internship", Color: "#0074C1" },
+]);
+
+db.Applicant.insertMany([
+	{
+		Biography: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore nesciunt magnam vel laborum architecto quae quod eligendi dolores? Expedita in assumenda saepe ratione porro harum vero voluptatum praesentium adipisci nisi.",
+		Available: false,
+		Skills: [
+				{ Id: null, Name: ".NET", Color: "#5C2D91" },
+				{ Name: "Angular", Color: "#C3002F" },
+		]
+	},
+	{ 
+		Biography: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore nesciunt magnam vel laborum architecto quae quod eligendi dolores? Expedita in assumenda saepe ratione porro harum vero voluptatum praesentium adipisci nisi.",
+		Available: true,
+		Skills: [
+				{ Name: "Freelance", Color: "#1DBF73" },
+				{ Name: "Angular", Color: "#C3002F" },
+		]
+	},
+	{ 
+		Biography: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore nesciunt magnam vel laborum architecto quae quod eligendi dolores? Expedita in assumenda saepe ratione porro harum vero voluptatum praesentium adipisci nisi.",
+		Available: true,
+		Skills: [
+				{ Name: "Java", Color: "#E44D26" },
+				{ Name: "Internship", Color: "#0074C1" },
+		]
+	},
+	{ 
+		Biography: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore nesciunt magnam vel laborum architecto quae quod eligendi dolores? Expedita in assumenda saepe ratione porro harum vero voluptatum praesentium adipisci nisi.",
+		Available: false,
+		Skills: [
+				{ Name: "Internship", Color: "#0074C1" },
+				{ Name: "Angular", Color: "#C3002F" },
+		]
+	}
+])
+
+db.Company.insertMany([
+    { 
+		Name: "Microsoft",
+		ContactEmail: "microsoft@microsoft.com",
+		ContactPhoneNumber: "4659975532",
+		Biography: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore nesciunt magnam vel laborum architecto quae quod eligendi dolores? Expedita in assumenda saepe ratione porro harum vero voluptatum praesentium adipisci nisi."
+	},
+    { 
+		Name: "Apple",
+		ContactEmail: "applet@apple.com",
+		ContactPhoneNumber: "4826568484",
+		Biography: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore nesciunt magnam vel laborum architecto quae quod eligendi dolores? Expedita in assumenda saepe ratione porro harum vero voluptatum praesentium adipisci nisi." 
+	}
+	
+]);
