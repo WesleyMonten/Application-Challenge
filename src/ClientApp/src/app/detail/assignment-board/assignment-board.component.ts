@@ -38,6 +38,10 @@ export class AssignmentBoardComponent implements OnInit {
     })
   }
 
+  sendReview(id: string) {
+    this.router.navigate(["/review", id]);
+  }
+
   delete(assignmentId: string) {
     this._assignmentService.delete(assignmentId).subscribe(() => {
       this._assignmentService.refreshBoard.next(true);
@@ -101,5 +105,4 @@ export class AssignmentBoardComponent implements OnInit {
       this.finishedAssignments = res;
     });
   }
-
 }
