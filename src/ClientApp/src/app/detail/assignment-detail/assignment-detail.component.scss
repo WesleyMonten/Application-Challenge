@@ -15,11 +15,11 @@ mat-horizontal-stepper {
 }
 
 mat-form-field {
-    width: 50%;
+    width: 100%;
 }
 
 button {
-    width: 50%;
+    width: 100%;
 }
 
 .content{
@@ -30,7 +30,7 @@ button {
 }
 
 .horizontalContent button, .horizontalContent mat-form-field{
-    width: 25% !important;
+    width: 50% !important;
     margin-left: 2px;
     margin-right: 2px;
 }
@@ -43,7 +43,7 @@ button {
 }
 
 mat-chip-list {
-    width: 50%;
+    width: 100%;
     margin-bottom: 10px;
 }
 
@@ -52,3 +52,4 @@ mat-slide-toggle {
     margin-bottom: 10px;
     margin-top: 10px;
 }
+

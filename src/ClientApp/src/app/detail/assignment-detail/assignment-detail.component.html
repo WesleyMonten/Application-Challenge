@@ -8,7 +8,8 @@
                 <mat-tab label="New Assignment">
                     <br>
                     <div class="container">
-                        <form [formGroup]="newAssignmentForm" (ngSubmit)="onSubmitNewAssignment()">
+                        <form [formGroup]="newAssignmentForm"
+                            (ngSubmit)="newAssignmentForm.valid && onSubmitNewAssignment()">
                             <mat-horizontal-stepper #stepper>
                                 <mat-step [stepControl]="firstFormGroup">
                                     <div class="row">
