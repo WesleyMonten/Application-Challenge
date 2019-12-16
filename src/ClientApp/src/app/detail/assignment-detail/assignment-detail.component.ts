@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AssignmentService } from 'src/app/services/assignment.service';
 import { AssignmentTopic } from 'src/app/models/assignment-topic.model';
-import { MatChipInputEvent } from '@angular/material';
+import { MatChipInputEvent, MatSnackBar } from '@angular/material';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
-import {AccountService} from "../../services/account.service";
-import {Assignment} from "../../models/assignment.model";
-import {Router} from "@angular/router";
+import { AccountService } from "../../services/account.service";
+import { Assignment } from "../../models/assignment.model";
+import { Router } from "@angular/router";
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-assignment-detail',
@@ -20,6 +21,7 @@ export class AssignmentDetailComponent implements OnInit {
   removable = true;
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  selectedIndex = 0;
 
   topics: AssignmentTopic[];
   assignmentTopics: AssignmentTopic[] = [];
@@ -39,7 +41,7 @@ export class AssignmentDetailComponent implements OnInit {
     isInternship: [this.isInternship]
   });
 
-  constructor(private _assignmentService: AssignmentService, private fb: FormBuilder, private _accountService: AccountService, private router: Router) { }
+  constructor(private _assignmentService: AssignmentService, private fb: FormBuilder, private _accountService: AccountService, private router: Router, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     const date = new Date();
@@ -88,8 +90,16 @@ export class AssignmentDetailComponent implements OnInit {
     value.topics = this.assignmentTopics;
     this._assignmentService.create(value).subscribe(res => {
       console.log(res);
-      this.router.navigate(["/"]); // TODO: zou naar / moeten gaan, maar daar zijn we al
-    })
+      this._snackBar.open("Assignment Created!", "", {
+        duration: 2000,
+        panelClass: ['snackbar']
+      });
+      this._assignmentService.refreshBoard.next(true);
+      this.newAssignmentForm.reset();
+      Object.keys(this.newAssignmentForm.controls).forEach(key => {
+        this.newAssignmentForm.get(key).setErrors(null);
+      });
+    });
   }
 
 }

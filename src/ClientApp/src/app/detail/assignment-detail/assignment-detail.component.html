@@ -1,14 +1,15 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <mat-tab-group dynamicHeight>
+            <mat-tab-group dynamicHeigh>
                 <mat-tab label="Assignment Board">
                     <app-assignment-board></app-assignment-board>
                 </mat-tab>
                 <mat-tab label="New Assignment">
                     <br>
                     <div class="container">
-                        <form [formGroup]="newAssignmentForm" (ngSubmit)="onSubmitNewAssignment()">
+                        <form [formGroup]="newAssignmentForm"
+                            (ngSubmit)="newAssignmentForm.valid && onSubmitNewAssignment()">
                             <mat-horizontal-stepper #stepper>
                                 <mat-step [stepControl]="firstFormGroup">
                                     <div class="row">
