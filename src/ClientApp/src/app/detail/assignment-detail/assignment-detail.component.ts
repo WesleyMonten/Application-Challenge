@@ -87,6 +87,7 @@ export class AssignmentDetailComponent implements OnInit {
     let value = <Assignment>this.newAssignmentForm.value;
     value.companyId = this.companyId;
     value.topics = this.assignmentTopics;
+    value.isInternship = this.isInternship
     this._assignmentService.create(value).subscribe(res => {
       console.log(res);
       this._snackBar.open("Assignment Created!", "", {

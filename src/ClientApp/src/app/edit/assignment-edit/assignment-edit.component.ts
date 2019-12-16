@@ -6,7 +6,7 @@ import { AssignmentService } from 'src/app/services/assignment.service';
 import { MatChipInputEvent } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { Assignment } from 'src/app/models/assignment.model';
-import { Location } from '@angular/common';
+import { Location, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-assignment-edit',
@@ -30,7 +30,7 @@ export class AssignmentEditComponent implements OnInit {
 
   editAssignmentForm: FormGroup;
 
-  constructor(private _assignmentService: AssignmentService, private fb: FormBuilder, private route: ActivatedRoute, private _location: Location) { }
+  constructor(private _assignmentService: AssignmentService, private fb: FormBuilder, private route: ActivatedRoute, private _location: Location, public datepipe: DatePipe) { }
 
   goBack() {
     this._location.back();
@@ -48,13 +48,15 @@ export class AssignmentEditComponent implements OnInit {
       this.assignment = res;
       this.assignmentTopics = res.topics;
 
+      console.log(this.assignment);
+
       this.editAssignmentForm = this.fb.group({
         Title: [this.assignment.title, Validators.required],
         Description: [this.assignment.description, Validators.required],
         Location: [this.assignment.location, Validators.required],
         StartTime: [this.assignment.startTime, Validators.required],
         EndTime: [this.assignment.endTime, Validators.required],
-        Compensation: [{ value: this.assignment.compensation, disabled: this.isInternship }, [Validators.required, Validators.min(0)]],
+        Compensation: [this.assignment.compensation, [Validators.required, Validators.min(0)]],
         isInternship: [this.assignment.isInternship]
       });
 
