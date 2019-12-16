@@ -2,11 +2,11 @@ import {Commendation} from "./commendation.model";
 
 export class Review {
 
-  public reviewId: string;
+  public id: string;
 
   public reviewText: string;
 
-  public commendations: Commendation[];
+  public commendations: string[];
 
   public companyId: string;
 
@@ -20,9 +20,9 @@ export class Review {
    */
   public isCompanyReview: boolean;
 
-  constructor(reviewId: string,
+  constructor(id: string,
               reviewText: string,
-              commendations: Commendation[],
+              commendations: string[],
               companyId: string,
               assignmentId: string,
               applicantId: string) {
@@ -31,6 +31,6 @@ export class Review {
     this.companyId = companyId;
     this.commendations = commendations;
     this.reviewText = reviewText;
-    this.reviewId = reviewId;
+    this.id = id;
   }
 }

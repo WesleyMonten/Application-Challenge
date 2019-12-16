@@ -196,10 +196,10 @@
                                                                 <div class="col-12">
                                                                     <div>
                                                                         <img *ngFor="let commendation of review.commendations"
-                                                                            src="./../../assets/{{commendation.imageName}}.png">
+                                                                            src="./../../assets/{{commendation}}.png">
                                                                     </div>
                                                                     <button mat-mini-fab id="verwijderApplicantReview"
-                                                                        (click)="deleteApplicantReview(review.reviewId)"
+                                                                        (click)="deleteApplicantReview(review.id)"
                                                                         *ngIf="adminMode || myAccount">
                                                                         <mat-icon>clear</mat-icon>
                                                                     </button>
@@ -350,10 +350,10 @@
                                                                 <div class="col-12">
                                                                     <div>
                                                                         <img *ngFor="let commendation of review.commendations"
-                                                                            src="./../../assets/{{commendation.imageName}}.png">
+                                                                            src="./../../assets/{{commendation}}.png">
                                                                     </div>
                                                                     <button mat-mini-fab id="verwijderCompanyReview"
-                                                                        (click)="deleteCompanyReview(review.reviewId)"
+                                                                        (click)="deleteCompanyReview(review.id)"
                                                                         *ngIf="adminMode || myAccount">
                                                                         <mat-icon>clear</mat-icon>
                                                                     </button>
