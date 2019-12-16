@@ -7,7 +7,6 @@ using MongoDB.Driver;
 
 namespace ApplicationChallenge.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class SkillController: ControllerBase
