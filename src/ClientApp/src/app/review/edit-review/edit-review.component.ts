@@ -33,40 +33,17 @@ export class EditReviewComponent implements OnInit {
     this.route.paramMap.subscribe(Params => {
       this.reviewId = Params.get('id');
     });
-    this.getReview();
-    this.getApplicantCommendations();
-    this.getCompanyCommendations();
-    this.getAssignment();
+    this._reviewService.getReview(this.reviewId).subscribe(result => {
+      this.model = result;
+      this.isCompanyReview = result.isCompanyReview;
+    });
+    this._commendationService.getApplicantCommendation().subscribe(result => { this.applicantCommendations = result; })
+    this._commendationService.getCompanyCommendation().subscribe(result => { this.companyCommendations = result; })
+    this._assignmentService.getAssignment(this.reviewId).subscribe(result => { this.assignment = result; })
   }
 
   isChecked(commendation: Commendation): boolean {
     return this.model.commendations.filter(c => c.displayName == commendation.displayName).length > 0;
-  }
-
-  getReview() {
-    this._reviewService.getReview(this.reviewId).subscribe(result => {
-      console.log(result);
-      this.model = result;
-      this.isCompanyReview = result.isCompanyReview;
-    })
-  }
-
-  getApplicantCommendations() {
-    this._commendationService.getApplicantCommendation().subscribe(result => {
-      this.applicantCommendations = result;
-    })
-  }
-
-  getCompanyCommendations() {
-    this._commendationService.getCompanyCommendation().subscribe(result => {
-      this.companyCommendations = result;
-    })
-  }
-
-  getAssignment() {
-    this._assignmentService.getAssignment(this.reviewId).subscribe(result => {
-      this.assignment = result;
-    })
   }
 
   onSubmit(isCompany: boolean) {
