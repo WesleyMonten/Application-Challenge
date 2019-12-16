@@ -31,7 +31,7 @@ export class AccountDeleteComponent implements OnInit {
   }
 
   onSubmitDeleteAccount() {
-    this._accountService.delete(this.data.accountId).subscribe(() => {
+    this._accountService.delete(this.data.id).subscribe(() => {
       this.dialogRef.close();
       this.router.navigate(['/login']);
     })
