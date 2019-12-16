@@ -24,9 +24,7 @@ namespace ApplicationChallenge.Controllers
         [HttpGet("{id}")]
         public UserInfo GetById(string id)
         {
-            if (id == "me") {
-                id = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
-            }
+            id = this.ResolveUserId(id);
 
             if (id is null) {
                 throw new Exception("No id");

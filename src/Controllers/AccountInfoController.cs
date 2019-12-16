@@ -24,7 +24,7 @@ namespace ApplicationChallenge.Controllers
         [HttpGet("{id}")] // TODO: enkel /me
         public User GetOwn()
         {
-            string id = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value ?? throw new Exception("No user");;
+            string id = this.ResolveUserId("me");
 
             return Users.Find(x => x.Id == id).First();
         }
