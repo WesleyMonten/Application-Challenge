@@ -21,6 +21,7 @@ export class AddReviewComponent implements OnInit {
   applicantCommendations: Commendation[];
   companyCommendations: Commendation[];
   assignmentId: string;
+  applicantId: string;
   isCompanyReview: boolean;
   assignment: Assignment;
 
@@ -38,7 +39,11 @@ export class AddReviewComponent implements OnInit {
 
     this._commendationService.getApplicantCommendation().subscribe(result => { this.applicantCommendations = result; });
     this._commendationService.getCompanyCommendation().subscribe(result => { this.companyCommendations = result; });
-    this._assignmentService.getAssignment(this.assignmentId).subscribe(result => { this.assignment = result; })
+    this._assignmentService.getAssignment(this.assignmentId).subscribe(result => {
+      this.assignment = result;
+      this._applicationService.getApplication(this.assignment.applicationId).subscribe(a => this.applicantId = a.applicantId);
+    })
+
   }
 
   isChecked(commendation: Commendation): boolean {
@@ -53,7 +58,7 @@ export class AddReviewComponent implements OnInit {
     this.model.commendations = allCommendations.filter(c => imageNames.includes(c.imageName)).map(c => c.imageName);
     this.model.companyId = this.assignment.companyId;
     this.model.assignmentId = this.assignmentId;
-    this.model.applicantId = this.assignment.applicationId;
+    this.model.applicantId = this.applicantId;
 
     (this.isCompanyReview ? this._reviewService.addCompanyReview(this.model) : this._reviewService.addApplicantReview(this.model)).subscribe(result => {
       console.log(result);

@@ -42,7 +42,7 @@
                                 matTooltipPosition="above">
                                 {{open.title}}
                             </mat-card-title>
-                            <mat-card-subtitle>
+                            <mat-card-subtitle *ngIf="open.topics.length > 0">
                                 {{open.topics[0].name}}
                             </mat-card-subtitle>
                         </mat-card-header>
@@ -72,7 +72,7 @@
                                 matTooltipPosition="above">
                                 {{closed.title}}
                             </mat-card-title>
-                            <mat-card-subtitle>
+                            <mat-card-subtitle *ngIf="closed.topics.length > 0">
                                 {{closed.topics[0].name}}
                             </mat-card-subtitle>
                         </mat-card-header>
@@ -103,7 +103,7 @@
                             <mat-card-title>
                                 {{finished.title}}
                             </mat-card-title>
-                            <mat-card-subtitle>
+                            <mat-card-subtitle *ngIf="finished.topics.length > 0">
                                 {{finished.topics[0].name}}
                             </mat-card-subtitle>
                         </mat-card-header>

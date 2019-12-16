@@ -74,8 +74,10 @@ export class AccountDetailComponent implements OnInit {
       } else {
         this.account = res;
         this.dateOfBirth = this.datepipe.transform(this.account.dateOfBirth, 'MM/dd/yyyy');
-        this.getApplicationsOfAccount(accountId);
-        this.getApplicantReviews(accountId);
+        if (this.account.applicant) {
+          this.getApplicationsOfAccount(accountId);
+          this.getApplicantReviews(accountId);
+        }
         if (this.account.company != null) {
           this.getCompanyReviews(this.account.accountId);
         }
