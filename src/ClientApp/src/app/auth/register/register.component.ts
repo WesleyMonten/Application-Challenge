@@ -19,9 +19,9 @@ import { ApplicantService } from 'src/app/services/applicant.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  model: NewUser = new NewUser('', '', '', new Date(Date.now()));
   company: Company = new Company('', '', '', '', '');
   applicant: Applicant = new Applicant('', '', true, []);
+  model: NewUser = new NewUser('', '', '', new Date(Date.now()), null, null);
   submitted: boolean = false;
   selectedOption: boolean = true;
   options: string[] = ["Applicant", "Company"];
@@ -44,19 +44,18 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    console.log(this.company);
     this.applicant.skills = this.skillAccount;
-    console.log(this.applicant);
+    if(this.selectedOption == true){
+      this.model.applicant = this.applicant;
+    }
+    else{
+      this.model.company = this.company;
+    }
+    console.log(this.model);
     this._authService.register(this.model).subscribe((val) => {
       if (val.successful) {
         // noinspection JSIgnoredPromiseFromCall
         this.router.navigate(['']);
-        if(this.selectedOption == true){
-          this._applicantService.addApplicant(this.applicant).subscribe();
-        }
-        else{
-          this._applicantService.addCompany(this.company).subscribe();
-        }
       } else {
         alert(val.errorMessage); // TODO: proper
       }
