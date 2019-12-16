@@ -19,7 +19,7 @@ export class AccountService {
   }
 
   put(account: Account): Observable<Account> {
-    return this.http.put<Account>("/accountinfo/" + account.accountId, account);
+    return this.http.put<Account>("/accountinfo/" + account.id, account);
   }
 
   delete(accountId: string): Observable<boolean> {

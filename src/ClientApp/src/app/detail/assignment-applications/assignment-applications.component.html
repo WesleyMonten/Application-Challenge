@@ -15,7 +15,7 @@
     <mat-card>
         <mat-list>
             <mat-list-item *ngFor="let application of applications; let i=index;">
-                <a [routerLink]="['/account/', applicants[i].accountId]">{{applicants[i].nickname}}</a>
+                <a [routerLink]="['/account/', applicants[i].id]">{{applicants[i].nickname}}</a>
                 <div class="fill"></div>
                 <button mat-flat-button id="verwijder" (click)="choose(application)" *ngIf="closed"
                     class="choose">
