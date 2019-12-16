@@ -16,7 +16,6 @@ import { DeleteModule } from './delete/delete.module';
 import { AccountService } from './services/account.service';
 import { AssignmentService } from './services/assignment.service';
 import { ApplicationService } from './services/application.service';
-import { CompanyService } from './services/company.service';
 import { SkillService } from './services/skill.service';
 import { ReviewService } from './services/review.service';
 import { AuthService } from './services/auth.service';
@@ -53,7 +52,6 @@ import { UserInfoService } from './services/user-info.service';
     AccountService,
     AssignmentService,
     ApplicationService,
-    CompanyService,
     SkillService,
     ReviewService,
     AuthService,

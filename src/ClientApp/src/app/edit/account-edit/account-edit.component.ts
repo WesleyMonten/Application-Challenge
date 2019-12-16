@@ -8,7 +8,6 @@ import { Account } from 'src/app/models/account.model';
 import { FormBuilder, Validators, Form, FormGroup, FormControl } from '@angular/forms';
 import { SkillService } from 'src/app/services/skill.service';
 import { Location, DatePipe } from '@angular/common';
-import { CompanyService } from 'src/app/services/company.service';
 
 @Component({
   selector: 'app-account-edit',
@@ -29,7 +28,7 @@ export class AccountEditComponent implements OnInit {
   editApplicantForm: FormGroup;
   editCompanyForm: FormGroup;
 
-  constructor(private _accountService: AccountService, private _skillService: SkillService, private route: ActivatedRoute, private fb: FormBuilder, private _location: Location, private _companyService: CompanyService, public datepipe: DatePipe) { }
+  constructor(private _accountService: AccountService, private _skillService: SkillService, private route: ActivatedRoute, private fb: FormBuilder, private _location: Location, public datepipe: DatePipe) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => { this.getAccount(params['id']); });
@@ -110,7 +109,8 @@ export class AccountEditComponent implements OnInit {
   }
 
   onSubmitEditCompany() {
-    this._companyService.put(this.editCompanyForm.value).subscribe(res => {
+    this.account.company = this.editCompanyForm.value;
+    this._accountService.put(this.account).subscribe(res => {
       this._accountService.refreshProfile.next(true);
       this._accountService.refreshNav.next(true);
       this.goBack();

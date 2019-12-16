@@ -5,9 +5,7 @@ import { Account } from 'src/app/models/account.model';
 import { DatePipe } from '@angular/common';
 import { ReviewService } from 'src/app/services/review.service';
 import { Assignment } from 'src/app/models/assignment.model';
-import { Company } from 'src/app/models/company.model';
 import { AssignmentService } from 'src/app/services/assignment.service';
-import { CompanyService } from 'src/app/services/company.service';
 import { MatDialog } from '@angular/material';
 import { AccountDeleteComponent } from 'src/app/delete/account-delete/account-delete.component';
 import { UserInfo } from "../../models/user-info";
@@ -30,7 +28,7 @@ export class AccountDetailComponent implements OnInit {
   companyReviews: Review[] = [];
   assignmentStartDates: string[] = [];
   assignmentEndDates: string[] = [];
-  companiesApplicantReviews: Company[] = [];
+  companiesApplicantReviews: UserInfo[] = [];
   assignmentsApplicantReviews: Assignment[] = [];
   applicantsCompanyReviews: UserInfo[] = [];
   assignmentsCompanyReviews: Assignment[] = [];
@@ -45,7 +43,7 @@ export class AccountDetailComponent implements OnInit {
   myAccount: boolean;
 
 
-  constructor(private _userInfoService: UserInfoService, private _accountService: AccountService, private _reviewService: ReviewService, private _assignmentService: AssignmentService, private _companyService: CompanyService, private route: ActivatedRoute, public datepipe: DatePipe, public dialog: MatDialog, private _applicationService: ApplicationService, private _commendationService: CommendationService) {
+  constructor(private _userInfoService: UserInfoService, private _accountService: AccountService, private _reviewService: ReviewService, private _assignmentService: AssignmentService, private route: ActivatedRoute, public datepipe: DatePipe, public dialog: MatDialog, private _applicationService: ApplicationService, private _commendationService: CommendationService) {
     this._accountService.refreshProfile.subscribe(() => {
       if (localStorage.getItem("adminMode")) {
         this.adminMode = true;
@@ -162,7 +160,7 @@ export class AccountDetailComponent implements OnInit {
   }
 
   getCompany(companyId: string) {
-    this._companyService.getCompany(companyId).subscribe(res => {
+    this._userInfoService.get(companyId).subscribe(res => {
       this.companiesApplicantReviews.push(res);
     })
   }

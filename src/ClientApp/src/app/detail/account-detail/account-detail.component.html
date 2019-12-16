@@ -123,12 +123,12 @@
                                                 <div class="adminButtons row">
                                                     <div class="col-12">
                                                         <button mat-mini-fab id="verwijderAssignment"
-                                                            (click)="deleteAssignment(assignment.assignmentId)"
+                                                            (click)="deleteAssignment(assignment.id)"
                                                             *ngIf="adminMode || myAccount">
                                                             <mat-icon>clear</mat-icon>
                                                         </button>
                                                         <button mat-mini-fab color="primary" type="button"
-                                                            [routerLink]="['/edit-assignment/', assignment.assignmentId]"
+                                                            [routerLink]="['/edit-assignment/', assignment.id]"
                                                             *ngIf="adminMode || myAccount">
                                                             <mat-icon>edit</mat-icon>
                                                         </button>
@@ -146,7 +146,7 @@
                                                     {{assignmentStartDates[i]}} -
                                                     {{assignmentEndDates[i]}}
                                                 </mat-card-subtitle>
-                                                <mat-card-subtitle>{{companiesApplicantReviews[i].name}}
+                                                <mat-card-subtitle>{{companiesApplicantReviews[i].company.name}}
                                                 </mat-card-subtitle>
                                                 <mat-card-subtitle>
                                                     {{assignment.location}}
@@ -215,7 +215,7 @@
                                                                         {{assignmentsApplicantReviews[i].title}}
                                                                     </mat-card-title>
                                                                     <mat-card-subtitle>
-                                                                        {{companiesApplicantReviews[i].name}}
+                                                                        {{companiesApplicantReviews[i].company.name}}
                                                                     </mat-card-subtitle>
                                                                 </div>
                                                             </div>
