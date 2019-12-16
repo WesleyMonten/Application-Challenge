@@ -47,7 +47,11 @@ namespace ApplicationChallenge.Controllers
         {
             try
             {
-                var token = UserService.RegisterUser(regInfo);
+                // detect if there are any users in the database already
+                var firstUser = Users.Find(x => true).FirstOrDefault();
+                bool createAdmin = firstUser is null;
+                
+                var token = UserService.RegisterUser(regInfo, createAdmin);
                 return SuccessWrapper.Success(token);
             }
             catch (Exception e)
