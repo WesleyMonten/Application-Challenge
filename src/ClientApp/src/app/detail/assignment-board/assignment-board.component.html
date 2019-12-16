@@ -6,9 +6,10 @@
                     <mat-card-title class="listTitle">Draft</mat-card-title>
                 </mat-card-header>
                 <mat-card-content class="listItems">
-                    <mat-card class="listItem" *ngFor="let draft of draftAssignments" mat-ripple>
+                    <mat-card class="listItem" *ngFor="let draft of draftAssignments">
                         <mat-card-header>
-                            <mat-card-title matTooltip="Edit Assignment" matTooltipPosition="above" [routerLink]="['/edit-assignment/', draft.id]">
+                            <mat-card-title matTooltip="Edit Assignment" matTooltipPosition="above"
+                                [routerLink]="['/edit-assignment/', draft.id]">
                                 {{draft.title}}
                             </mat-card-title>
                             <mat-card-subtitle *ngIf="draft.topics.length > 0">
@@ -35,9 +36,10 @@
                     <mat-card-title class="listTitle">Open</mat-card-title>
                 </mat-card-header>
                 <mat-card-content class="listItems">
-                    <mat-card class="listItem" *ngFor="let open of openAssignments" mat-ripple>
+                    <mat-card class="listItem" *ngFor="let open of openAssignments">
                         <mat-card-header>
-                            <mat-card-title (click)="seeListOfApplicants(open.id, false)" matTooltip="See applicants" matTooltipPosition="above">
+                            <mat-card-title (click)="seeListOfApplicants(open.id, false)" matTooltip="See applicants"
+                                matTooltipPosition="above">
                                 {{open.title}}
                             </mat-card-title>
                             <mat-card-subtitle>
@@ -49,8 +51,8 @@
                                 matTooltip="Put Assignment Back in Draft" matTooltipPosition="above">
                                 <mat-icon>backspace</mat-icon>
                             </button>
-                            <button mat-flat-button id="close" (click)="close(open)"
-                                matTooltip="Close Assignment" matTooltipPosition="above">
+                            <button mat-flat-button id="close" (click)="close(open)" matTooltip="Close Assignment"
+                                matTooltipPosition="above">
                                 <mat-icon>not_interested</mat-icon>
                             </button>
                         </div>
@@ -64,9 +66,10 @@
                     <mat-card-title class="listTitle">Closed</mat-card-title>
                 </mat-card-header>
                 <mat-card-content class="listItems">
-                    <mat-card class="listItem" *ngFor="let closed of closedAssignments" mat-ripple>
+                    <mat-card class="listItem" *ngFor="let closed of closedAssignments">
                         <mat-card-header>
-                            <mat-card-title (click)="seeListOfApplicants(closed.id, true)" matTooltip="See applicants" matTooltipPosition="above">
+                            <mat-card-title (click)="seeListOfApplicants(closed.id, true)" matTooltip="See applicants"
+                                matTooltipPosition="above">
                                 {{closed.title}}
                             </mat-card-title>
                             <mat-card-subtitle>
@@ -95,7 +98,7 @@
                     <mat-card-title class="listTitle">Finished</mat-card-title>
                 </mat-card-header>
                 <mat-card-content class="listItems">
-                    <mat-card class="listItem" *ngFor="let finished of finishedAssignments" mat-ripple>
+                    <mat-card class="listItem" *ngFor="let finished of finishedAssignments">
                         <mat-card-header>
                             <mat-card-title>
                                 {{finished.title}}
