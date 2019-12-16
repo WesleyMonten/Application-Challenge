@@ -4,6 +4,8 @@ import { AssignmentTopic } from 'src/app/models/assignment-topic.model';
 import { MatChipInputEvent } from '@angular/material';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import {AccountService} from "../../services/account.service";
+import {Assignment} from "../../models/assignment.model";
 
 @Component({
   selector: 'app-assignment-detail',
@@ -24,6 +26,8 @@ export class AssignmentDetailComponent implements OnInit {
   maxDate: any;
   isInternship: boolean = false;
 
+  companyId: string = '';
+
   newAssignmentForm = this.fb.group({
     Title: ['', Validators.required],
     Description: ['', Validators.required],
@@ -34,7 +38,18 @@ export class AssignmentDetailComponent implements OnInit {
     isInternship: [this.isInternship]
   });
 
-  constructor(private _assignmentService: AssignmentService, private fb: FormBuilder) { }
+  constructor(private _assignmentService: AssignmentService, private fb: FormBuilder, private _accountService: AccountService) { }
+
+  ngOnInit() {
+    const date = new Date();
+    this.maxDate = date.setDate(this.minDate + 2);
+    this._assignmentService.getAllAssignmentTopics().subscribe(res => {
+      this.topics = res;
+    });
+    this._accountService.get("me").subscribe(user => {
+      return this.companyId = user.id;
+    })
+  }
 
   addTopic(event: MatChipInputEvent): void {
     const input = event.input;
@@ -67,17 +82,11 @@ export class AssignmentDetailComponent implements OnInit {
 
   onSubmitNewAssignment() {
     this.newAssignmentForm.addControl('AssignmentTopics', new FormControl(this.assignmentTopics));
-    this._assignmentService.create(this.newAssignmentForm.value).subscribe(res => {
+    let value = <Assignment>this.newAssignmentForm.value;
+    value.companyId = this.companyId;
+    this._assignmentService.create(value).subscribe(res => {
       console.log(res);
     })
-  }
-
-  ngOnInit() {
-    var date = new Date();
-    this.maxDate = date.setDate(this.minDate + 2);
-    this._assignmentService.getAllAssignmentTopics().subscribe(res => {
-      this.topics = res;
-    });
   }
 
 }

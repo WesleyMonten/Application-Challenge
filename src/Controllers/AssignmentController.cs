@@ -63,15 +63,7 @@ namespace ApplicationChallenge.Controllers
             {
                 id = this.ResolveUserId(id);
                 
-//                return Assignments.Find(assignment => assignment.CompanyId == id && assignment.Stage == stage).ToList();
-                IEnumerable<Assignment> ass = Assignments.Find(tag => tag.Stage == stage).ToList();
-                List<Assignment> retval = new List<Assignment>();
-                foreach(Assignment a in ass)
-                {
-                    if (a.CompanyId.Equals(id))
-                        retval.Add(a);
-                }
-                return retval;
+                return Assignments.Find(assignment => assignment.CompanyId == id && assignment.Stage == stage).ToList();
             }
 
             [HttpGet("{id}")]
