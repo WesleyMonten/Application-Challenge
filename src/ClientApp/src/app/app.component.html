@@ -7,9 +7,13 @@
     <div class="content">
       <nav class="navbar navbar-light border-bottom box-shadow mb-3 background-color-primary" *ngIf="isLoggedIn">
         <mat-icon (click)="drawer.toggle()">menu</mat-icon>
-        <mat-form-field appearance="outline">
-          <input matInput [(ngModel)]="search" (ngModelChange)="onChangeSearch($event)" placeholder="Search...">
-        </mat-form-field>
+        <div class="header">
+          <img src="../assets/logo-white.png" width="48px" height="48px">
+          <mat-form-field appearance="outline">
+            <input matInput [(ngModel)]="search" (ngModelChange)="onChangeSearch($event)" placeholder="Search...">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>
+        </div>
       </nav>
       <div class="spacer" *ngIf="isLoggedIn"></div>
       <router-outlet></router-outlet>
