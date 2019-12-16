@@ -84,6 +84,7 @@ export class AssignmentDetailComponent implements OnInit {
     this.newAssignmentForm.addControl('AssignmentTopics', new FormControl(this.assignmentTopics));
     let value = <Assignment>this.newAssignmentForm.value;
     value.companyId = this.companyId;
+    value.topics = this.assignmentTopics;
     this._assignmentService.create(value).subscribe(res => {
       console.log(res);
     })
