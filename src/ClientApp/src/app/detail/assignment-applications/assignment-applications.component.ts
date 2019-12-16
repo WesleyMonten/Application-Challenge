@@ -25,6 +25,10 @@ export class AssignmentApplicationsComponent implements OnInit {
     })
   }
 
+  ngOnInit() {
+    this.getIdFromParameter();
+  }
+
   goBack() {
     this._location.back();
   }
@@ -52,8 +56,8 @@ export class AssignmentApplicationsComponent implements OnInit {
 
   getIdFromParameter() {
     this.route.params.subscribe(params => {
-      var id = +params['id'];
-      this.getApplicationsAssignment(id.toString());
+      var id = params['id'];
+      this.getApplicationsAssignment(id);
     })
   }
 
@@ -74,10 +78,6 @@ export class AssignmentApplicationsComponent implements OnInit {
     this._accountService.get(applicantId).subscribe(res => {
       this.applicants.push(res);
     })
-  }
-
-  ngOnInit() {
-    this.getIdFromParameter();
   }
 
 }
