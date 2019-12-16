@@ -1,9 +1,10 @@
 <div>
   <img src="../../assets/user.png" width="120px" height="120px" />
-  <h4> {{account.nickname}} </h4>
+  <h4 *ngIf="account"> {{account.nickname}} </h4>
 </div>
 <br>
-<div class="divider"> <span class="span"></span>
+<div class="divider"></div>
+  <span class="span"></span>
   <button mat-button routerLink="/" routerLinkActive="active" class="menu-item">
     <mat-icon>library_books</mat-icon>
     <span>Feed</span>
@@ -12,11 +13,11 @@
     <mat-icon>account_box</mat-icon>
     <span>Profile</span>
   </button>
-  <button mat-button routerLink="/assignments/" routerLinkActive="active" class="menu-item" *ngIf="account.company">
+  <button mat-button routerLink="/assignments" routerLinkActive="active" class="menu-item" *ngIf="account && account.company">
     <mat-icon>assignment</mat-icon>
     <span>Assignments</span>
   </button>
   <mat-slide-toggle color="primary" [checked]="adminMode" (change)="onChangeMode()" class="menu-item"
-    *ngIf="account.isAdmin">
+    *ngIf="account && account.isAdmin">
     Admin Mode
   </mat-slide-toggle>
