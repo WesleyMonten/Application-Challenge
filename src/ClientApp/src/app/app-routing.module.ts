@@ -22,11 +22,11 @@ const appRoutes: Routes = [
   { path: 'assignments/:id', component: AssignmentDetailComponent, canActivate: [AuthGuard] },
   { path: 'edit-assignment/:id', component: AssignmentEditComponent, canActivate: [AuthGuard] },
   { path: 'applications/:id', component: AssignmentApplicationsComponent, canActivate: [AuthGuard] },
-  { path: 'new-company', component: CompanyCreateComponent, canActivate: [AuthGuard, CompanyGuard] },
+  // { path: 'new-company', component: CompanyCreateComponent, canActivate: [AuthGuard, CompanyGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'review/:id', component: AddReviewComponent},
-  { path: 'editreview/:id', component: EditReviewComponent},
+  { path: 'review/:id', component: AddReviewComponent, canActivate: [AuthGuard] },
+  { path: 'editreview/:id', component: EditReviewComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '' }
 ];
 
