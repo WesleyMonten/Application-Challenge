@@ -21,7 +21,6 @@ export class AssignmentDetailComponent implements OnInit {
   removable = true;
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  selectedIndex = 0;
 
   topics: AssignmentTopic[];
   assignmentTopics: AssignmentTopic[] = [];
