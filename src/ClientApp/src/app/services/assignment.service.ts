@@ -11,26 +11,6 @@ import {AppComponent} from "../app.component";
 export class AssignmentService {
 
   refreshBoard = new BehaviorSubject(false);
-  startDate = new Date('2019-12-12T00:00:00');
-  endDate = new Date('2019-12-31T00:00:00');
-
-  assignmentTopics: Array<AssignmentTopic> = [
-    { assignmentTopicId: "2", name: "Frontend", color: "#7D5667" },
-    { assignmentTopicId: "1", name: "Fullstack", color: "#21A296" }
-  ]
-
-  assignmentTopics1: Array<AssignmentTopic> = [
-    { assignmentTopicId: "1", name: "Fullstack", color: "#21A296" }
-  ]
-
-  assignmentTopics2: Array<AssignmentTopic> = [
-    { assignmentTopicId: "2", name: "Frontend", color: "#7D5667" }
-  ]
-
-  assignments: Array<Assignment> = [
-    { assignmentId: "1", title: "Full stack application", description: "Frontend in Angular, Backend in .NET core", location: "Turnhout", startTime: this.startDate, endTime: this.endDate, isInternship: false, compensation: 200, stage: AssignmentStage.Open, topics: this.assignmentTopics1, companyId: "1", applicationId: null },
-    { assignmentId: "2", title: "Frontend", description: "Frontend in Vue.js", location: "Mechelen", startTime: this.startDate, endTime: this.endDate, isInternship: false, compensation: 400, stage: AssignmentStage.Draft, topics: this.assignmentTopics2, companyId: "1", applicationId: null },
-  ]
 
   constructor(private http: HttpClient) { }
 
