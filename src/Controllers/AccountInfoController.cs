@@ -1,6 +1,4 @@
 using System;
-using System.Linq;
-using System.Security.Claims;
 using ApplicationChallenge.Models;
 using ApplicationChallenge.Models.Database;
 using Microsoft.AspNetCore.Authorization;
@@ -19,20 +17,24 @@ namespace ApplicationChallenge.Controllers
         public AccountInfoController(IDatabaseSettings databaseSettings)
         {
             Users = databaseSettings.GetCollection<User>();
+            
+            // TODO: only allow when either admin or using /me
         }
 
-        [HttpGet("{id}")] // TODO: enkel /me
-        public User GetOwn()
+        [HttpGet("{id}")]
+        public User GetOwn(string id)
         {
-            string id = this.ResolveUserId("me");
+            id = this.ResolveUserId(id);
 
             return Users.Find(x => x.Id == id).First();
         }
 
-        [HttpPut("me")]
-        public User PutOwn()
+        [HttpPut("{id}")]
+        public User PutOwn(string id, User user)
         {
-            throw new NotImplementedException();
+            id = this.ResolveUserId(id);
+
+            return Users.FindOneAndReplace(u => u.Id == id, user);
         }
 
         [HttpDelete("me")]
