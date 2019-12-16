@@ -17,8 +17,15 @@ export class AssignmentBoardComponent implements OnInit {
   finishedAssignments: Assignment[];
 
   constructor(private _assignmentService: AssignmentService, private route: ActivatedRoute, private router: Router, private _applicationService: ApplicationService) {
+  }
+
+  ngOnInit() {
     this._assignmentService.refreshBoard.subscribe(() => {
-      this.ngOnInit();
+      const id = 'me';
+      this.getDraftAssignments(id);
+      this.getOpenAssignments(id);
+      this.getClosedAssignments(id);
+      this.getFinishedAssignments(id);
     })
   }
 
@@ -68,13 +75,6 @@ export class AssignmentBoardComponent implements OnInit {
   }
 
   getIdFromParameter() {
-    this.route.params.subscribe(params => {
-      let id = params.id;
-      this.getDraftAssignments(id.toString());
-      this.getOpenAssignments(id.toString());
-      this.getClosedAssignments(id.toString());
-      this.getFinishedAssignments(id.toString());
-    })
   }
 
   getDraftAssignments(companyId: string) {
@@ -100,10 +100,6 @@ export class AssignmentBoardComponent implements OnInit {
     this._assignmentService.getFinishedAssignmentsCompany(companyId).subscribe(res => {
       this.finishedAssignments = res;
     });
-  }
-
-  ngOnInit() {
-    this.getIdFromParameter();
   }
 
 }

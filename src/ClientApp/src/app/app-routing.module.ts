@@ -19,7 +19,7 @@ const appRoutes: Routes = [
   { path: '', component: FeedComponent, pathMatch: 'full', canActivate: [AuthGuard] },
   { path: 'account/:id', component: AccountDetailComponent, canActivate: [AuthGuard] },
   { path: 'edit-account/:id', component: AccountEditComponent, canActivate: [AuthGuard] },
-  { path: 'assignments/:id', component: AssignmentDetailComponent, canActivate: [AuthGuard] },
+  { path: 'assignments', component: AssignmentDetailComponent, canActivate: [AuthGuard] },
   { path: 'edit-assignment/:id', component: AssignmentEditComponent, canActivate: [AuthGuard] },
   { path: 'applications/:id', component: AssignmentApplicationsComponent, canActivate: [AuthGuard] },
   // { path: 'new-company', component: CompanyCreateComponent, canActivate: [AuthGuard, CompanyGuard] },

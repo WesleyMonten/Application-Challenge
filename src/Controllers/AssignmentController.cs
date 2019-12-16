@@ -45,6 +45,8 @@ namespace ApplicationChallenge.Controllers
             [HttpGet("company/{id}")]
             public IEnumerable<Assignment> GetByCompany(string id)
             {
+                id = this.ResolveUserId(id);
+                // TODO: fix this, this is horrible. blame jonas
 // werkt alleen as de sterre goe staan en das nu dus ni naart schijnt
 //                return Assignments.Find(assignment => assignment.CompanyId == id).ToList();
                 IEnumerable<Assignment> ass = Assignments.Find(tag => true).ToList();
@@ -59,6 +61,8 @@ namespace ApplicationChallenge.Controllers
             [HttpGet("company/{id}/{stage}")]
             public IEnumerable<Assignment> GetByCompanyAndStage(string id, AssignmentStage stage)
             {
+                id = this.ResolveUserId(id);
+                
 //                return Assignments.Find(assignment => assignment.CompanyId == id && assignment.Stage == stage).ToList();
                 IEnumerable<Assignment> ass = Assignments.Find(tag => tag.Stage == stage).ToList();
                 List<Assignment> retval = new List<Assignment>();
