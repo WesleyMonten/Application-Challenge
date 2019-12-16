@@ -6,6 +6,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import {AccountService} from "../../services/account.service";
 import {Assignment} from "../../models/assignment.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-assignment-detail',
@@ -38,7 +39,7 @@ export class AssignmentDetailComponent implements OnInit {
     isInternship: [this.isInternship]
   });
 
-  constructor(private _assignmentService: AssignmentService, private fb: FormBuilder, private _accountService: AccountService) { }
+  constructor(private _assignmentService: AssignmentService, private fb: FormBuilder, private _accountService: AccountService, private router: Router) { }
 
   ngOnInit() {
     const date = new Date();
@@ -87,6 +88,7 @@ export class AssignmentDetailComponent implements OnInit {
     value.topics = this.assignmentTopics;
     this._assignmentService.create(value).subscribe(res => {
       console.log(res);
+      this.router.navigate(["/"]); // TODO: zou naar / moeten gaan, maar daar zijn we al
     })
   }
 
