@@ -4,7 +4,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { AssignmentService } from 'src/app/services/assignment.service';
 import { MatChipInputEvent } from '@angular/material';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { Assignment } from 'src/app/models/assignment.model';
 import { Location, DatePipe } from '@angular/common';
 
@@ -30,7 +30,7 @@ export class AssignmentEditComponent implements OnInit {
 
   editAssignmentForm: FormGroup;
 
-  constructor(private _assignmentService: AssignmentService, private fb: FormBuilder, private route: ActivatedRoute, private _location: Location, public datepipe: DatePipe) { }
+  constructor(private _assignmentService: AssignmentService, private fb: FormBuilder, private route: ActivatedRoute, private _location: Location, public datepipe: DatePipe, private router: Router) { }
 
   goBack() {
     this._location.back();
@@ -38,7 +38,7 @@ export class AssignmentEditComponent implements OnInit {
 
   getIdFromParameter() {
     this.route.params.subscribe(params => {
-      var id = params['id'];
+      let id = params['id'];
       this.getAssignment(id);
     })
   }
@@ -94,8 +94,11 @@ export class AssignmentEditComponent implements OnInit {
 
   onSubmitEditAssignment() {
     this.editAssignmentForm.addControl('AssignmentTopics', new FormControl(this.assignmentTopics));
-    this._assignmentService.put(this.editAssignmentForm.value).subscribe(res => {
+    let value = Object.assign(this.assignment, this.editAssignmentForm.value);
+    console.log(value);
+    this._assignmentService.put(value).subscribe(res => {
       console.log(res);
+      this.router.navigate(["/assignments"]);
     })
   }
 
