@@ -1,6 +1,8 @@
-html{
+html, body {
+    height: 100%;
     overflow: auto;
 }
+
 mat-form-field{
     width: 100%;
     font-size: 13px;
@@ -32,13 +34,9 @@ button{
     background: url("../../../assets/business.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
-    width:100%;
+    background-position: center;
+    height: 100%;
     filter: blur(4px);
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: scale(1.1); 
 }
 
 .landingform {
@@ -48,29 +46,37 @@ button{
     transform: translate(-50%, -50%);
 }
 
-img {
-    width: 100%;
-    height: auto;
-}
 
 @media only screen and (min-width: 1140px){
-    img {
-        width: 40%;
-    }   
+    mat-card {
+        margin-top: 150px;
+    }    
 }
 
 @media only screen and (max-width: 1140px){
-    img {
-        width: 50%;
-    }   
+    mat-card {
+        margin-top: 250px;
+    }    
 }
 
 @media only screen and (max-width: 900px){
-    img {
-        margin-top: 200px;
-        width: 80%;
+    mat-card {
+        margin-top: 600px;
     }       
 }
+
+@media only screen and (max-width: 450px){
+    mat-card {
+        margin-top: 300px;
+    }       
+}
+
+// @media only screen and (max-width: 450px){
+//     mat-card {
+//         margin-top: 0px;
+//     }    
+
+// }
 
 mat-icon {
     cursor: pointer;
