@@ -39,23 +39,15 @@ export class EditReviewComponent implements OnInit {
     this.getAssignment();
   }
 
-  isChecked(commendation: Commendation) {
-    if (this.model.commendations.filter(c => c.displayName == commendation.displayName).length > 0) {
-      return true;
-    } else {
-      return false;
-    }
+  isChecked(commendation: Commendation): boolean {
+    return this.model.commendations.filter(c => c.displayName == commendation.displayName).length > 0;
   }
 
   getReview() {
     this._reviewService.getReview(this.reviewId).subscribe(result => {
       console.log(result);
       this.model = result;
-      if (result.isCompanyReview) {
-        this.isCompanyReview = true;
-      } else {
-        this.isCompanyReview = false;
-      }
+      this.isCompanyReview = result.isCompanyReview;
     })
   }
 
@@ -87,35 +79,5 @@ export class EditReviewComponent implements OnInit {
     this._reviewService.changeReview(this.model).subscribe(result => {
       console.log(result);
     })
-  }
-
-  shouldBeChecked(c: Commendation) {
-    return true;
-  }
-
-  isEquivalent(a, b) {
-    // Create arrays of property names
-    var aProps = Object.getOwnPropertyNames(a);
-    var bProps = Object.getOwnPropertyNames(b);
-
-    // If number of properties is different,
-    // objects are not equivalent
-    if (aProps.length != bProps.length) {
-      return false;
-    }
-
-    for (var i = 0; i < aProps.length; i++) {
-      var propName = aProps[i];
-
-      // If values of same property are not equal,
-      // objects are not equivalent
-      if (a[propName] !== b[propName]) {
-        return false;
-      }
-    }
-
-    // If we made it this far, objects
-    // are considered equivalent
-    return true;
   }
 }
