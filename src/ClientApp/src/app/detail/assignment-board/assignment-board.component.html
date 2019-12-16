@@ -35,10 +35,9 @@
                     <mat-card-title class="listTitle">Open</mat-card-title>
                 </mat-card-header>
                 <mat-card-content class="listItems">
-                    <mat-card class="listItem" *ngFor="let open of openAssignments" mat-ripple
-                        (click)="seeListOfApplicants(open.id, false)">
+                    <mat-card class="listItem" *ngFor="let open of openAssignments" mat-ripple>
                         <mat-card-header>
-                            <mat-card-title matTooltip="See applicants" matTooltipPosition="above">
+                            <mat-card-title (click)="seeListOfApplicants(open.id, false)" matTooltip="See applicants" matTooltipPosition="above">
                                 {{open.title}}
                             </mat-card-title>
                             <mat-card-subtitle>
@@ -65,10 +64,9 @@
                     <mat-card-title class="listTitle">Closed</mat-card-title>
                 </mat-card-header>
                 <mat-card-content class="listItems">
-                    <mat-card class="listItem" *ngFor="let closed of closedAssignments" mat-ripple
-                        (click)="seeListOfApplicants(closed.id, true)">
+                    <mat-card class="listItem" *ngFor="let closed of closedAssignments" mat-ripple>
                         <mat-card-header>
-                            <mat-card-title matTooltip="See applicants" matTooltipPosition="above">
+                            <mat-card-title (click)="seeListOfApplicants(closed.id, true)" matTooltip="See applicants" matTooltipPosition="above">
                                 {{closed.title}}
                             </mat-card-title>
                             <mat-card-subtitle>
