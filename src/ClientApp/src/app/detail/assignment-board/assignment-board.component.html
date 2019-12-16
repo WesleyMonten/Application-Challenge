@@ -6,10 +6,9 @@
                     <mat-card-title class="listTitle">Draft</mat-card-title>
                 </mat-card-header>
                 <mat-card-content class="listItems">
-                    <mat-card class="listItem" *ngFor="let draft of draftAssignments" mat-ripple
-                        [routerLink]="['/edit-assignment/', draft.assignmentId]">
+                    <mat-card class="listItem" *ngFor="let draft of draftAssignments" mat-ripple>
                         <mat-card-header>
-                            <mat-card-title matTooltip="Edit Assignment" matTooltipPosition="above">
+                            <mat-card-title matTooltip="Edit Assignment" matTooltipPosition="above" [routerLink]="['/edit-assignment/', draft.id]">
                                 {{draft.title}}
                             </mat-card-title>
                             <mat-card-subtitle *ngIf="draft.topics.length > 0">
@@ -17,7 +16,7 @@
                             </mat-card-subtitle>
                         </mat-card-header>
                         <div class="buttons">
-                            <button mat-flat-button id="verwijder" (click)="delete(draft.assignmentId)"
+                            <button mat-flat-button id="verwijder" (click)="delete(draft.id)"
                                 matTooltip="Delete Assignment" matTooltipPosition="above">
                                 <mat-icon>delete</mat-icon>
                             </button>
@@ -37,7 +36,7 @@
                 </mat-card-header>
                 <mat-card-content class="listItems">
                     <mat-card class="listItem" *ngFor="let open of openAssignments" mat-ripple
-                        (click)="seeListOfApplicants(open.assignmentId, false)">
+                        (click)="seeListOfApplicants(open.id, false)">
                         <mat-card-header>
                             <mat-card-title matTooltip="See applicants" matTooltipPosition="above">
                                 {{open.title}}
@@ -67,7 +66,7 @@
                 </mat-card-header>
                 <mat-card-content class="listItems">
                     <mat-card class="listItem" *ngFor="let closed of closedAssignments" mat-ripple
-                        (click)="seeListOfApplicants(closed.assignmentId, true)">
+                        (click)="seeListOfApplicants(closed.id, true)">
                         <mat-card-header>
                             <mat-card-title matTooltip="See applicants" matTooltipPosition="above">
                                 {{closed.title}}
