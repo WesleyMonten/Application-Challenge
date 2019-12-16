@@ -6,6 +6,7 @@ import { ApplicationService } from 'src/app/services/application.service';
 import { Application } from 'src/app/models/application.model';
 import {UserInfoService} from "../../services/user-info.service";
 import {UserInfo} from "../../models/user-info";
+import {AccountService} from "../../services/account.service";
 
 @Component({
   selector: 'app-feed',
@@ -22,7 +23,7 @@ export class FeedComponent implements OnInit {
   model: Application = new Application("", "", "", false);
 
   constructor(private _assignmentService: AssignmentService,
-    private _searchService: SearchService, private _applicationService: ApplicationService, private _userInfoService: UserInfoService) {
+    private _searchService: SearchService, private _applicationService: ApplicationService, private _userInfoService: UserInfoService, private _accountService: AccountService) {
     this._searchService.currentSearch.subscribe(result => {
       this.search = result;
       this.getOpenAssignments();
@@ -73,13 +74,14 @@ export class FeedComponent implements OnInit {
   }
 
   apply(assignment: string){
-    this.model.assignmentId = assignment;
-    this.model.accepted = false;
-    //TODO: Userid
-    this.model.applicantId = "1";
-    console.log(this.model);
-    this._applicationService.addApplication(this.model).subscribe(result => {
-      console.log(result);
+    this._accountService.get('me').subscribe(user => {
+      this.model.assignmentId = assignment;
+      this.model.accepted = false;
+      this.model.applicantId = user.id;
+      console.log(this.model);
+      this._applicationService.addApplication(this.model).subscribe(result => {
+        console.log(result);
+      })
     })
   }
 }

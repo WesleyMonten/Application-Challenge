@@ -26,7 +26,7 @@ export class ApplicationService {
 
   choose(application: Application): Observable<Application> {
     application.accepted = true;
-    return this.http.put<Application>("/application/" + application.applicationId, application);
+    return this.http.put<Application>("/application/" + application.id, application);
   }
 
   getApplication(id: string){

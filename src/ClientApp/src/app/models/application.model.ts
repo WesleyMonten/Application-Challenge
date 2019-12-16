@@ -1,3 +1,3 @@
 export class Application {
-    constructor(public applicationId: string, public assignmentId: string, public applicantId: string, public accepted: boolean) { }
+    constructor(public id: string, public assignmentId: string, public applicantId: string, public accepted: boolean) { }
 }

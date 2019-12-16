@@ -41,7 +41,7 @@ export class AssignmentApplicationsComponent implements OnInit {
   choose(application: Application) {
     this._applicationService.choose(application).subscribe(res => {
       this._assignmentService.getAssignment(application.assignmentId).subscribe(ass => {
-        this._assignmentService.setApplicationOnAssignment(ass, res.applicationId).subscribe(app => {
+        this._assignmentService.setApplicationOnAssignment(ass, res.id).subscribe(app => {
           console.log(app);
           this._assignmentService.refreshBoard.next(true);
           this.goBack();
