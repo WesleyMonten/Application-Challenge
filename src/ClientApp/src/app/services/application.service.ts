@@ -10,11 +10,6 @@ export class ApplicationService {
 
   isClosed = new BehaviorSubject(false);
 
-  applications: Array<Application> = [
-    { applicationId: "1", assignmentId: "1", applicantId: "1", accepted: false },
-    { applicationId: "2", assignmentId: "1", applicantId: "2", accepted: false },
-  ]
-
   constructor(private http: HttpClient) { }
   getApplications(): Observable<Application[]> {
     return this.http.get<Application[]>("/application");
