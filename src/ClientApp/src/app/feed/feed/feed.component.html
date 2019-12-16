@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="account && assignments && companies">
     <div class="row">
         <div class="col-12">
             <mat-card class="feed-card" *ngFor="let assignment of assignments; let i=index;">
@@ -7,7 +7,9 @@
                     <mat-card-title>{{companies[i].company.name}}</mat-card-title>
                     <mat-card-subtitle>{{assignment.location}}</mat-card-subtitle>
                     <div class="fill"></div>
-                    <mat-icon (click)="apply(assignment.id)" matTooltip="Apply">add_box</mat-icon>
+                    <mat-icon (click)="apply(assignment.id, $event)" matTooltip="Apply" *ngIf="account.applicant">
+                        add_box
+                    </mat-icon>
                 </mat-card-header>
                 <mat-chip-list>
                     <mat-chip *ngFor="let topic of assignment.topics;"
@@ -21,15 +23,6 @@
                         {{assignment.description}}
                     </p>
                 </mat-card-content>
-                <mat-card-actions>
-                    <button mat-button>
-                        <mat-icon class="like">favorite_border</mat-icon>
-                        <span class="likes">{{likeCount}}</span>
-                    </button>
-                    <button mat-button>
-                        <mat-icon>share</mat-icon>
-                    </button>
-                </mat-card-actions>
             </mat-card>
         </div>
     </div>
