@@ -16,16 +16,10 @@
   }
 
 
-  .like {
-      color: red;
-  }
-
-  .likes {
-      font-weight: bold;
-      vertical-align: middle;
-      margin-left: 5px;
-  }
-
   .fill {
     flex: 1;
+  }
+
+  mat-icon {
+      cursor: pointer;
   }
