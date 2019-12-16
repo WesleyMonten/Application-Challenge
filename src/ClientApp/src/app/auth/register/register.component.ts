@@ -17,7 +17,7 @@ import { SkillService } from 'src/app/services/skill.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  company: Company = new Company('', '', '', '', '');
+  company: Company = new Company('', '', '', '');
   applicant: Applicant = new Applicant('', true, []);
   model: NewUser = new NewUser('', '', '', new Date(Date.now()), null, null);
   submitted: boolean = false;
