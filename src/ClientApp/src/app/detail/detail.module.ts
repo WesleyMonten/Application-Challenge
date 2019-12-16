@@ -8,7 +8,6 @@ import { AccountDetailComponent } from './account-detail/account-detail.componen
 import { AccountDeleteComponent } from '../delete/account-delete/account-delete.component';
 import { AssignmentBoardComponent } from './assignment-board/assignment-board.component';
 import { AssignmentApplicationsComponent } from './assignment-applications/assignment-applications.component';
-import { ChoiceDeleteComponent } from '../delete/choice-delete/choice-delete.component';
 
 @NgModule({
   declarations: [AssignmentDetailComponent, ReviewDetailComponent, AccountDetailComponent, AssignmentBoardComponent, AssignmentApplicationsComponent],
@@ -17,7 +16,7 @@ import { ChoiceDeleteComponent } from '../delete/choice-delete/choice-delete.com
     SharedModule,
     AppRoutingModule,
   ],
-  entryComponents: [AccountDeleteComponent, ChoiceDeleteComponent],
+  entryComponents: [AccountDeleteComponent],
   providers: [DatePipe]
 })
 export class DetailModule { }
