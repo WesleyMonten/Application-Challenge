@@ -58,11 +58,12 @@
       <br>
       <mat-radio-group aria-labelledby="radio-group-label" class="radio-group" [(ngModel)]="selectedOption"
         (change)="onChange($event)" required>
-        <mat-radio-button class="radio-button" [value]="true" check >Applicant</mat-radio-button>
+        <mat-radio-button class="radio-button" [value]="true" check>Applicant</mat-radio-button>
         <mat-radio-button class="radio-button" [value]="false">Company</mat-radio-button>
       </mat-radio-group>
       <div *ngIf="selectedOption">
-        <mat-checkbox name="available" #available="ngModel" [(ngModel)]="applicant.available">Available</mat-checkbox>
+        <mat-checkbox name="available" #available="ngModel" [(ngModel)]="applicant.available">Available
+        </mat-checkbox>
         <mat-form-field appearance="outline">
           <mat-label>Biography</mat-label>
           <textarea matInput name="Biography" placeholder="Biography" [(ngModel)]="applicant.biography" cols="30"
@@ -84,7 +85,7 @@
       <div *ngIf="selectedOption==false">
         <mat-form-field appearance="outline">
           <mat-label>Name</mat-label>
-          <input matInput placeholder="Name" type="text" name="Name" [(ngModel)]="company.name"required>
+          <input matInput placeholder="Name" type="text" name="Name" [(ngModel)]="company.name" required>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Phone number</mat-label>
@@ -97,8 +98,8 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Biography</mat-label>
-          <textarea matInput name="Biography" placeholder="Biography" [(ngModel)]="company.biography" cols="30"
-            rows="8" required></textarea>
+          <textarea matInput name="Biography" placeholder="Biography" [(ngModel)]="company.biography" cols="30" rows="8"
+            required></textarea>
         </mat-form-field>
       </div>
       <button color="primary" mat-flat-button>Register</button>
