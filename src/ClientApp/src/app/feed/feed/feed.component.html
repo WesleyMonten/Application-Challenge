@@ -4,7 +4,7 @@
             <mat-card class="feed-card" *ngFor="let assignment of assignments; let i=index;">
                 <mat-card-header>
                     <div mat-card-avatar class="user-header-image"></div>
-                    <mat-card-title>{{companies[i].name}}</mat-card-title>
+                    <mat-card-title>{{companies[i].company.name}}</mat-card-title>
                     <mat-card-subtitle>{{assignment.location}}</mat-card-subtitle>
                     <div class="fill"></div>
                     <mat-icon (click)="apply(assignment.id)" matTooltip="Apply">add_box</mat-icon>

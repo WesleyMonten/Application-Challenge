@@ -10,8 +10,6 @@ import { MatChipInputEvent } from '@angular/material';
 import { Skill } from 'src/app/models/skill.model';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { SkillService } from 'src/app/services/skill.service';
-import { CompanyService } from 'src/app/services/company.service';
-import { ApplicantService } from 'src/app/services/applicant.service';
 
 @Component({
   selector: 'app-register',
@@ -19,8 +17,8 @@ import { ApplicantService } from 'src/app/services/applicant.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  company: Company = new Company('', '', '', '', '');
-  applicant: Applicant = new Applicant('', '', true, []);
+  company: Company = new Company('', '', '', '');
+  applicant: Applicant = new Applicant('', true, []);
   model: NewUser = new NewUser('', '', '', new Date(Date.now()), null, null);
   submitted: boolean = false;
   selectedOption: boolean = true;
@@ -34,9 +32,8 @@ export class RegisterComponent implements OnInit {
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
-  constructor(private formBuilder: FormBuilder, private _authService: AuthService, private router: Router, 
-    private _skillService : SkillService, private _companyService: CompanyService, private _applicantService: ApplicantService, 
-    private _location: Location) {
+  constructor(private formBuilder: FormBuilder, private _authService: AuthService, private router: Router,
+    private _skillService : SkillService, private _location: Location) {
     this._skillService.get().subscribe(res => { this.skills = res; });
    }
 
