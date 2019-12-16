@@ -80,40 +80,40 @@ export class AssignmentService {
 
   publish(assignment: Assignment): Observable<Assignment> {
     assignment.stage = AssignmentStage.Open;
-    return this.http.put<Assignment>("/assignment/" + assignment.assignmentId, assignment);
+    return this.http.put<Assignment>("/assignment/" + assignment.id, assignment);
   }
 
   toDraft(assignment: Assignment): Observable<Assignment> {
     assignment.stage = AssignmentStage.Draft;
-    return this.http.put<Assignment>("/assignment/" + assignment.assignmentId, assignment);
+    return this.http.put<Assignment>("/assignment/" + assignment.id, assignment);
   }
 
   close(assignment: Assignment): Observable<Assignment> {
     assignment.stage = AssignmentStage.Closed;
-    return this.http.put<Assignment>("/assignment/" + assignment.assignmentId, assignment);
+    return this.http.put<Assignment>("/assignment/" + assignment.id, assignment);
   }
 
   toOpen(assignment: Assignment): Observable<Assignment> {
     assignment.stage = AssignmentStage.Open;
-    return this.http.put<Assignment>("/assignment/" + assignment.assignmentId, assignment);
+    return this.http.put<Assignment>("/assignment/" + assignment.id, assignment);
   }
 
   finish(assignment: Assignment): Observable<Assignment> {
     assignment.stage = AssignmentStage.Finished;
-    return this.http.put<Assignment>("/assignment/" + assignment.assignmentId, assignment);
+    return this.http.put<Assignment>("/assignment/" + assignment.id, assignment);
   }
 
   put(assignment: Assignment): Observable<Assignment> {
-    return this.http.put<Assignment>("/assignment/" + assignment.assignmentId, assignment);
+    return this.http.put<Assignment>("/assignment/" + assignment.id, assignment);
   }
 
   cancel(assignment: Assignment): Observable<Assignment> {
     assignment.stage = AssignmentStage.Cancelled;
-    return this.http.put<Assignment>("/assignment/" + assignment.assignmentId, assignment);
+    return this.http.put<Assignment>("/assignment/" + assignment.id, assignment);
   }
 
   setApplicationOnAssignment(assignment: Assignment, applicationId: string): Observable<Assignment> {
     assignment.applicationId = applicationId;
-    return this.http.put<Assignment>("/assignment/" + assignment.assignmentId, assignment);
+    return this.http.put<Assignment>("/assignment/" + assignment.id, assignment);
   }
 }
