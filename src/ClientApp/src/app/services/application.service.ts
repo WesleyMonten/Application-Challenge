@@ -39,6 +39,6 @@ export class ApplicationService {
 
 
   getApplicationsOfAccount(accountId: string): Observable<Application[]> {
-    return this.http.post<Application[]>("/application/applicant/", accountId);
+    return this.http.get<Application[]>("/application/applicant/" + accountId);
   }
 }

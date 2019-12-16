@@ -67,11 +67,11 @@ export class ReviewService {
   }
 
   getApplicantReviews(applicantId: string): Observable<Review[]> {
-    return this.http.get<Review[]>("/applicantreview/applicant" + applicantId);
+    return this.http.get<Review[]>("/applicantreview/applicant/" + applicantId);
   }
 
   getCompanyReviews(companyId: string): Observable<Review[]> {
-    return this.http.get<Review[]>("/companyreview/company" + companyId);
+    return this.http.get<Review[]>("/companyreview/company/" + companyId);
   }
 
   deleteApplicantReview(reviewId: string): Observable<Review> {

@@ -16,7 +16,7 @@ namespace ApplicationChallenge.Services
         User GetUserByEmail(string email);
         User GetUserByUsername(string username);
 
-        string RegisterUser(UserRegistration reg);
+        string RegisterUser(UserRegistration reg, bool isAdmin);
         string CheckUserLogin(UserLogin login);
     }
     
@@ -35,7 +35,7 @@ namespace ApplicationChallenge.Services
         public User GetUserByEmail(string email) => Users.Find(u => u.Email.ToLowerInvariant() == email.ToLowerInvariant()).FirstOrDefault();
         public User GetUserByUsername(string username) => Users.Find(u => u.Nickname.ToLowerInvariant() == username.ToLowerInvariant()).FirstOrDefault();
 
-        public string RegisterUser(UserRegistration reg)
+        public string RegisterUser(UserRegistration reg, bool isAdmin)
         {
             if (reg.Email == default ||
                 reg.Password == default ||
@@ -52,6 +52,7 @@ namespace ApplicationChallenge.Services
             }
             
             var user = reg.CreateNewUser();
+            user.IsAdmin = isAdmin;
             Users.InsertOne(user);
             return CreateToken(user);
         }

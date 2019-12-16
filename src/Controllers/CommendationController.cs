@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ApplicationChallenge.Controllers
 {
     [AllowAnonymous]
+    [ApiController]
     [Route("[controller]")]
     public class CommendationController : ControllerBase
     {

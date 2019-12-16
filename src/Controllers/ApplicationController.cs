@@ -23,7 +23,7 @@ namespace ApplicationChallenge.Controllers
         {
             return Applications.Find(tag => true).ToList();
         }
-        [HttpGet("{id}")]
+        [HttpGet("/id/{id}")]
         public Application GetById(string id)
         {
             return Applications.Find(application=> application.Id == id).FirstOrDefault();
@@ -34,8 +34,9 @@ namespace ApplicationChallenge.Controllers
             return Applications.Find(application => application.AssignmentId == id).ToList();
         }
         [HttpGet("applicant/{id}")]
-        public IEnumerable<Application> GetByCompany(string id)
+        public IEnumerable<Application> GetByApplicant(string id)
         {
+            id = this.ResolveUserId(id);
             return Applications.Find(application => application.ApplicantId == id).ToList();
         }
         [HttpPost]

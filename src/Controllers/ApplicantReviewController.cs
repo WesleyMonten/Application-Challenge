@@ -37,6 +37,7 @@ namespace ApplicationChallenge.Controllers
          [HttpGet("applicant/{id}")]
          public IEnumerable<ApplicantReview> GetByApplicant(string id)
          {
+             id = this.ResolveUserId(id);
              return ApplicantReviews.Find(applicantReview => applicantReview.ApplicantId == id).ToList();
          }
          [HttpGet("company/{id}")]
