@@ -18,6 +18,7 @@ namespace ApplicationChallenge
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseUrls("http://0.0.0.0:80") // not using SSL, requires certificate
                 .UseStartup<Startup>();
     }
 }
