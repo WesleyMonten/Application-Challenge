@@ -24,11 +24,11 @@ export class SecurityInterceptor implements HttpInterceptor {
     // TODO: could be handled better?
     return next.handle(request).pipe(
       catchError(err => {
-        if (err.status === 401) {
+        if (err.status === 401 && !(this._router.url == '/login' || this._router.url == '/register')) {
           // noinspection JSIgnoredPromiseFromCall
           this._router.navigate(['login']);
         }
-        return throwError("unauthorized");
+        return throwError("exception during http request", err);
       }));
   }
 }
