@@ -7,8 +7,6 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
 import { FeedModule } from './feed/feed.module';
 import { DetailModule } from './detail/detail.module';
 import { EditModule } from './edit/edit.module';
@@ -25,6 +23,7 @@ import { ReviewModule } from './review/review.module';
 import { CompanyGuard } from './security/company.guard';
 import { CreateModule } from './create/create.module';
 import { UserInfoService } from './services/user-info.service';
+import {AuthModule} from "./auth/auth.module";
 
 @NgModule({
   declarations: [
@@ -43,7 +42,8 @@ import { UserInfoService } from './services/user-info.service';
     EditModule,
     DeleteModule,
     CreateModule,
-    ReviewModule
+    ReviewModule,
+    AuthModule
   ],
   providers: [
     AccountService,
